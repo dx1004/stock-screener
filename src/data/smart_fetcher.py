@@ -17,6 +17,8 @@ from typing import Dict, Optional
 import pandas as pd
 import yfinance as yf
 
+from .alpaca_fetcher import AlpacaPriceFetcher
+
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
@@ -41,6 +43,7 @@ class SmartDataFetcher:
         self.fundamental_cache_dir = self.cache_dir / "fundamentals"
         self.price_cache_dir.mkdir(exist_ok=True)
         self.fundamental_cache_dir.mkdir(exist_ok=True)
+        self.alpaca_fetcher = AlpacaPriceFetcher()
 
         logger.info(f"SmartDataFetcher initialized with cache: {cache_dir}")
 
@@ -97,9 +100,8 @@ class SmartDataFetcher:
             logger.info(f"{ticker}: Incremental update (cache {days_old} days old)")
 
             try:
-                stock = yf.Ticker(ticker)
                 # Fetch last 5 days to ensure overlap with cache
-                new_data = stock.history(period='5d', interval='1d')
+                new_data = self._fetch_daily_prices(ticker, period='5d')
 
                 if not new_data.empty:
                     # Merge cached + new data
@@ -124,9 +126,8 @@ class SmartDataFetcher:
             logger.info(f"{ticker}: Full fetch ({reason})")
 
             try:
-                stock = yf.Ticker(ticker)
                 # Fetch 1 year of data (~250 trading days)
-                data = stock.history(period='1y', interval='1d')
+                data = self._fetch_daily_prices(ticker, period='1y')
 
                 if not data.empty:
                     # Save to cache
@@ -233,6 +234,15 @@ class SmartDataFetcher:
             combined = combined.iloc[-keep_days:]
 
         return combined.reset_index(drop=True)
+
+    def _fetch_daily_prices(self, ticker: str, period: str) -> pd.DataFrame:
+        """Fetch daily bars from Alpaca, with Yahoo Finance as fallback."""
+        alpaca_data = self.alpaca_fetcher.fetch_price_history(ticker, period=period)
+        if alpaca_data is not None:
+            return alpaca_data
+
+        logger.info("Using Yahoo Finance price-history fallback for %s", ticker)
+        return yf.Ticker(ticker).history(period=period, interval='1d')
 
     def _save_price_cache(self, ticker: str, data: pd.DataFrame):
         """Save price data and metadata to cache.

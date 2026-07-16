@@ -65,6 +65,7 @@ This system was built to eliminate emotional decision-making and provide objecti
 - **Timing matters** - only buy when market (SPY) is also healthy
 - **Relative strength matters** - only buy stocks outperforming the market
 - **Cache-first design** - 74% reduction in API calls through Git-based fundamental storage
+- **Primary fundamentals source** - SEC EDGAR Company Facts for comparable quarterly US-GAAP and IFRS data; Yahoo Finance remains a fallback
 
 ---
 
@@ -173,8 +174,10 @@ graph TB
 1. **Daily Scan** (GitHub Actions, 1 PM UTC M-F):
    - Fetches universe of 3,800+ US stocks from NASDAQ/NYSE
    - Downloads 1 year price history for each (250 trading days)
-   - Fetches fundamentals using earnings-aware cache refresh strategy
+   - Fetches SEC EDGAR Company Facts fundamentals using the earnings-aware cache refresh strategy, with Yahoo Finance fallback
    - Stores in Git-based cache (persists beyond Actions cache limits)
+
+EDGAR access requires no API key. Set `SEC_EDGAR_USER_AGENT` to an identifying string with a real contact email locally, and set the same value as the repository variable **Settings → Secrets and variables → Actions → Variables** for scheduled GitHub Actions runs. The client throttles itself below the SEC’s published 10 requests/second limit and reports US-GAAP, IFRS, Yahoo fallback, and unavailable coverage in each scan. An optional FMP key may be used only for the top 50 selected buy candidates (`--use-fmp`); it never participates in full-universe screening.
 
 2. **Signal Generation**:
    - Classifies SPY phase to determine market regime

@@ -32,6 +32,7 @@ from src.screening.benchmark import (
 )
 from src.screening.signal_engine import score_buy_signal, score_sell_signal
 from src.data.enhanced_fundamentals import EnhancedFundamentalsFetcher
+from src.data.fundamentals_fetcher import get_fundamentals_coverage, reset_fundamentals_coverage
 
 logging.basicConfig(
     level=logging.INFO,
@@ -62,6 +63,16 @@ def save_report(results, buy_signals, sell_signals, spy_analysis, breadth, outpu
     output.append(f"Analyzed: {results['total_analyzed']:,} stocks")
     output.append(f"Processing Time: {results['processing_time_seconds']/60:.1f} minutes")
     output.append(f"Actual TPS: {results['actual_tps']:.2f}")
+
+    coverage = results.get('fundamentals_coverage')
+    if coverage:
+        output.append(
+            "Fundamentals: "
+            f"SEC US-GAAP {coverage['sec_edgar']}, "
+            f"SEC IFRS {coverage['sec_edgar_ifrs']}, "
+            f"Yahoo fallback {coverage['yahoo_fallback']}, "
+            f"unavailable {coverage['unavailable']}"
+        )
 
     error_rate = results['error_rate'] * 100
     if error_rate < 1:
@@ -292,6 +303,7 @@ def main():
     parser.add_argument('--min-price', type=float, default=5.0, help='Min price')
     parser.add_argument('--min-volume', type=int, default=100000, help='Min volume')
     parser.add_argument('--use-fmp', action='store_true', help='Use FMP for enhanced fundamentals on buy signals')
+    parser.add_argument('--fmp-max-candidates', type=int, default=50, help='Maximum buy candidates for FMP backfill (default: 50)')
     parser.add_argument('--git-storage', action='store_true', help='Use Git-based storage for fundamentals (recommended)')
 
     args = parser.parse_args()
@@ -311,6 +323,7 @@ def main():
 
     # Initialize enhanced fundamentals fetcher
     fundamentals_fetcher = EnhancedFundamentalsFetcher()
+    args.fmp_max_candidates = max(0, min(args.fmp_max_candidates, 50))
     if args.use_fmp and fundamentals_fetcher.fmp_available:
         logger.info("FMP enabled - will use for buy signal fundamentals")
     elif args.use_fmp:
@@ -346,6 +359,7 @@ def main():
             processor.clear_progress()
 
         # Process
+        reset_fundamentals_coverage()
         results = processor.process_batch_parallel(
             tickers,
             resume=args.resume,
@@ -378,15 +392,16 @@ def main():
                         vcp_data=analysis.get('vcp_data')  # Added VCP data
                     )
                     if signal['is_buy']:
-                        # Use FMP for enhanced snapshot if requested and available
-                        signal['fundamental_snapshot'] = fundamentals_fetcher.create_snapshot(
-                            analysis['ticker'],
-                            quarterly_data=analysis.get('quarterly_data', {}),
-                            use_fmp=args.use_fmp
-                        )
+                        signal['_quarterly_data'] = analysis.get('quarterly_data', {})
                         buy_signals.append(signal)
 
         buy_signals = sorted(buy_signals, key=lambda x: x['score'], reverse=True)
+        for index, signal in enumerate(buy_signals):
+            signal['fundamental_snapshot'] = fundamentals_fetcher.create_snapshot(
+                signal['ticker'],
+                quarterly_data=signal.pop('_quarterly_data'),
+                use_fmp=args.use_fmp and index < args.fmp_max_candidates,
+            )
 
         # Sell signals
         sell_signals = []
@@ -413,6 +428,7 @@ def main():
         sell_signals = sorted(sell_signals, key=lambda x: x['score'], reverse=True)
 
         # Report
+        results['fundamentals_coverage'] = get_fundamentals_coverage()
         save_report(results, buy_signals, sell_signals, spy_analysis, breadth)
 
         # Show FMP usage if enabled

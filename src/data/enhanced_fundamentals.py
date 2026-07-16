@@ -50,6 +50,7 @@ class EnhancedFundamentalsFetcher:
 
         self.fmp_call_count = 0
         self.fmp_daily_limit = 250
+        self.fmp_calls_per_candidate = 4
 
     def fetch_quarterly_data(
         self,
@@ -67,23 +68,30 @@ class EnhancedFundamentalsFetcher:
         """
         # If FMP requested and available, use it
         if use_fmp and self.fmp_available:
-            if self.fmp_call_count < self.fmp_daily_limit:
-                try:
-                    data = self.fmp_fetcher.fetch_comprehensive_fundamentals(ticker)
-                    self.fmp_call_count += 4  # 4 API calls per stock
-
-                    if data and data.get('income_statement'):
-                        logger.debug(f"Using FMP data for {ticker}")
-                        return self._convert_fmp_to_standard(data)
-                    else:
-                        logger.warning(f"FMP returned no data for {ticker}, falling back to yfinance")
-                except Exception as e:
-                    logger.warning(f"FMP fetch failed for {ticker}: {e}. Using yfinance.")
-            else:
-                logger.warning(f"FMP daily limit reached ({self.fmp_daily_limit}). Using yfinance.")
+            data = self._fetch_fmp_data(ticker)
+            if data and data.get('income_statement'):
+                return self._convert_fmp_to_standard(data)
 
         # Fall back to yfinance
         return fetch_quarterly_financials(ticker)
+
+    def _fetch_fmp_data(self, ticker: str) -> Optional[Dict]:
+        """Fetch one candidate's FMP payload without exceeding the daily quota."""
+        if not self.fmp_available or not self.fmp_fetcher:
+            return None
+        if self.fmp_call_count + self.fmp_calls_per_candidate > self.fmp_daily_limit:
+            logger.warning("FMP daily limit reached; retaining SEC/Yahoo fundamentals for %s", ticker)
+            return None
+        try:
+            data = self.fmp_fetcher.fetch_comprehensive_fundamentals(ticker)
+            self.fmp_call_count += self.fmp_calls_per_candidate
+            if data and data.get('income_statement'):
+                logger.debug("Using FMP data for selected candidate %s", ticker)
+                return data
+            logger.warning("FMP returned no data for %s; retaining SEC/Yahoo fundamentals", ticker)
+        except Exception as e:
+            logger.warning("FMP fetch failed for %s: %s", ticker, e)
+        return None
 
     def _convert_fmp_to_standard(self, fmp_data: Dict) -> Dict[str, any]:
         """Convert FMP data format to standard format used by signal engine.
@@ -198,13 +206,10 @@ class EnhancedFundamentalsFetcher:
         if quarterly_data is None:
             quarterly_data = self.fetch_quarterly_data(ticker, use_fmp=use_fmp)
 
-        # If data came from FMP and has enhanced fields, use FMP snapshot
-        if (quarterly_data.get('data_source') == 'fmp' and
-            self.fmp_available and
-            self.fmp_fetcher):
-            # Re-fetch FMP data for enhanced snapshot
-            fmp_data = self.fmp_fetcher.fetch_comprehensive_fundamentals(ticker)
-            if fmp_data:
+        # FMP is an explicit candidate-only backfill, not a full-universe source.
+        if use_fmp:
+            fmp_data = self._fetch_fmp_data(ticker)
+            if fmp_data and self.fmp_fetcher:
                 return self.fmp_fetcher.create_enhanced_snapshot(ticker, fmp_data)
 
         # Fall back to standard snapshot

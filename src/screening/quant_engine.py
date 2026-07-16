@@ -20,7 +20,9 @@ from src.data.fetcher import YahooFinanceFetcher
 from src.data.fundamentals_fetcher import (
     fetch_quarterly_financials,
     create_fundamental_snapshot,
-    analyze_fundamentals_for_signal
+    analyze_fundamentals_for_signal,
+    get_fundamentals_coverage,
+    reset_fundamentals_coverage,
 )
 from .phase_indicators import (
     classify_phase,
@@ -142,6 +144,7 @@ class QuantAnalysisEngine:
             Dict with buy list, sell list, and benchmark data
         """
         logger.info(f"Screening {len(tickers)} stocks...")
+        reset_fundamentals_coverage()
 
         # Ensure SPY data is loaded
         if self.spy_data is None:
@@ -227,7 +230,8 @@ class QuantAnalysisEngine:
             'signal_recommendation': signal_recommendation,
             'buys': buy_candidates,
             'sells': sell_candidates,
-            'total_analyzed': len(all_analyses)
+            'total_analyzed': len(all_analyses),
+            'fundamentals_coverage': get_fundamentals_coverage(),
         }
 
     def run(self, tickers: List[str]) -> str:
@@ -257,6 +261,12 @@ class QuantAnalysisEngine:
         output.append("QUANT ANALYSIS & EXECUTION ENGINE")
         output.append(f"Run Date: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
         output.append(f"Stocks Analyzed: {results['total_analyzed']}")
+        coverage = results['fundamentals_coverage']
+        output.append(
+            "Fundamentals: "
+            f"SEC US-GAAP {coverage['sec_edgar']}, SEC IFRS {coverage['sec_edgar_ifrs']}, "
+            f"Yahoo fallback {coverage['yahoo_fallback']}, unavailable {coverage['unavailable']}"
+        )
         output.append("="*60)
 
         # Benchmark Summary

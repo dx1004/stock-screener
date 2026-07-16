@@ -8,17 +8,55 @@ This module fetches detailed quarterly financial metrics including:
 """
 
 import logging
+import threading
 from typing import Dict, List, Optional
 from datetime import datetime
 
 import yfinance as yf
 import pandas as pd
 
+from .sec_edgar_fetcher import SECEdgarFundamentalsFetcher
+
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
 )
 logger = logging.getLogger(__name__)
+
+_sec_edgar_fetcher: Optional[SECEdgarFundamentalsFetcher] = None
+_coverage_lock = threading.Lock()
+_coverage_counts = {
+    'sec_edgar': 0,
+    'sec_edgar_ifrs': 0,
+    'yahoo_fallback': 0,
+    'unavailable': 0,
+}
+
+
+def _get_sec_edgar_fetcher() -> SECEdgarFundamentalsFetcher:
+    """Create one rate-limited EDGAR client per process."""
+    global _sec_edgar_fetcher
+    if _sec_edgar_fetcher is None:
+        _sec_edgar_fetcher = SECEdgarFundamentalsFetcher()
+    return _sec_edgar_fetcher
+
+
+def reset_fundamentals_coverage() -> None:
+    """Reset per-run provider coverage counters."""
+    with _coverage_lock:
+        for source in _coverage_counts:
+            _coverage_counts[source] = 0
+
+
+def get_fundamentals_coverage() -> Dict[str, int]:
+    """Return a stable snapshot of provider coverage for the current run."""
+    with _coverage_lock:
+        return dict(_coverage_counts)
+
+
+def _record_coverage(source: str) -> None:
+    with _coverage_lock:
+        _coverage_counts[source] += 1
 
 
 def fetch_quarterly_financials(ticker: str) -> Dict[str, any]:
@@ -30,6 +68,12 @@ def fetch_quarterly_financials(ticker: str) -> Dict[str, any]:
     Returns:
         Dict with quarterly financial metrics
     """
+    sec_data = _get_sec_edgar_fetcher().fetch_quarterly_financials(ticker)
+    if sec_data is not None:
+        _record_coverage(sec_data.get('data_source', 'sec_edgar'))
+        return sec_data
+
+    logger.info("Using Yahoo Finance quarterly-fundamentals fallback for %s", ticker)
     try:
         stock = yf.Ticker(ticker)
 
@@ -40,6 +84,7 @@ def fetch_quarterly_financials(ticker: str) -> Dict[str, any]:
 
         if quarterly_income.empty:
             logger.warning(f"No quarterly income data for {ticker}")
+            _record_coverage('unavailable')
             return {}
 
         result = {
@@ -152,10 +197,12 @@ def fetch_quarterly_financials(ticker: str) -> Dict[str, any]:
         # This is a limitation - detailed inventory breakdown often requires premium data
         result['inventory_breakdown_available'] = False
 
+        _record_coverage('yahoo_fallback')
         return result
 
     except Exception as e:
         logger.error(f"Error fetching quarterly financials for {ticker}: {e}")
+        _record_coverage('unavailable')
         return {}
 
 

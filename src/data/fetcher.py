@@ -15,6 +15,8 @@ from typing import Dict, List, Optional, Tuple
 import pandas as pd
 import yfinance as yf
 
+from .alpaca_fetcher import AlpacaPriceFetcher
+
 # Configure logging
 logging.basicConfig(
     level=logging.INFO,
@@ -63,6 +65,7 @@ class YahooFinanceFetcher:
         self.cache_expiry_hours = cache_expiry_hours
         self.max_retries = max_retries
         self.retry_delay = retry_delay
+        self.alpaca_fetcher = AlpacaPriceFetcher()
         logger.info(f"YahooFinanceFetcher initialized with cache_dir: {cache_dir}")
 
     def _get_cache_path(self, ticker: str, data_type: str) -> Path:
@@ -263,6 +266,14 @@ class YahooFinanceFetcher:
 
         # Fetch from API
         logger.info(f"Fetching price history for {ticker} (period={period}, interval={interval})")
+
+        alpaca_history = self.alpaca_fetcher.fetch_price_history(
+            ticker, period=period, interval=interval
+        )
+        if alpaca_history is not None:
+            return self._cache_price_history(alpaca_history, cache_path, ticker)
+
+        logger.info("Using Yahoo Finance price-history fallback for %s", ticker)
         for attempt in range(self.max_retries):
             try:
                 # Price history uses Yahoo's chart endpoint; do not preflight it
@@ -275,24 +286,7 @@ class YahooFinanceFetcher:
                         return stale_data
                     return pd.DataFrame()
 
-                # Clean up the DataFrame - keep DatetimeIndex for consistency with git_fetcher
-                # DO NOT reset_index() - we want to preserve the DatetimeIndex from yfinance
-                hist.columns = [col.capitalize() for col in hist.columns]
-
-                # Ensure index is DatetimeIndex (yfinance should provide this)
-                if not isinstance(hist.index, pd.DatetimeIndex):
-                    logger.warning(f"{ticker}: yfinance returned non-DatetimeIndex: {type(hist.index)}")
-                    return pd.DataFrame()
-
-                # Select only OHLCV columns (no 'Date' column - it's the index)
-                available_cols = ['Open', 'High', 'Low', 'Close', 'Volume']
-                hist = hist[[col for col in available_cols if col in hist.columns]]
-
-                # Cache the results
-                self._save_to_cache(hist, cache_path)
-
-                logger.info(f"Successfully fetched {len(hist)} price records for {ticker}")
-                return hist
+                return self._cache_price_history(hist, cache_path, ticker)
 
             except Exception as e:
                 logger.warning(
@@ -328,6 +322,27 @@ class YahooFinanceFetcher:
             return cached_data
 
         return None
+    def _cache_price_history(
+        self,
+        history: pd.DataFrame,
+        cache_path: Path,
+        ticker: str,
+    ) -> pd.DataFrame:
+        """Validate, normalize, cache, and return a provider's price history."""
+        history.columns = [col.capitalize() for col in history.columns]
+        if not isinstance(history.index, pd.DatetimeIndex):
+            logger.warning("%s: provider returned non-DatetimeIndex: %s", ticker, type(history.index))
+            return pd.DataFrame()
+
+        available_cols = ['Open', 'High', 'Low', 'Close', 'Volume']
+        history = history[[col for col in available_cols if col in history.columns]]
+        if history.empty or 'Close' not in history.columns:
+            logger.warning("%s: provider returned incomplete price history", ticker)
+            return pd.DataFrame()
+
+        self._save_to_cache(history, cache_path)
+        logger.info("Successfully fetched %s price records for %s", len(history), ticker)
+        return history
 
     def fetch_multiple(
         self,

@@ -49,7 +49,7 @@ class FMPFetcher:
                 "Get free key at: https://site.financialmodelingprep.com/developer/docs"
             )
 
-        self.base_url = "https://financialmodelingprep.com/api/v3"
+        self.base_url = "https://financialmodelingprep.com/stable"
         self.cache_dir = Path(cache_dir) / "fmp"
         self.cache_dir.mkdir(parents=True, exist_ok=True)
 
@@ -131,16 +131,19 @@ class FMPFetcher:
             return None
 
         try:
-            # Add API key to params
+            # Keep credentials out of request URLs so HTTP errors cannot leak them.
             params = params or {}
-            params['apikey'] = self.api_key
-
             url = f"{self.base_url}/{endpoint}"
 
             # Rate limiting - be respectful
             time.sleep(0.1)  # 10 requests/second max
 
-            response = requests.get(url, params=params, timeout=10)
+            response = requests.get(
+                url,
+                params=params,
+                headers={'apikey': self.api_key},
+                timeout=10,
+            )
             response.raise_for_status()
 
             # Track bandwidth usage
@@ -165,7 +168,11 @@ class FMPFetcher:
             return data
 
         except requests.exceptions.RequestException as e:
-            logger.error(f"Error fetching from FMP: {e}")
+            status_code = getattr(getattr(e, 'response', None), 'status_code', None)
+            if status_code:
+                logger.error("FMP request failed for %s (HTTP %s)", endpoint, status_code)
+            else:
+                logger.error("FMP request failed for %s (%s)", endpoint, type(e).__name__)
             return None
 
     def fetch_income_statement(self, ticker: str, quarterly: bool = True, limit: int = 8) -> List[Dict]:
@@ -189,8 +196,8 @@ class FMPFetcher:
 
         # Fetch from API
         period = "quarter" if quarterly else "annual"
-        endpoint = f"income-statement/{ticker}"
-        params = {'period': period, 'limit': limit}
+        endpoint = "income-statement"
+        params = {'symbol': ticker, 'period': period, 'limit': limit}
 
         data = self._fetch(endpoint, params)
 
@@ -222,8 +229,8 @@ class FMPFetcher:
 
         # Fetch from API
         period = "quarter" if quarterly else "annual"
-        endpoint = f"balance-sheet-statement/{ticker}"
-        params = {'period': period, 'limit': limit}
+        endpoint = "balance-sheet-statement"
+        params = {'symbol': ticker, 'period': period, 'limit': limit}
 
         data = self._fetch(endpoint, params)
 
@@ -255,8 +262,8 @@ class FMPFetcher:
 
         # Fetch from API
         period = "quarter" if quarterly else "annual"
-        endpoint = f"cash-flow-statement/{ticker}"
-        params = {'period': period, 'limit': limit}
+        endpoint = "cash-flow-statement"
+        params = {'symbol': ticker, 'period': period, 'limit': limit}
 
         data = self._fetch(endpoint, params)
 
@@ -288,8 +295,8 @@ class FMPFetcher:
 
         # Fetch from API
         period = "quarter" if quarterly else "annual"
-        endpoint = f"key-metrics/{ticker}"
-        params = {'period': period, 'limit': limit}
+        endpoint = "key-metrics"
+        params = {'symbol': ticker, 'period': period, 'limit': limit}
 
         data = self._fetch(endpoint, params)
 
