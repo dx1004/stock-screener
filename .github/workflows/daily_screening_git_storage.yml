@@ -50,12 +50,12 @@ jobs:
 
       - name: Run weekend quant screen
         env:
-          INPUT_TICKERS: ${{ inputs.tickers }}
-          INPUT_NO_SAVE: ${{ inputs.no_save }}
           ALPACA_API_KEY: ${{ secrets.ALPACA_API_KEY }}
           ALPACA_API_SECRET: ${{ secrets.ALPACA_API_SECRET }}
           SEC_EDGAR_USER_AGENT: ${{ vars.SEC_EDGAR_USER_AGENT }}
           FMP_API_KEY: ${{ secrets.FMP_API_KEY }}
+          INPUT_TICKERS: ${{ inputs.tickers }}
+          INPUT_NO_SAVE: ${{ inputs.no_save }}
         run: |
           mkdir -p data/cache data/results data/logs
           chmod +x ./run_screen.sh

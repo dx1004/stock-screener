@@ -302,26 +302,6 @@ class YahooFinanceFetcher:
             return stale_data
         return pd.DataFrame()
 
-    def _load_stale_price_cache(self, cache_path: Path, ticker: str) -> Optional[pd.DataFrame]:
-        """Load expired price cache when live price fetching is unavailable.
-
-        Price history is preferable to no history at all for benchmark checks and
-        report generation when Yahoo Finance is temporarily blocked or down. Fresh
-        cache is still returned before any API call; this fallback is only used
-        after the live request path fails or returns no rows.
-        """
-        if not cache_path.exists():
-            return None
-
-        cached_data = self._load_from_cache(cache_path)
-        if cached_data is not None and isinstance(cached_data, pd.DataFrame) and not cached_data.empty:
-            logger.warning(
-                f"Using stale cached price history for {ticker} because live fetch failed: "
-                f"{cache_path.name}"
-            )
-            return cached_data
-
-        return None
     def _cache_price_history(
         self,
         history: pd.DataFrame,
@@ -343,6 +323,26 @@ class YahooFinanceFetcher:
         self._save_to_cache(history, cache_path)
         logger.info("Successfully fetched %s price records for %s", len(history), ticker)
         return history
+
+    def _load_stale_price_cache(self, cache_path: Path, ticker: str) -> Optional[pd.DataFrame]:
+        """Load expired price cache when live price fetching is unavailable.
+
+        Price history is preferable to no history at all for benchmark checks and
+        report generation when Yahoo Finance is temporarily blocked or down. Fresh
+        cache is still returned before any API call; this fallback is only used
+        after the live request path fails or returns no rows.
+        """
+        if not cache_path.exists():
+            return None
+
+        cached_data = self._load_from_cache(cache_path)
+        if cached_data is not None and isinstance(cached_data, pd.DataFrame) and not cached_data.empty:
+            logger.warning(
+                f"Using stale cached price history for {ticker} because live fetch failed: "
+                f"{cache_path.name}"
+            )
+            return cached_data
+        return None
 
     def fetch_multiple(
         self,

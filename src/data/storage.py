@@ -15,7 +15,7 @@ from sqlalchemy import (
     Column, DateTime, Float, ForeignKey, Integer, String, UniqueConstraint,
     create_engine, func, Index
 )
-from sqlalchemy.exc import IntegrityError, SQLAlchemyError
+from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.orm import declarative_base, relationship, sessionmaker, Session
 from sqlalchemy.pool import QueuePool
 
@@ -385,6 +385,8 @@ class StockDatabase:
             raise ValueError(f"DataFrame missing required columns: {missing_cols}")
 
         df_to_save['Date'] = pd.to_datetime(df_to_save['Date'], errors='coerce')
+        if getattr(df_to_save['Date'].dt, 'tz', None) is not None:
+            df_to_save['Date'] = df_to_save['Date'].dt.tz_localize(None)
         invalid_date_count = int(df_to_save['Date'].isna().sum())
         if invalid_date_count:
             logger.warning(f"Skipping {invalid_date_count} price records for {ticker} with invalid dates")
@@ -399,7 +401,18 @@ class StockDatabase:
             # Get or create stock
             stock = self._get_or_create_stock(session, ticker)
 
-            # Prepare bulk insert data
+            # Keep one row per trading date so repeated fetch windows or duplicate
+            # rows in an input frame cannot violate the stock/date uniqueness
+            # constraint. When duplicate dates are present in the same DataFrame,
+            # the latest row wins.
+            duplicate_count = int(df_to_save['Date'].duplicated(keep='last').sum())
+            if duplicate_count:
+                logger.warning(f"Deduplicating {duplicate_count} duplicate price records for {ticker}")
+                df_to_save = df_to_save.drop_duplicates(subset=['Date'], keep='last')
+
+            # Prepare normalized records keyed by date. Existing rows are updated
+            # before new rows are inserted, avoiding commit-time IntegrityError on
+            # reruns against a database that already contains the same dates.
             records = []
             for _, row in df_to_save.iterrows():
                 records.append({
@@ -412,26 +425,34 @@ class StockDatabase:
                     'volume': float(row['Volume']) if pd.notna(row['Volume']) else None
                 })
 
-            # Bulk insert with ignore on conflict (for duplicates)
             if records:
+                record_dates = [record['date'] for record in records]
+                existing_by_date = {
+                    price.date: price
+                    for price in session.query(PriceHistory).filter(
+                        PriceHistory.stock_id == stock.id,
+                        PriceHistory.date.in_(record_dates)
+                    ).all()
+                }
+
+                inserted_count = 0
+                updated_count = 0
                 for record in records:
-                    try:
-                        price = PriceHistory(**record)
-                        session.add(price)
-                    except IntegrityError:
-                        session.rollback()
-                        # Update existing record instead
-                        existing = session.query(PriceHistory).filter_by(
-                            stock_id=record['stock_id'],
-                            date=record['date']
-                        ).first()
-                        if existing:
-                            for key, value in record.items():
-                                if key not in ['stock_id', 'date']:
-                                    setattr(existing, key, value)
+                    existing = existing_by_date.get(record['date'])
+                    if existing:
+                        for key, value in record.items():
+                            if key not in ['stock_id', 'date']:
+                                setattr(existing, key, value)
+                        updated_count += 1
+                    else:
+                        session.add(PriceHistory(**record))
+                        inserted_count += 1
 
                 session.commit()
-                logger.info(f"Saved {len(records)} price records for {ticker}")
+                logger.info(
+                    f"Saved {len(records)} price records for {ticker} "
+                    f"({inserted_count} inserted, {updated_count} updated)"
+                )
 
         except SQLAlchemyError as e:
             session.rollback()
