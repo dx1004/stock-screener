@@ -41,6 +41,9 @@ stock_universe:
   - XOM
   - CVX
 
+  # Current holdings to keep in the sell-signal review
+  # Add your current holdings here so they get evaluated for Phase 3/4 sell signals.
+
   # Add more tickers here...
 
 # Screening Parameters
