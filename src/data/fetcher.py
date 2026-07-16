@@ -258,7 +258,7 @@ class YahooFinanceFetcher:
         """
         cache_path = self._get_cache_path(ticker, f'prices_{period}_{interval}')
 
-        # Check cache first
+        # Check fresh cache first
         if self._is_cache_valid(cache_path):
             cached_data = self._load_from_cache(cache_path)
             if cached_data is not None and isinstance(cached_data, pd.DataFrame):
@@ -281,6 +281,9 @@ class YahooFinanceFetcher:
                 hist = yf.Ticker(ticker).history(period=period, interval=interval)
                 if hist.empty:
                     logger.warning(f"No price history data available for {ticker}")
+                    stale_data = self._load_stale_price_cache(cache_path, ticker)
+                    if stale_data is not None:
+                        return stale_data
                     return pd.DataFrame()
 
                 return self._cache_price_history(hist, cache_path, ticker)
@@ -294,8 +297,31 @@ class YahooFinanceFetcher:
                     time.sleep(self.retry_delay)
 
         logger.error(f"Failed to fetch price history for {ticker} after {self.max_retries} attempts")
+        stale_data = self._load_stale_price_cache(cache_path, ticker)
+        if stale_data is not None:
+            return stale_data
         return pd.DataFrame()
 
+    def _load_stale_price_cache(self, cache_path: Path, ticker: str) -> Optional[pd.DataFrame]:
+        """Load expired price cache when live price fetching is unavailable.
+
+        Price history is preferable to no history at all for benchmark checks and
+        report generation when Yahoo Finance is temporarily blocked or down. Fresh
+        cache is still returned before any API call; this fallback is only used
+        after the live request path fails or returns no rows.
+        """
+        if not cache_path.exists():
+            return None
+
+        cached_data = self._load_from_cache(cache_path)
+        if cached_data is not None and isinstance(cached_data, pd.DataFrame) and not cached_data.empty:
+            logger.warning(
+                f"Using stale cached price history for {ticker} because live fetch failed: "
+                f"{cache_path.name}"
+            )
+            return cached_data
+
+        return None
     def _cache_price_history(
         self,
         history: pd.DataFrame,
@@ -353,8 +379,13 @@ class YahooFinanceFetcher:
             # Fetch price history
             prices = self.fetch_price_history(ticker, period=period)
             if not prices.empty:
-                prices['ticker'] = ticker
-                all_prices.append(prices)
+                prices_for_storage = prices.copy()
+                if isinstance(prices_for_storage.index, pd.DatetimeIndex):
+                    prices_for_storage = prices_for_storage.reset_index()
+                    if 'index' in prices_for_storage.columns and 'Date' not in prices_for_storage.columns:
+                        prices_for_storage = prices_for_storage.rename(columns={'index': 'Date'})
+                prices_for_storage['ticker'] = ticker
+                all_prices.append(prices_for_storage)
 
         # Combine all data
         fundamentals_df = pd.DataFrame(all_fundamentals) if all_fundamentals else pd.DataFrame()

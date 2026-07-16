@@ -373,10 +373,26 @@ class StockDatabase:
             logger.warning(f"Empty DataFrame provided for {ticker}")
             return
 
+        df_to_save = df.copy()
+        if 'Date' not in df_to_save.columns and isinstance(df_to_save.index, pd.DatetimeIndex):
+            df_to_save = df_to_save.reset_index()
+            if 'index' in df_to_save.columns and 'Date' not in df_to_save.columns:
+                df_to_save = df_to_save.rename(columns={'index': 'Date'})
+
         required_cols = ['Date', 'Open', 'High', 'Low', 'Close', 'Volume']
-        missing_cols = [col for col in required_cols if col not in df.columns]
+        missing_cols = [col for col in required_cols if col not in df_to_save.columns]
         if missing_cols:
             raise ValueError(f"DataFrame missing required columns: {missing_cols}")
+
+        df_to_save['Date'] = pd.to_datetime(df_to_save['Date'], errors='coerce')
+        invalid_date_count = int(df_to_save['Date'].isna().sum())
+        if invalid_date_count:
+            logger.warning(f"Skipping {invalid_date_count} price records for {ticker} with invalid dates")
+            df_to_save = df_to_save.dropna(subset=['Date'])
+
+        if df_to_save.empty:
+            logger.warning(f"No valid price records to save for {ticker}")
+            return
 
         session = self.Session()
         try:
@@ -385,10 +401,10 @@ class StockDatabase:
 
             # Prepare bulk insert data
             records = []
-            for _, row in df.iterrows():
+            for _, row in df_to_save.iterrows():
                 records.append({
                     'stock_id': stock.id,
-                    'date': pd.to_datetime(row['Date']),
+                    'date': row['Date'].to_pydatetime(),
                     'open': float(row['Open']) if pd.notna(row['Open']) else None,
                     'high': float(row['High']) if pd.notna(row['High']) else None,
                     'low': float(row['Low']) if pd.notna(row['Low']) else None,
