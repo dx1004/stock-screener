@@ -302,6 +302,7 @@ class YahooFinanceFetcher:
             return stale_data
         return pd.DataFrame()
 
+<<<<<<< ours
     def _cache_price_history(
         self,
         history: pd.DataFrame,
@@ -324,6 +325,8 @@ class YahooFinanceFetcher:
         logger.info("Successfully fetched %s price records for %s", len(history), ticker)
         return history
 
+=======
+>>>>>>> theirs
     def _load_stale_price_cache(self, cache_path: Path, ticker: str) -> Optional[pd.DataFrame]:
         """Load expired price cache when live price fetching is unavailable.
 
@@ -342,6 +345,10 @@ class YahooFinanceFetcher:
                 f"{cache_path.name}"
             )
             return cached_data
+<<<<<<< ours
+=======
+
+>>>>>>> theirs
         return None
 
     def fetch_multiple(
