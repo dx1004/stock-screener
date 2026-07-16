@@ -39,6 +39,11 @@ jobs:
           pip install -r requirements.txt
 
       - name: Run weekend quant screen
+        env:
+          ALPACA_API_KEY: ${{ secrets.ALPACA_API_KEY }}
+          ALPACA_API_SECRET: ${{ secrets.ALPACA_API_SECRET }}
+          SEC_EDGAR_USER_AGENT: ${{ vars.SEC_EDGAR_USER_AGENT }}
+          FMP_API_KEY: ${{ secrets.FMP_API_KEY }}
         run: |
           mkdir -p data/cache data/results data/logs
           chmod +x ./run_screen.sh

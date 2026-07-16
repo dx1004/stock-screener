@@ -18,6 +18,13 @@ import yfinance as yf
 from src.data.fetcher import YahooFinanceFetcher
 
 
+@pytest.fixture(autouse=True)
+def clear_alpaca_credentials(monkeypatch):
+    """Keep Yahoo fallback tests isolated when CI provides Alpaca secrets."""
+    monkeypatch.delenv("ALPACA_API_KEY", raising=False)
+    monkeypatch.delenv("ALPACA_API_SECRET", raising=False)
+
+
 @pytest.fixture
 def temp_cache_dir(tmp_path):
     """Create a temporary cache directory for testing.
@@ -270,6 +277,19 @@ class TestFetchPriceHistory:
             assert isinstance(result.index, pd.DatetimeIndex)
             assert result.columns.tolist() == ['Open', 'High', 'Low', 'Close', 'Volume']
             mock_instance.history.assert_called_once_with(period="5y", interval="1d")
+
+    def test_fetch_price_history_prefers_alpaca(self, fetcher, mock_price_history):
+        """Configured Alpaca data should avoid an unnecessary Yahoo request."""
+        fetcher.alpaca_fetcher.fetch_price_history = Mock(return_value=mock_price_history)
+
+        with patch('yfinance.Ticker') as mock_ticker:
+            result = fetcher.fetch_price_history("AAPL", period="5y")
+
+        assert not result.empty
+        mock_ticker.assert_not_called()
+        fetcher.alpaca_fetcher.fetch_price_history.assert_called_once_with(
+            "AAPL", period="5y", interval="1d"
+        )
 
     def test_fetch_price_history_retries_transient_error(self, fetcher, mock_price_history):
         """Test transient history failures retry until a request succeeds."""

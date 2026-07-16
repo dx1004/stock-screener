@@ -20,6 +20,8 @@ from typing import Dict, Optional
 import pandas as pd
 import yfinance as yf
 
+from .alpaca_fetcher import AlpacaPriceFetcher
+
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
@@ -40,6 +42,7 @@ class GitStorageFetcher:
         self.fundamentals_dir.mkdir(parents=True, exist_ok=True)
 
         self.metadata_file = self.fundamentals_dir / "metadata.json"
+        self.alpaca_fetcher = AlpacaPriceFetcher()
         logger.info(f"GitStorageFetcher initialized: {fundamentals_dir}")
 
     def fetch_price_fresh(self, ticker: str) -> pd.DataFrame:
@@ -54,9 +57,13 @@ class GitStorageFetcher:
             DataFrame with ~250 days of price data (DatetimeIndex)
         """
         try:
-            stock = yf.Ticker(ticker)
-            # Always fetch 1 year (250 trading days) - not 2 years!
-            data = stock.history(period='1y', interval='1d')
+            # Alpaca supplies adjusted SIP bars when credentials are present.
+            # Keep Yahoo as a compatibility fallback for unavailable providers.
+            data = self.alpaca_fetcher.fetch_price_history(ticker, period='1y')
+            if data is None:
+                logger.info("Using Yahoo Finance price-history fallback for %s", ticker)
+                stock = yf.Ticker(ticker)
+                data = stock.history(period='1y', interval='1d')
 
             if not data.empty:
                 # Verify DatetimeIndex (yfinance should return this by default)
