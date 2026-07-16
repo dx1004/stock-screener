@@ -194,6 +194,7 @@ class QuantAnalysisEngine:
                 )
 
                 if buy_signal['is_buy']:
+                    buy_signal['phase_info'] = analysis['phase_info']
                     # Add fundamental snapshot
                     buy_signal['fundamental_snapshot'] = create_fundamental_snapshot(
                         analysis['ticker'],
@@ -296,9 +297,9 @@ class QuantAnalysisEngine:
                     output.append(f"RS Slope (3-week): {details['rs_slope']:.3f}")
                 if 'volume_ratio' in details:
                     output.append(f"Volume vs Avg: {details['volume_ratio']:.1f}x")
-                if 'distance_from_50sma' in buy['phase']:
-                    phase_info = buy.get('phase_info', {})
-                    output.append(f"Distance from 50 SMA: {phase_info.get('distance_from_50sma', 0):.1f}%")
+                phase_info = buy.get('phase_info', {})
+                if isinstance(phase_info, dict) and 'distance_from_50sma' in phase_info:
+                    output.append(f"Distance from 50 SMA: {phase_info['distance_from_50sma']:.1f}%")
 
                 # Reasons
                 output.append("\nReasons:")

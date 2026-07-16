@@ -71,3 +71,4 @@ def test_workflow_injects_alpaca_secrets_only_for_the_screening_step():
     assert "SEC_EDGAR_USER_AGENT: ${{ vars.SEC_EDGAR_USER_AGENT }}" in screen_step
     assert "ALPACA_API_" not in before_screen + after_screen
     assert "SEC_EDGAR_USER_AGENT" not in before_screen + after_screen
+    assert "set -o pipefail\n          ./run_screen.sh" in screen_step

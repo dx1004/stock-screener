@@ -71,6 +71,7 @@ jobs:
             RUN_ARGS+=(--no-save)
           fi
 
+          set -o pipefail
           ./run_screen.sh "${RUN_ARGS[@]}" | tee data/logs/weekly_screen_${{ steps.date.outputs.date }}.log
 
       - name: Commit generated screening data
