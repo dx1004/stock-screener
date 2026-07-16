@@ -251,23 +251,49 @@ class TestFetchPriceHistory:
     """Test suite for fetch_price_history method."""
 
     def test_fetch_price_history_success(self, fetcher, mock_price_history):
-        """Test successful fetching of price history."""
+        """Test price history does not require the unrelated info endpoint."""
         with patch('yfinance.Ticker') as mock_ticker:
-            mock_instance = Mock()
-            mock_instance.info = {'symbol': 'AAPL'}
-            mock_instance.history.return_value = mock_price_history
+            class HistoryOnlyTicker:
+                @property
+                def info(self):
+                    raise AssertionError("price history must not access info")
+
+                history = Mock(return_value=mock_price_history)
+
+            mock_instance = HistoryOnlyTicker()
             mock_ticker.return_value = mock_instance
 
             result = fetcher.fetch_price_history("AAPL", period="5y")
 
             assert not result.empty
             assert len(result) == len(mock_price_history)
-            assert 'Date' in result.columns
-            assert 'Open' in result.columns
-            assert 'High' in result.columns
-            assert 'Low' in result.columns
-            assert 'Close' in result.columns
-            assert 'Volume' in result.columns
+            assert isinstance(result.index, pd.DatetimeIndex)
+            assert result.columns.tolist() == ['Open', 'High', 'Low', 'Close', 'Volume']
+            mock_instance.history.assert_called_once_with(period="5y", interval="1d")
+
+    def test_fetch_price_history_retries_transient_error(self, fetcher, mock_price_history):
+        """Test transient history failures retry until a request succeeds."""
+        with patch('yfinance.Ticker') as mock_ticker, patch('src.data.fetcher.time.sleep'):
+            mock_instance = Mock()
+            mock_instance.history.side_effect = [Exception("Temporary error"), mock_price_history]
+            mock_ticker.return_value = mock_instance
+
+            result = fetcher.fetch_price_history("AAPL")
+
+            assert not result.empty
+            assert mock_instance.history.call_count == 2
+
+    def test_fetch_price_history_returns_empty_after_retry_exhaustion(self, fetcher):
+        """Test persistent history failures return an empty DataFrame."""
+        with patch('yfinance.Ticker') as mock_ticker, patch('src.data.fetcher.time.sleep'):
+            mock_instance = Mock()
+            mock_instance.history.side_effect = Exception("Persistent error")
+            mock_ticker.return_value = mock_instance
+
+            result = fetcher.fetch_price_history("AAPL")
+
+            assert result.empty
+            assert mock_instance.history.call_count == 3
 
     def test_fetch_price_history_different_periods(self, fetcher, mock_price_history):
         """Test fetching price history with different time periods."""

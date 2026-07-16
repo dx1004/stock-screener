@@ -263,42 +263,44 @@ class YahooFinanceFetcher:
 
         # Fetch from API
         logger.info(f"Fetching price history for {ticker} (period={period}, interval={interval})")
-        stock = self._fetch_with_retry(ticker)
+        for attempt in range(self.max_retries):
+            try:
+                # Price history uses Yahoo's chart endpoint; do not preflight it
+                # through ``stock.info``, which can fail independently.
+                hist = yf.Ticker(ticker).history(period=period, interval=interval)
+                if hist.empty:
+                    logger.warning(f"No price history data available for {ticker}")
+                    return pd.DataFrame()
 
-        if stock is None:
-            logger.error(f"Could not fetch price history for {ticker}")
-            return pd.DataFrame()
+                # Clean up the DataFrame - keep DatetimeIndex for consistency with git_fetcher
+                # DO NOT reset_index() - we want to preserve the DatetimeIndex from yfinance
+                hist.columns = [col.capitalize() for col in hist.columns]
 
-        try:
-            # Fetch historical data
-            hist = stock.history(period=period, interval=interval)
+                # Ensure index is DatetimeIndex (yfinance should provide this)
+                if not isinstance(hist.index, pd.DatetimeIndex):
+                    logger.warning(f"{ticker}: yfinance returned non-DatetimeIndex: {type(hist.index)}")
+                    return pd.DataFrame()
 
-            if hist.empty:
-                logger.warning(f"No price history data available for {ticker}")
-                return pd.DataFrame()
+                # Select only OHLCV columns (no 'Date' column - it's the index)
+                available_cols = ['Open', 'High', 'Low', 'Close', 'Volume']
+                hist = hist[[col for col in available_cols if col in hist.columns]]
 
-            # Clean up the DataFrame - keep DatetimeIndex for consistency with git_fetcher
-            # DO NOT reset_index() - we want to preserve the DatetimeIndex from yfinance
-            hist.columns = [col.capitalize() for col in hist.columns]
+                # Cache the results
+                self._save_to_cache(hist, cache_path)
 
-            # Ensure index is DatetimeIndex (yfinance should provide this)
-            if not isinstance(hist.index, pd.DatetimeIndex):
-                logger.warning(f"{ticker}: yfinance returned non-DatetimeIndex: {type(hist.index)}")
-                return pd.DataFrame()
+                logger.info(f"Successfully fetched {len(hist)} price records for {ticker}")
+                return hist
 
-            # Select only OHLCV columns (no 'Date' column - it's the index)
-            available_cols = ['Open', 'High', 'Low', 'Close', 'Volume']
-            hist = hist[[col for col in available_cols if col in hist.columns]]
+            except Exception as e:
+                logger.warning(
+                    f"Attempt {attempt + 1}/{self.max_retries} failed fetching price history "
+                    f"for {ticker}: {e}"
+                )
+                if attempt < self.max_retries - 1:
+                    time.sleep(self.retry_delay)
 
-            # Cache the results
-            self._save_to_cache(hist, cache_path)
-
-            logger.info(f"Successfully fetched {len(hist)} price records for {ticker}")
-            return hist
-
-        except Exception as e:
-            logger.error(f"Error fetching price history for {ticker}: {e}")
-            return pd.DataFrame()
+        logger.error(f"Failed to fetch price history for {ticker} after {self.max_retries} attempts")
+        return pd.DataFrame()
 
     def fetch_multiple(
         self,
