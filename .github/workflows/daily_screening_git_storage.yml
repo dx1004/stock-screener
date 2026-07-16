@@ -5,8 +5,18 @@ on:
     # Run every Friday at 10:00 PM UTC (6:00 PM Eastern during daylight saving time)
     - cron: '0 22 * * 5'
 
-  # Allow manual triggering
+  # Allow manual triggering, including small smoke-test runs before relying on the schedule.
   workflow_dispatch:
+    inputs:
+      tickers:
+        description: 'Optional space-separated ticker override for test runs, e.g. AAPL MSFT NVDA'
+        required: false
+        type: string
+      no_save:
+        description: 'Skip saving quant_screen output files during manual tests'
+        required: false
+        default: false
+        type: boolean
 
 jobs:
   screen-stocks:
@@ -39,10 +49,25 @@ jobs:
           pip install -r requirements.txt
 
       - name: Run weekend quant screen
+        env:
+          INPUT_TICKERS: ${{ inputs.tickers }}
+          INPUT_NO_SAVE: ${{ inputs.no_save }}
         run: |
           mkdir -p data/cache data/results data/logs
           chmod +x ./run_screen.sh
-          ./run_screen.sh --cache-dir ./data/cache | tee data/logs/weekly_screen_${{ steps.date.outputs.date }}.log
+
+          RUN_ARGS=(--cache-dir ./data/cache)
+
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ -n "${INPUT_TICKERS}" ]; then
+            read -r -a TICKERS <<< "${INPUT_TICKERS}"
+            RUN_ARGS+=(--tickers "${TICKERS[@]}")
+          fi
+
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ "${INPUT_NO_SAVE}" = "true" ]; then
+            RUN_ARGS+=(--no-save)
+          fi
+
+          ./run_screen.sh "${RUN_ARGS[@]}" | tee data/logs/weekly_screen_${{ steps.date.outputs.date }}.log
 
       - name: Commit generated screening data
         id: commit
