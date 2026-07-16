@@ -284,7 +284,7 @@ class TestFetchPriceHistory:
             assert mock_instance.history.call_count == 2
 
     def test_fetch_price_history_returns_empty_after_retry_exhaustion(self, fetcher):
-        """Test persistent history failures return an empty DataFrame."""
+        """Test persistent history failures return an empty DataFrame without cache."""
         with patch('yfinance.Ticker') as mock_ticker, patch('src.data.fetcher.time.sleep'):
             mock_instance = Mock()
             mock_instance.history.side_effect = Exception("Persistent error")
@@ -294,6 +294,60 @@ class TestFetchPriceHistory:
 
             assert result.empty
             assert mock_instance.history.call_count == 3
+
+    def test_fetch_price_history_uses_stale_cache_after_retry_exhaustion(
+        self, temp_cache_dir, mock_price_history
+    ):
+        """Test stale cached prices are used when live history fetches fail."""
+        fetcher = YahooFinanceFetcher(
+            cache_dir=temp_cache_dir,
+            cache_expiry_hours=24,
+            max_retries=3,
+            retry_delay=1
+        )
+        cache_path = fetcher._get_cache_path("AAPL", "prices_5y_1d")
+        with open(cache_path, 'wb') as f:
+            pickle.dump(mock_price_history, f)
+
+        old_time = time.time() - 48 * 3600
+        os.utime(cache_path, (old_time, old_time))
+
+        with patch('yfinance.Ticker') as mock_ticker, patch('src.data.fetcher.time.sleep'):
+            mock_instance = Mock()
+            mock_instance.history.side_effect = Exception("Persistent error")
+            mock_ticker.return_value = mock_instance
+
+            result = fetcher.fetch_price_history("AAPL")
+
+            pd.testing.assert_frame_equal(result, mock_price_history)
+            assert mock_instance.history.call_count == 3
+
+    def test_fetch_price_history_uses_stale_cache_after_empty_response(
+        self, temp_cache_dir, mock_price_history
+    ):
+        """Test stale cached prices are used when Yahoo returns no rows."""
+        fetcher = YahooFinanceFetcher(
+            cache_dir=temp_cache_dir,
+            cache_expiry_hours=24,
+            max_retries=3,
+            retry_delay=1
+        )
+        cache_path = fetcher._get_cache_path("AAPL", "prices_5y_1d")
+        with open(cache_path, 'wb') as f:
+            pickle.dump(mock_price_history, f)
+
+        old_time = time.time() - 48 * 3600
+        os.utime(cache_path, (old_time, old_time))
+
+        with patch('yfinance.Ticker') as mock_ticker:
+            mock_instance = Mock()
+            mock_instance.history.return_value = pd.DataFrame()
+            mock_ticker.return_value = mock_instance
+
+            result = fetcher.fetch_price_history("AAPL")
+
+            pd.testing.assert_frame_equal(result, mock_price_history)
+            mock_instance.history.assert_called_once_with(period="5y", interval="1d")
 
     def test_fetch_price_history_different_periods(self, fetcher, mock_price_history):
         """Test fetching price history with different time periods."""
@@ -371,6 +425,8 @@ class TestFetchMultiple:
 
             # Check prices
             assert not prices_df.empty
+            assert 'Date' in prices_df.columns
+            assert prices_df['Date'].notna().all()
             assert 'ticker' in prices_df.columns
             assert set(prices_df['ticker'].unique()) == set(tickers)
 
