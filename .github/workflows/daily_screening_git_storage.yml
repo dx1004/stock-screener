@@ -74,6 +74,18 @@ jobs:
           set -o pipefail
           ./run_screen.sh "${RUN_ARGS[@]}" | tee data/logs/weekly_screen_${{ steps.date.outputs.date }}.log
 
+      - name: Review latest generated weekly report
+        if: success()
+        run: |
+          mkdir -p data/review
+          python scripts/saturday_weekly_review.py \
+            --no-network \
+            --no-local-rerun \
+            --report-path data/results/latest_report.json \
+            --output-text data/review/weekly_review.txt \
+            --output-json data/review/weekly_review.json \
+            --exit-on-fail
+
       - name: Commit generated screening data
         id: commit
         if: always()
@@ -109,5 +121,6 @@ jobs:
           path: |
             data/results/
             data/logs/
+            data/review/
           if-no-files-found: warn
           retention-days: 90
