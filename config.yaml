@@ -46,6 +46,9 @@ stock_universe:
 
   # Add more tickers here...
 
+# Current holdings for explicit HOLD / SELL actions.
+holdings: []
+
 # Screening Parameters
 parameters:
   # Minimum score thresholds
@@ -78,3 +81,25 @@ output:
   # Save results to file
   save_to_file: true
   output_dir: "./data/results"
+
+# Risk-control and sizing policy for weekly screening report
+risk_control:
+  # ATR and position gates
+  atr_period: 14
+  spy_atr_period: 14
+  spy_atr_multiple: 2.0
+  min_atr_distance_multiple: 2.0
+  max_stop_distance_pct: 0.08
+  min_rr: 2.5
+  max_data_staleness_days: 3
+
+  # Liquidity gates
+  min_entry_price: 10.0
+  min_median_20d_dollar_volume: 20000000  # $20M
+
+  # Sizing policy (algebraic with capital C)
+  base_risk_budget_pct: 1.0
+  max_notional_pct: 10.0
+
+  # Output / selection constraints
+  max_new_buys: 2

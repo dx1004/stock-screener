@@ -14,7 +14,12 @@ import argparse
 import logging
 import sys
 from datetime import datetime
+import json
 from pathlib import Path
+
+ROOT_DIR = Path(__file__).resolve().parents[1]
+if str(ROOT_DIR) not in sys.path:
+    sys.path.insert(0, str(ROOT_DIR))
 
 import yaml
 
@@ -74,6 +79,33 @@ def save_results(report: str, output_dir: str = './data/results'):
         return None
 
 
+def save_json_result(payload: dict, output_dir: str = './data/results'):
+    """Save structured report payload as JSON.
+
+    Args:
+        payload: Report payload
+        output_dir: Output directory
+    """
+    try:
+        Path(output_dir).mkdir(parents=True, exist_ok=True)
+        timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
+        filename = f"quant_screen_{timestamp}.json"
+        filepath = Path(output_dir) / filename
+
+        with open(filepath, 'w') as f:
+            json.dump(payload, f, indent=2)
+
+        latest_path = Path(output_dir) / "latest_report.json"
+        with open(latest_path, 'w') as f:
+            json.dump(payload, f, indent=2)
+
+        logger.info(f"Structured results saved to {filepath} and {latest_path}")
+        return str(filepath)
+    except Exception as e:
+        logger.error(f"Error saving structured results: {e}")
+        return None
+
+
 def main():
     """Main entry point."""
     parser = argparse.ArgumentParser(
@@ -119,12 +151,22 @@ def main():
         sys.exit(1)
 
     # Initialize engine
-    engine = QuantAnalysisEngine(cache_dir=args.cache_dir)
+    risk_policy = config.get("risk_control", {}) if isinstance(config, dict) else {}
+    holdings = config.get("holdings", []) if isinstance(config, dict) else []
+    params = config.get("parameters", {}) if isinstance(config, dict) else {}
+    engine = QuantAnalysisEngine(
+        cache_dir=args.cache_dir,
+        risk_policy=risk_policy,
+        min_buy_score=params.get("min_buy_score", 70),
+        min_sell_score=params.get("min_sell_score", 60),
+        min_phase2_pct=params.get("min_phase2_pct", 15.0),
+        holdings=holdings,
+    )
 
     # Run screening
     try:
         logger.info("Starting Quant Analysis Engine...")
-        report = engine.run(tickers)
+        report, payload = engine.run_report(tickers)
 
         # Print report
         print(report)
@@ -133,6 +175,7 @@ def main():
         if not args.no_save:
             output_dir = config.get('output', {}).get('output_dir', './data/results')
             save_results(report, output_dir)
+            save_json_result(payload, output_dir)
 
     except KeyboardInterrupt:
         logger.info("\nScreening interrupted by user")
