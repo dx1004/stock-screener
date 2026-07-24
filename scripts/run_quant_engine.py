@@ -32,6 +32,24 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 
+def _to_jsonable(value):
+    """Convert scalar library values (for example numpy.bool_) to JSON types."""
+    if isinstance(value, dict):
+        return {key: _to_jsonable(item) for key, item in value.items()}
+    if isinstance(value, list):
+        return [_to_jsonable(item) for item in value]
+    if isinstance(value, tuple):
+        return [_to_jsonable(item) for item in value]
+    if hasattr(value, "item") and not isinstance(value, (str, bytes, bool, int, float, type(None))):
+        try:
+            converted = value.item()
+            if isinstance(converted, (str, bool, int, float, type(None))):
+                return converted
+        except Exception:
+            pass
+    return value
+
+
 def load_config(config_path: str = 'config.yaml') -> dict:
     """Load configuration from YAML file.
 
@@ -92,18 +110,19 @@ def save_json_result(payload: dict, output_dir: str = './data/results'):
         filename = f"quant_screen_{timestamp}.json"
         filepath = Path(output_dir) / filename
 
+        serializable_payload = _to_jsonable(payload)
         with open(filepath, 'w') as f:
-            json.dump(payload, f, indent=2)
+            json.dump(serializable_payload, f, indent=2)
 
         latest_path = Path(output_dir) / "latest_report.json"
         with open(latest_path, 'w') as f:
-            json.dump(payload, f, indent=2)
+            json.dump(serializable_payload, f, indent=2)
 
         logger.info(f"Structured results saved to {filepath} and {latest_path}")
         return str(filepath)
     except Exception as e:
         logger.error(f"Error saving structured results: {e}")
-        return None
+        raise
 
 
 def main():
