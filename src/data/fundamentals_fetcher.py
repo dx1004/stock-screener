@@ -304,7 +304,7 @@ def create_fundamental_snapshot(ticker: str, quarterly_data: Dict) -> str:
     # Margin analysis
     if 'gross_margin' in quarterly_data:
         margin = quarterly_data['gross_margin']
-        margin_change = quarterly_data.get('margin_change', 0)
+        margin_change = quarterly_data.get('margin_change') or 0
 
         if margin_change > 1:
             snapshot += f"✓ Margins: EXPANDING ({margin:.1f}%, +{margin_change:.1f}pp QoQ)\n"
@@ -317,7 +317,7 @@ def create_fundamental_snapshot(ticker: str, quarterly_data: Dict) -> str:
 
     # Inventory analysis
     inv_change = quarterly_data.get('inventory_qoq_change')
-    inv_to_sales = quarterly_data.get('inventory_to_sales_ratio', 0)
+    inv_to_sales = quarterly_data.get('inventory_to_sales_ratio') or 0
 
     if inv_change is not None:
         if inv_change > 10:
@@ -345,18 +345,18 @@ def create_fundamental_snapshot(ticker: str, quarterly_data: Dict) -> str:
     supports_breakout = True
     concerns = []
 
-    if quarterly_data.get('revenue_yoy_change', 0) < 0:
+    if (quarterly_data.get('revenue_yoy_change') or 0) < 0:
         supports_breakout = False
         concerns.append('revenue declining')
 
-    if quarterly_data.get('eps_yoy_change', 0) < 0:
+    if (quarterly_data.get('eps_yoy_change') or 0) < 0:
         supports_breakout = False
         concerns.append('EPS declining')
 
-    if quarterly_data.get('margin_change', 0) < -2:
+    if (quarterly_data.get('margin_change') or 0) < -2:
         concerns.append('margins contracting')
 
-    if quarterly_data.get('inventory_qoq_change', 0) > 15:
+    if (quarterly_data.get('inventory_qoq_change') or 0) > 15:
         concerns.append('inventory building rapidly')
 
     if supports_breakout and len(concerns) == 0:
