@@ -1,0 +1,207 @@
+{
+  "generated_at": "2026-07-25T16:02:35.086681",
+  "source": "local-report:data/results/latest_report.json",
+  "source_timestamp": null,
+  "status": "incomplete",
+  "market_breadth": {
+    "total_stocks": 27,
+    "phase_1_count": 8,
+    "phase_2_count": 7,
+    "phase_3_count": 0,
+    "phase_4_count": 6,
+    "phase_1_pct": 29.6,
+    "phase_2_pct": 25.9,
+    "phase_3_pct": 0.0,
+    "phase_4_pct": 22.2,
+    "breadth_quality": "Fair"
+  },
+  "signal_recommendation": {
+    "should_generate_buys": true,
+    "should_generate_sells": true,
+    "regime": "TRANSITIONAL / Uncertain",
+    "reasons": [
+      "Market breadth adequate (25.9% in Phase 2)"
+    ],
+    "phase_2_pct": 25.9,
+    "spy_phase": 1
+  },
+  "completeness_errors": [
+    "GOOGL: '>' not supported between instances of 'NoneType' and 'int'",
+    "JPM: '>' not supported between instances of 'NoneType' and 'int'",
+    "BAC: '>' not supported between instances of 'NoneType' and 'int'",
+    "GS: '>' not supported between instances of 'NoneType' and 'int'",
+    "MS: '>' not supported between instances of 'NoneType' and 'int'",
+    "UPS: '>' not supported between instances of 'NoneType' and 'int'"
+  ],
+  "staleness_error": null,
+  "rejected_candidates": [
+    {
+      "ticker": "AAPL",
+      "status": "REJECT",
+      "reasons": [
+        "风险状态=REJECT（非PASS）"
+      ]
+    },
+    {
+      "ticker": "UNH",
+      "status": "REJECT",
+      "reasons": [
+        "风险状态=REJECT（非PASS）"
+      ]
+    },
+    {
+      "ticker": "ABBV",
+      "status": "REJECT",
+      "reasons": [
+        "风险状态=REJECT（非PASS）"
+      ]
+    },
+    {
+      "ticker": "AMD",
+      "status": "REJECT",
+      "reasons": [
+        "风险状态=REJECT（非PASS）"
+      ]
+    },
+    {
+      "ticker": "JNJ",
+      "status": "REJECT",
+      "reasons": [
+        "风险状态=REJECT（非PASS）"
+      ]
+    },
+    {
+      "ticker": "SBUX",
+      "status": "REJECT",
+      "reasons": [
+        "风险状态=REJECT（非PASS）"
+      ]
+    }
+  ],
+  "buy_candidates": [],
+  "holdings_actions": [],
+  "sell_warnings": [
+    {
+      "ticker": "TSLA",
+      "is_sell": true,
+      "score": 82,
+      "severity": "critical",
+      "phase": 4,
+      "breakdown_level": 402.56,
+      "reasons": [
+        "In Phase 4 (Downtrend)",
+        "Broke below 50 SMA by 22.2%",
+        "Elevated volume: 1.5x",
+        "RS declining: -1.41",
+        "Failed breakout - closed back inside base"
+      ],
+      "details": {
+        "breakdown_level": 402.56,
+        "breakdown_score": 45,
+        "volume_ratio": 1.46,
+        "volume_score": 20,
+        "rs_slope": -1.41,
+        "rs_score": 7
+      }
+    },
+    {
+      "ticker": "NKE",
+      "is_sell": true,
+      "score": 70,
+      "severity": "high",
+      "phase": 4,
+      "breakdown_level": 43.42,
+      "reasons": [
+        "In Phase 4 (Downtrend)",
+        "Below 50 SMA by 4.0%",
+        "50 SMA declining (slope: -0.0441)",
+        "Low volume breakdown: 1.0x",
+        "Weak RS rollover: -0.14",
+        "Failed breakout - closed back inside base"
+      ],
+      "details": {
+        "breakdown_level": 43.42,
+        "breakdown_score": 50,
+        "volume_ratio": 1.01,
+        "volume_score": 5,
+        "rs_slope": -0.143,
+        "rs_score": 5
+      }
+    },
+    {
+      "ticker": "MSFT",
+      "is_sell": true,
+      "score": 65,
+      "severity": "medium",
+      "phase": 4,
+      "breakdown_level": 399.07,
+      "reasons": [
+        "In Phase 4 (Downtrend)",
+        "Below 50 SMA by 4.4%",
+        "50 SMA declining (slope: -0.1431)",
+        "Low volume breakdown: 0.6x",
+        "RS still positive: 0.17",
+        "Failed breakout - closed back inside base"
+      ],
+      "details": {
+        "breakdown_level": 399.07,
+        "breakdown_score": 50,
+        "volume_ratio": 0.65,
+        "volume_score": 5,
+        "rs_slope": 0.17,
+        "rs_score": 0
+      }
+    },
+    {
+      "ticker": "NFLX",
+      "is_sell": true,
+      "score": 65,
+      "severity": "medium",
+      "phase": 4,
+      "breakdown_level": 78.69,
+      "reasons": [
+        "In Phase 4 (Downtrend)",
+        "Broke below 50 SMA by 10.9%",
+        "50 SMA declining (slope: -0.4500)",
+        "Low volume breakdown: 0.7x",
+        "Weak RS rollover: -0.77"
+      ],
+      "details": {
+        "breakdown_level": 78.69,
+        "breakdown_score": 55,
+        "volume_ratio": 0.73,
+        "volume_score": 5,
+        "rs_slope": -0.766,
+        "rs_score": 5
+      }
+    },
+    {
+      "ticker": "META",
+      "is_sell": true,
+      "score": 60,
+      "severity": "medium",
+      "phase": 4,
+      "breakdown_level": 605.83,
+      "reasons": [
+        "In Phase 4 (Downtrend)",
+        "Just below 50 SMA (1.8%)",
+        "50 SMA declining (slope: -0.0266)",
+        "Low volume breakdown: 0.6x",
+        "RS still positive: 0.09",
+        "Failed breakout - closed back inside base"
+      ],
+      "details": {
+        "breakdown_level": 605.83,
+        "breakdown_score": 45,
+        "volume_ratio": 0.59,
+        "volume_score": 5,
+        "rs_slope": 0.086,
+        "rs_score": 0
+      }
+    }
+  ],
+  "summary_text": "⚠ 市场/输入完整性异常：\n  • GOOGL: '>' not supported between instances of 'NoneType' and 'int'\n  • JPM: '>' not supported between instances of 'NoneType' and 'int'\n  • BAC: '>' not supported between instances of 'NoneType' and 'int'\n  • GS: '>' not supported between instances of 'NoneType' and 'int'\n  • MS: '>' not supported between instances of 'NoneType' and 'int'\n  • UPS: '>' not supported between instances of 'NoneType' and 'int'\n本周筛选状态异常：不触发新增买入建议。\n市场广度：{'total_stocks': 27, 'phase_1_count': 8, 'phase_2_count': 7, 'phase_3_count': 0, 'phase_4_count': 6, 'phase_1_pct': 29.6, 'phase_2_pct': 25.9, 'phase_3_pct': 0.0, 'phase_4_pct': 22.2, 'breadth_quality': 'Fair'}\n\n本周无高置信买入（PASS且>70分）\n\n筛选剔除（硬性规则）：\n  - AAPL: 风险状态=REJECT（非PASS）\n  - UNH: 风险状态=REJECT（非PASS）\n  - ABBV: 风险状态=REJECT（非PASS）\n  - AMD: 风险状态=REJECT（非PASS）\n  - JNJ: 风险状态=REJECT（非PASS）\n  - SBUX: 风险状态=REJECT（非PASS）\n\n卖出警示（>=60分）：\n  - TSLA（分数82.0）: critical\n  - NKE（分数70.0）: high\n  - MSFT（分数65.0）: medium\n  - NFLX（分数65.0）: medium\n  - META（分数60.0）: medium",
+  "notes": [
+    "loaded JSON report from data/results/latest_report.json"
+  ]
+}
