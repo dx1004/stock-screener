@@ -611,6 +611,12 @@ def _format_decision(payload: Dict[str, Any], min_buy_score: float = 70.0) -> st
                 f"  - {s.get('ticker')}（分数{float(s.get('score', 0) or 0):.1f}）: {s.get('reason', '') or s.get('severity', '')}"
             )
 
+    lines.append("")
+    lines.append(
+        "说明：卖出警示仅对已列入 holdings 的股票形成持仓 SELL 复核；"
+        "未列入 holdings 的股票只是观察信号，不代表要求卖出。"
+    )
+
     return "\n".join(lines)
 
 

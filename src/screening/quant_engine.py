@@ -485,6 +485,11 @@ class QuantAnalysisEngine:
                 )
         else:
             lines.append("No holdings configured.")
+        lines.append("")
+        lines.append(
+            "Interpretation: SELL warnings are actionable as holding SELL reviews "
+            "only for tickers listed in holdings; otherwise they are watchlist signals."
+        )
         return lines
 
     def _format_legacy_buy_output(self, candidates: List[Dict]) -> List[str]:
