@@ -20,3 +20,5 @@
   - MSFT（分数65.0）: medium
   - NFLX（分数65.0）: medium
   - META（分数60.0）: medium
+
+说明：卖出警示仅对已列入 holdings 的股票形成持仓 SELL 复核；未列入 holdings 的股票只是观察信号，不代表要求卖出。

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-25T16:10:17.640922",
+  "generated_at": "2026-07-25T16:17:06.193734",
   "source": "local-report:data/results/latest_report.json",
   "source_timestamp": null,
   "status": "ok",
@@ -228,7 +228,7 @@
       }
     }
   ],
-  "summary_text": "市场广度：{'total_stocks': 27, 'phase_1_count': 9, 'phase_2_count': 12, 'phase_3_count': 0, 'phase_4_count': 6, 'phase_1_pct': 33.3, 'phase_2_pct': 44.4, 'phase_3_pct': 0.0, 'phase_4_pct': 22.2, 'breadth_quality': 'Good'}\n\n本周无高置信买入（PASS且>70分）\n\n筛选剔除（硬性规则）：\n  - BAC: 风险状态=REJECT（非PASS）\n  - AAPL: 风险状态=REJECT（非PASS）\n  - JPM: 风险状态=REJECT（非PASS）\n  - UNH: 风险状态=REJECT（非PASS）\n  - ABBV: 风险状态=REJECT（非PASS）\n  - AMD: 风险状态=REJECT（非PASS）\n  - UPS: 风险状态=REJECT（非PASS）\n  - GS: 风险状态=REJECT（非PASS）\n  - JNJ: 风险状态=REJECT（非PASS）\n  - MS: 风险状态=REJECT（非PASS）\n\n卖出警示（>=60分）：\n  - TSLA（分数82.0）: critical\n  - NKE（分数70.0）: high\n  - MSFT（分数65.0）: medium\n  - NFLX（分数65.0）: medium\n  - META（分数60.0）: medium",
+  "summary_text": "市场广度：{'total_stocks': 27, 'phase_1_count': 9, 'phase_2_count': 12, 'phase_3_count': 0, 'phase_4_count': 6, 'phase_1_pct': 33.3, 'phase_2_pct': 44.4, 'phase_3_pct': 0.0, 'phase_4_pct': 22.2, 'breadth_quality': 'Good'}\n\n本周无高置信买入（PASS且>70分）\n\n筛选剔除（硬性规则）：\n  - BAC: 风险状态=REJECT（非PASS）\n  - AAPL: 风险状态=REJECT（非PASS）\n  - JPM: 风险状态=REJECT（非PASS）\n  - UNH: 风险状态=REJECT（非PASS）\n  - ABBV: 风险状态=REJECT（非PASS）\n  - AMD: 风险状态=REJECT（非PASS）\n  - UPS: 风险状态=REJECT（非PASS）\n  - GS: 风险状态=REJECT（非PASS）\n  - JNJ: 风险状态=REJECT（非PASS）\n  - MS: 风险状态=REJECT（非PASS）\n\n卖出警示（>=60分）：\n  - TSLA（分数82.0）: critical\n  - NKE（分数70.0）: high\n  - MSFT（分数65.0）: medium\n  - NFLX（分数65.0）: medium\n  - META（分数60.0）: medium\n\n说明：卖出警示仅对已列入 holdings 的股票形成持仓 SELL 复核；未列入 holdings 的股票只是观察信号，不代表要求卖出。",
   "notes": [
     "loaded JSON report from data/results/latest_report.json"
   ]
