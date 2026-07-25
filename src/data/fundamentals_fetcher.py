@@ -387,10 +387,13 @@ def analyze_fundamentals_for_signal(quarterly_data: Dict) -> Dict[str, any]:
             'penalty_points': 10
         }
 
-    revenue_yoy = quarterly_data.get('revenue_yoy_change', 0)
-    revenue_qoq = quarterly_data.get('revenue_qoq_change', 0)
-    eps_yoy = quarterly_data.get('eps_yoy_change', 0)
-    inv_change = quarterly_data.get('inventory_qoq_change', 0)
+    # Providers may include a key with an explicit null value.  ``dict.get``
+    # only applies its default when the key is absent, so normalize null
+    # numeric fields before the trend comparisons below.
+    revenue_yoy = quarterly_data.get('revenue_yoy_change') or 0
+    revenue_qoq = quarterly_data.get('revenue_qoq_change') or 0
+    eps_yoy = quarterly_data.get('eps_yoy_change') or 0
+    inv_change = quarterly_data.get('inventory_qoq_change') or 0
 
     # Assess trends
     if revenue_yoy > 10:
