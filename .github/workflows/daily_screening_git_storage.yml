@@ -94,7 +94,17 @@ jobs:
           git config --local user.name "github-actions[bot]"
 
           # Keep the Git-based data cache and weekend reports in the repository.
-          git add data/
+          # data/ is broadly ignored; explicitly persist the two Saturday
+          # consumer payloads so artifact authentication is not required for
+          # the next review. Keep the full generated data in the artifact.
+          for generated_file in \
+            data/results/latest_report.json \
+            data/review/weekly_review.json \
+            data/review/weekly_review.txt; do
+            if [ -f "$generated_file" ]; then
+              git add -f "$generated_file"
+            fi
+          done
 
           if git diff --staged --quiet; then
             echo "No generated data changes to commit"

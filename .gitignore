@@ -38,6 +38,11 @@ htmlcov/
 
 # Data (keep cache and scan archives)
 data/*
+!data/results/
+!data/results/latest_report.json
+!data/review/
+!data/review/weekly_review.json
+!data/review/weekly_review.txt
 !data/fundamentals_cache/
 !data/fundamentals_cache/**
 !data/daily_scans/

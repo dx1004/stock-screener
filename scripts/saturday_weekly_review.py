@@ -208,7 +208,12 @@ def _extract_payload_from_zip(zip_bytes: bytes) -> Tuple[Optional[Dict[str, Any]
         return None, [f"artifact zip decode failed: {exc}"]
 
     entries = zf.namelist()
-    candidates = [n for n in entries if re.search(r"quant_screen_\\d{8}_\\d{6}\\.json$", n)]
+    # Prefer the Friday-produced review payload over scanner snapshots when both
+    # are present in the same artifact. The review payload is the Saturday
+    # consumer contract and avoids selecting an unrelated older JSON file.
+    candidates = [n for n in entries if n.endswith("weekly_review.json")]
+    if not candidates:
+        candidates = [n for n in entries if re.search(r"quant_screen_\\d{8}_\\d{6}\\.json$", n)]
     if not candidates:
         # Some runs upload artifact layout without prefix folder; try latest_report alias first.
         candidates = [n for n in entries if n.endswith("latest_report.json")]
@@ -325,6 +330,7 @@ def _resolve_report_paths(artifact_dir: Optional[Path] = None) -> List[Path]:
         return candidates
 
     default_paths = (
+        Path("data/review/weekly_review.json"),
         Path("data/results/latest_report.json"),
         Path("data/results/latest_report.yaml"),
         Path("data/results/latest_report.yml"),
