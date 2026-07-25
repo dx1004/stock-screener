@@ -1,42 +1,49 @@
 {
-  "generated_at": "2026-07-25T16:02:35.086681",
+  "generated_at": "2026-07-25T16:10:17.640922",
   "source": "local-report:data/results/latest_report.json",
   "source_timestamp": null,
-  "status": "incomplete",
+  "status": "ok",
   "market_breadth": {
     "total_stocks": 27,
-    "phase_1_count": 8,
-    "phase_2_count": 7,
+    "phase_1_count": 9,
+    "phase_2_count": 12,
     "phase_3_count": 0,
     "phase_4_count": 6,
-    "phase_1_pct": 29.6,
-    "phase_2_pct": 25.9,
+    "phase_1_pct": 33.3,
+    "phase_2_pct": 44.4,
     "phase_3_pct": 0.0,
     "phase_4_pct": 22.2,
-    "breadth_quality": "Fair"
+    "breadth_quality": "Good"
   },
   "signal_recommendation": {
     "should_generate_buys": true,
     "should_generate_sells": true,
-    "regime": "TRANSITIONAL / Uncertain",
+    "regime": "RISK-ON (Weak) / Mixed",
     "reasons": [
-      "Market breadth adequate (25.9% in Phase 2)"
+      "Market breadth adequate (44.4% in Phase 2)"
     ],
-    "phase_2_pct": 25.9,
+    "phase_2_pct": 44.4,
     "spy_phase": 1
   },
-  "completeness_errors": [
-    "GOOGL: '>' not supported between instances of 'NoneType' and 'int'",
-    "JPM: '>' not supported between instances of 'NoneType' and 'int'",
-    "BAC: '>' not supported between instances of 'NoneType' and 'int'",
-    "GS: '>' not supported between instances of 'NoneType' and 'int'",
-    "MS: '>' not supported between instances of 'NoneType' and 'int'",
-    "UPS: '>' not supported between instances of 'NoneType' and 'int'"
-  ],
+  "completeness_errors": [],
   "staleness_error": null,
   "rejected_candidates": [
     {
+      "ticker": "BAC",
+      "status": "REJECT",
+      "reasons": [
+        "风险状态=REJECT（非PASS）"
+      ]
+    },
+    {
       "ticker": "AAPL",
+      "status": "REJECT",
+      "reasons": [
+        "风险状态=REJECT（非PASS）"
+      ]
+    },
+    {
+      "ticker": "JPM",
       "status": "REJECT",
       "reasons": [
         "风险状态=REJECT（非PASS）"
@@ -64,7 +71,28 @@
       ]
     },
     {
+      "ticker": "UPS",
+      "status": "REJECT",
+      "reasons": [
+        "风险状态=REJECT（非PASS）"
+      ]
+    },
+    {
+      "ticker": "GS",
+      "status": "REJECT",
+      "reasons": [
+        "风险状态=REJECT（非PASS）"
+      ]
+    },
+    {
       "ticker": "JNJ",
+      "status": "REJECT",
+      "reasons": [
+        "风险状态=REJECT（非PASS）"
+      ]
+    },
+    {
+      "ticker": "MS",
       "status": "REJECT",
       "reasons": [
         "风险状态=REJECT（非PASS）"
@@ -200,7 +228,7 @@
       }
     }
   ],
-  "summary_text": "⚠ 市场/输入完整性异常：\n  • GOOGL: '>' not supported between instances of 'NoneType' and 'int'\n  • JPM: '>' not supported between instances of 'NoneType' and 'int'\n  • BAC: '>' not supported between instances of 'NoneType' and 'int'\n  • GS: '>' not supported between instances of 'NoneType' and 'int'\n  • MS: '>' not supported between instances of 'NoneType' and 'int'\n  • UPS: '>' not supported between instances of 'NoneType' and 'int'\n本周筛选状态异常：不触发新增买入建议。\n市场广度：{'total_stocks': 27, 'phase_1_count': 8, 'phase_2_count': 7, 'phase_3_count': 0, 'phase_4_count': 6, 'phase_1_pct': 29.6, 'phase_2_pct': 25.9, 'phase_3_pct': 0.0, 'phase_4_pct': 22.2, 'breadth_quality': 'Fair'}\n\n本周无高置信买入（PASS且>70分）\n\n筛选剔除（硬性规则）：\n  - AAPL: 风险状态=REJECT（非PASS）\n  - UNH: 风险状态=REJECT（非PASS）\n  - ABBV: 风险状态=REJECT（非PASS）\n  - AMD: 风险状态=REJECT（非PASS）\n  - JNJ: 风险状态=REJECT（非PASS）\n  - SBUX: 风险状态=REJECT（非PASS）\n\n卖出警示（>=60分）：\n  - TSLA（分数82.0）: critical\n  - NKE（分数70.0）: high\n  - MSFT（分数65.0）: medium\n  - NFLX（分数65.0）: medium\n  - META（分数60.0）: medium",
+  "summary_text": "市场广度：{'total_stocks': 27, 'phase_1_count': 9, 'phase_2_count': 12, 'phase_3_count': 0, 'phase_4_count': 6, 'phase_1_pct': 33.3, 'phase_2_pct': 44.4, 'phase_3_pct': 0.0, 'phase_4_pct': 22.2, 'breadth_quality': 'Good'}\n\n本周无高置信买入（PASS且>70分）\n\n筛选剔除（硬性规则）：\n  - BAC: 风险状态=REJECT（非PASS）\n  - AAPL: 风险状态=REJECT（非PASS）\n  - JPM: 风险状态=REJECT（非PASS）\n  - UNH: 风险状态=REJECT（非PASS）\n  - ABBV: 风险状态=REJECT（非PASS）\n  - AMD: 风险状态=REJECT（非PASS）\n  - UPS: 风险状态=REJECT（非PASS）\n  - GS: 风险状态=REJECT（非PASS）\n  - JNJ: 风险状态=REJECT（非PASS）\n  - MS: 风险状态=REJECT（非PASS）\n\n卖出警示（>=60分）：\n  - TSLA（分数82.0）: critical\n  - NKE（分数70.0）: high\n  - MSFT（分数65.0）: medium\n  - NFLX（分数65.0）: medium\n  - META（分数60.0）: medium",
   "notes": [
     "loaded JSON report from data/results/latest_report.json"
   ]
