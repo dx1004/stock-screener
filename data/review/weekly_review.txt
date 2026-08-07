@@ -1,22 +1,19 @@
-市场广度：{'total_stocks': 27, 'phase_1_count': 14, 'phase_2_count': 8, 'phase_3_count': 0, 'phase_4_count': 5, 'phase_1_pct': 51.9, 'phase_2_pct': 29.6, 'phase_3_pct': 0.0, 'phase_4_pct': 18.5, 'breadth_quality': 'Fair'}
+市场广度：{'total_stocks': 27, 'phase_1_count': 13, 'phase_2_count': 9, 'phase_3_count': 0, 'phase_4_count': 5, 'phase_1_pct': 48.1, 'phase_2_pct': 33.3, 'phase_3_pct': 0.0, 'phase_4_pct': 18.5, 'breadth_quality': 'Good'}
 
 本周无高置信买入（PASS且>70分）
 
 筛选剔除（硬性规则）：
+  - MS: 风险状态=REJECT（非PASS）
+  - GE: 风险状态=REJECT（非PASS）
   - BAC: 风险状态=REJECT（非PASS）
   - JPM: 风险状态=REJECT（非PASS）
-  - ABBV: 风险状态=REJECT（非PASS）
+  - XOM: 风险状态=REJECT（非PASS）
   - JNJ: 风险状态=REJECT（非PASS）
-  - CVX: 风险状态=REJECT（非PASS）
-  - SBUX: 风险状态=REJECT（非PASS）
-  - UNH: 风险状态=REJECT（非PASS）
-  - GE: 风险状态=REJECT（非PASS）
 
 卖出警示（>=60分）：
-  - META（分数82.0）: critical
-  - TSLA（分数80.0）: critical
+  - TSLA（分数77.0）: high
   - NKE（分数75.0）: high
-  - NFLX（分数60.0）: medium
-  - WMT（分数60.0）: medium
+  - WMT（分数70.0）: high
+  - META（分数65.0）: medium
 
 说明：卖出警示仅对已列入 holdings 的股票形成持仓 SELL 复核；未列入 holdings 的股票只是观察信号，不代表要求卖出。
