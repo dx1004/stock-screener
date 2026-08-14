@@ -1,42 +1,42 @@
 {
-  "generated_at": "2026-08-07T22:26:20.469868",
+  "generated_at": "2026-08-14T22:13:51.985371",
   "source": "local-report:data/results/latest_report.json",
   "source_timestamp": null,
   "status": "ok",
   "market_breadth": {
     "total_stocks": 27,
     "phase_1_count": 13,
-    "phase_2_count": 9,
+    "phase_2_count": 11,
     "phase_3_count": 0,
-    "phase_4_count": 5,
+    "phase_4_count": 3,
     "phase_1_pct": 48.1,
-    "phase_2_pct": 33.3,
+    "phase_2_pct": 40.7,
     "phase_3_pct": 0.0,
-    "phase_4_pct": 18.5,
+    "phase_4_pct": 11.1,
     "breadth_quality": "Good"
   },
   "signal_recommendation": {
     "should_generate_buys": true,
     "should_generate_sells": true,
-    "regime": "RISK-ON (Moderate)",
+    "regime": "RISK-ON (Strong)",
     "reasons": [
-      "Market breadth adequate (33.3% in Phase 2)"
+      "Market breadth adequate (40.7% in Phase 2)"
     ],
-    "phase_2_pct": 33.3,
+    "phase_2_pct": 40.7,
     "spy_phase": 2
   },
   "completeness_errors": [],
   "staleness_error": null,
   "rejected_candidates": [
     {
-      "ticker": "MS",
+      "ticker": "AMD",
       "status": "REJECT",
       "reasons": [
         "风险状态=REJECT（非PASS）"
       ]
     },
     {
-      "ticker": "GE",
+      "ticker": "XOM",
       "status": "REJECT",
       "reasons": [
         "风险状态=REJECT（非PASS）"
@@ -50,6 +50,13 @@
       ]
     },
     {
+      "ticker": "GE",
+      "status": "REJECT",
+      "reasons": [
+        "风险状态=REJECT（非PASS）"
+      ]
+    },
+    {
       "ticker": "JPM",
       "status": "REJECT",
       "reasons": [
@@ -57,7 +64,14 @@
       ]
     },
     {
-      "ticker": "XOM",
+      "ticker": "CVX",
+      "status": "REJECT",
+      "reasons": [
+        "风险状态=REJECT（非PASS）"
+      ]
+    },
+    {
+      "ticker": "SBUX",
       "status": "REJECT",
       "reasons": [
         "风险状态=REJECT（非PASS）"
@@ -77,25 +91,25 @@
     {
       "ticker": "TSLA",
       "is_sell": true,
-      "score": 77,
+      "score": 75,
       "severity": "high",
       "phase": 4,
-      "breakdown_level": 380.44,
+      "breakdown_level": 371.09,
       "reasons": [
         "In Phase 4 (Downtrend)",
-        "Broke below 50 SMA by 13.6%",
-        "50 SMA declining (slope: -0.4315)",
-        "Low volume breakdown: 1.0x",
-        "RS declining: -1.23",
+        "Broke below 50 SMA by 7.8%",
+        "50 SMA declining (slope: -0.5424)",
+        "Moderate volume: 1.2x",
+        "RS still positive: 0.38",
         "Failed breakout - closed back inside base"
       ],
       "details": {
-        "breakdown_level": 380.44,
+        "breakdown_level": 371.09,
         "breakdown_score": 55,
-        "volume_ratio": 1.01,
-        "volume_score": 5,
-        "rs_slope": -1.229,
-        "rs_score": 7
+        "volume_ratio": 1.16,
+        "volume_score": 10,
+        "rs_slope": 0.382,
+        "rs_score": 0
       }
     },
     {
@@ -104,45 +118,21 @@
       "score": 75,
       "severity": "high",
       "phase": 4,
-      "breakdown_level": 43.25,
+      "breakdown_level": 42.84,
       "reasons": [
         "In Phase 4 (Downtrend)",
-        "Below 50 SMA by 3.6%",
-        "50 SMA declining (slope: -0.0158)",
+        "Below 50 SMA by 4.9%",
+        "50 SMA declining (slope: -0.0711)",
         "Moderate volume: 1.2x",
-        "Weak RS rollover: -0.42",
+        "Weak RS rollover: -0.76",
         "Failed breakout - closed back inside base"
       ],
       "details": {
-        "breakdown_level": 43.25,
+        "breakdown_level": 42.84,
         "breakdown_score": 50,
-        "volume_ratio": 1.2,
+        "volume_ratio": 1.15,
         "volume_score": 10,
-        "rs_slope": -0.421,
-        "rs_score": 5
-      }
-    },
-    {
-      "ticker": "WMT",
-      "is_sell": true,
-      "score": 70,
-      "severity": "high",
-      "phase": 4,
-      "breakdown_level": 114.61,
-      "reasons": [
-        "In Phase 4 (Downtrend)",
-        "Below 50 SMA by 2.4%",
-        "50 SMA declining (slope: -0.3074)",
-        "Low volume breakdown: 0.9x",
-        "Weak RS rollover: -0.19",
-        "Failed breakout - closed back inside base"
-      ],
-      "details": {
-        "breakdown_level": 114.61,
-        "breakdown_score": 50,
-        "volume_ratio": 0.87,
-        "volume_score": 5,
-        "rs_slope": -0.193,
+        "rs_slope": -0.765,
         "rs_score": 5
       }
     },
@@ -152,26 +142,26 @@
       "score": 65,
       "severity": "medium",
       "phase": 4,
-      "breakdown_level": 599.62,
+      "breakdown_level": 597.06,
       "reasons": [
         "In Phase 4 (Downtrend)",
-        "Just below 50 SMA (1.3%)",
-        "50 SMA declining (slope: -0.0176)",
-        "Low volume breakdown: 0.6x",
-        "Weak RS rollover: -0.97",
+        "Just below 50 SMA (1.2%)",
+        "50 SMA declining (slope: -0.0855)",
+        "Low volume breakdown: 0.5x",
+        "Weak RS rollover: -0.25",
         "Failed breakout - closed back inside base"
       ],
       "details": {
-        "breakdown_level": 599.62,
+        "breakdown_level": 597.06,
         "breakdown_score": 45,
-        "volume_ratio": 0.6,
+        "volume_ratio": 0.53,
         "volume_score": 5,
-        "rs_slope": -0.974,
+        "rs_slope": -0.249,
         "rs_score": 5
       }
     }
   ],
-  "summary_text": "市场广度：{'total_stocks': 27, 'phase_1_count': 13, 'phase_2_count': 9, 'phase_3_count': 0, 'phase_4_count': 5, 'phase_1_pct': 48.1, 'phase_2_pct': 33.3, 'phase_3_pct': 0.0, 'phase_4_pct': 18.5, 'breadth_quality': 'Good'}\n\n本周无高置信买入（PASS且>70分）\n\n筛选剔除（硬性规则）：\n  - MS: 风险状态=REJECT（非PASS）\n  - GE: 风险状态=REJECT（非PASS）\n  - BAC: 风险状态=REJECT（非PASS）\n  - JPM: 风险状态=REJECT（非PASS）\n  - XOM: 风险状态=REJECT（非PASS）\n  - JNJ: 风险状态=REJECT（非PASS）\n\n卖出警示（>=60分）：\n  - TSLA（分数77.0）: high\n  - NKE（分数75.0）: high\n  - WMT（分数70.0）: high\n  - META（分数65.0）: medium\n\n说明：卖出警示仅对已列入 holdings 的股票形成持仓 SELL 复核；未列入 holdings 的股票只是观察信号，不代表要求卖出。",
+  "summary_text": "市场广度：{'total_stocks': 27, 'phase_1_count': 13, 'phase_2_count': 11, 'phase_3_count': 0, 'phase_4_count': 3, 'phase_1_pct': 48.1, 'phase_2_pct': 40.7, 'phase_3_pct': 0.0, 'phase_4_pct': 11.1, 'breadth_quality': 'Good'}\n\n本周无高置信买入（PASS且>70分）\n\n筛选剔除（硬性规则）：\n  - AMD: 风险状态=REJECT（非PASS）\n  - XOM: 风险状态=REJECT（非PASS）\n  - BAC: 风险状态=REJECT（非PASS）\n  - GE: 风险状态=REJECT（非PASS）\n  - JPM: 风险状态=REJECT（非PASS）\n  - CVX: 风险状态=REJECT（非PASS）\n  - SBUX: 风险状态=REJECT（非PASS）\n  - JNJ: 风险状态=REJECT（非PASS）\n\n卖出警示（>=60分）：\n  - TSLA（分数75.0）: high\n  - NKE（分数75.0）: high\n  - META（分数65.0）: medium\n\n说明：卖出警示仅对已列入 holdings 的股票形成持仓 SELL 复核；未列入 holdings 的股票只是观察信号，不代表要求卖出。",
   "notes": [
     "loaded JSON report from data/results/latest_report.json"
   ]
