@@ -729,7 +729,16 @@ def build_structured_review(
     return {
         "generated_at": datetime.now().isoformat(),
         "source": source.source,
-        "source_timestamp": source.timestamp,
+        # JSON reports carry their authoritative capture time in the payload.
+        # Preserve it for committed/artifact sources whose ReportSource metadata
+        # is not populated (otherwise every review is incorrectly marked stale
+        # or DATA_INCOMPLETE despite a valid report timestamp).
+        "source_timestamp": (
+            source.timestamp
+            or payload.get("timestamp")
+            or payload.get("generated_at")
+            or payload.get("report_date")
+        ),
         "status": payload.get("status", "ok") if payload else "incomplete",
         "market_breadth": payload.get("breadth", {}),
         "signal_recommendation": payload.get("signal_recommendation", {}),
