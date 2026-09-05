@@ -267,11 +267,19 @@ def evaluate_buy_risk(
             "sizing": sizing,
         }
 
-    min_atr_multiple = float(risk_policy.get("min_atr_distance_multiple", 2.0))
+    min_atr_multiple = float(risk_policy.get("min_atr_distance_multiple", 1.5))
+    max_atr_multiple = float(risk_policy.get("max_atr_distance_multiple", 3.0))
     if stop_distance_atr_multiple < min_atr_multiple:
         return {
             "status": "REJECT",
             "reasons": [f"入场到ATR止损距离不足（{stop_distance_atr_multiple:.2f}x ATR < {min_atr_multiple}x ATR）"],
+            "risk": risk,
+            "sizing": sizing,
+        }
+    if stop_distance_atr_multiple > max_atr_multiple:
+        return {
+            "status": "REJECT",
+            "reasons": [f"入场到ATR止损距离过宽（{stop_distance_atr_multiple:.2f}x ATR > {max_atr_multiple}x ATR）"],
             "risk": risk,
             "sizing": sizing,
         }
@@ -330,6 +338,9 @@ def evaluate_buy_risk(
 
     max_notional_cap_pct = float(risk_policy.get("max_notional_pct", 10.0))
     position_cap_pct = min(max_notional_cap_pct, risk_budget_per_trade_pct / stop_distance_pct * 100 if stop_distance_pct > 0 else 0.0)
+    default_capital = float(risk_policy.get("default_capital", 5000.0))
+    risk_budget_dollars = default_capital * risk_budget_per_trade_pct / 100.0
+    max_shares = int(risk_budget_dollars / stop_distance) if stop_distance > 0 else 0
 
     risk.update(
         {
@@ -347,6 +358,9 @@ def evaluate_buy_risk(
             "spy_risk_ratio": round(spy_relative_risk_ratio, 4) if spy_relative_risk_ratio is not None else None,
             "spy_risk_grade": spy_risk_grade,
             "risk_budget_per_trade_pct": round(risk_budget_per_trade_pct, 4),
+            "default_capital": round(default_capital, 2),
+            "risk_budget_dollars": round(risk_budget_dollars, 2),
+            "max_shares": max_shares,
             "benchmark_regime": benchmark_regime,
         }
     )

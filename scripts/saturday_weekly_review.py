@@ -689,8 +689,11 @@ def build_structured_review(
             reasons.append(f"R/R不足（{_extract_float(rr):.2f} < 2.5）")
             rejected.append({"ticker": ticker, "status": "REJECT", "reasons": reasons})
             continue
-        if _extract_float(atr_multiple) < 2.0:
-            reasons.append(f"ATR止损距离不足（{_extract_float(atr_multiple):.2f} < 2.0）")
+        if _extract_float(atr_multiple) < 1.5:
+            reasons.append(f"ATR止损距离不足（{_extract_float(atr_multiple):.2f} < 1.5）")
+        elif _extract_float(atr_multiple) > 3.0:
+            reasons.append(f"ATR止损距离过宽（{_extract_float(atr_multiple):.2f} > 3.0）")
+        if reasons:
             rejected.append({"ticker": ticker, "status": "REJECT", "reasons": reasons})
             continue
         if _extract_float(stop_pct) is not None and _extract_float(stop_pct) > 0.08:
