@@ -338,7 +338,7 @@ def evaluate_buy_risk(
 
     max_notional_cap_pct = float(risk_policy.get("max_notional_pct", 10.0))
     position_cap_pct = min(max_notional_cap_pct, risk_budget_per_trade_pct / stop_distance_pct * 100 if stop_distance_pct > 0 else 0.0)
-    default_capital = float(risk_policy.get("default_capital", 5000.0))
+    default_capital = float(risk_policy.get("default_capital", 10000.0))
     risk_budget_dollars = default_capital * risk_budget_per_trade_pct / 100.0
     max_shares = int(risk_budget_dollars / stop_distance) if stop_distance > 0 else 0
 

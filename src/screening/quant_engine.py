@@ -54,7 +54,7 @@ class QuantAnalysisEngine:
         "min_entry_price": 10.0,
         "min_median_20d_dollar_volume": 20000000,
         "base_risk_budget_pct": 1.0,
-        "default_capital": 5000.0,
+        "default_capital": 10000.0,
         "max_notional_pct": 10.0,
         "max_new_buys": 2,
     }

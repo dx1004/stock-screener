@@ -576,13 +576,31 @@ def _format_decision(payload: Dict[str, Any], min_buy_score: float = 70.0) -> st
                 lines.append(f"    - 1-4月风险回报：{rr:.2f}:1")
             if spy_grade is not None:
                 lines.append(f"    - 风险等级（以S&P 500指数风险作为标准）：{spy_grade}")
-            if sizing.get("risk_budget_pct") is not None:
-                lines.append(f"    - 建议风险预算：{_fmt_float(sizing.get('risk_budget_pct'), '.2f')}%")
+            risk_budget_pct = sizing.get("risk_budget_pct", sizing.get("risk_budget_per_trade_pct"))
+            if risk_budget_pct is not None:
+                lines.append(f"    - 建议风险预算：{_fmt_float(risk_budget_pct, '.2f')}%")
+            if sizing.get("default_capital") is not None:
+                lines.append(
+                    f"    - 示例本金：${_fmt_float(sizing.get('default_capital'), ',.2f')}；"
+                    f"示例单笔风险额：${_fmt_float(sizing.get('risk_budget_dollars'), ',.2f')}"
+                )
+                lines.append(
+                    "    - 调整公式：你的单笔风险额 = 个人本金 C × 风险预算比例；"
+                    "最大股数 = floor(单笔风险额 ÷ (入场价 − 止损价))"
+                )
             if sizing.get("risk_basis_symbolic"):
                 lines.append(f"    - 仓位（符号化）：{sizing.get('risk_basis_symbolic')}")
     else:
         lines.append("")
         lines.append("本周无高置信买入（PASS且>70分）")
+        risk_policy = payload.get("risk_policy", {})
+        if isinstance(risk_policy, dict):
+            default_capital = risk_policy.get("default_capital", 10000.0)
+            lines.append(f"示例本金：${_fmt_float(default_capital, ',.2f')}（仅为计算示例）")
+            lines.append(
+                "调整公式：单笔风险额 = 个人本金 C × 风险预算比例；"
+                "最大股数 = floor(单笔风险额 ÷ (入场价 − 止损价))"
+            )
 
     if rejected:
         lines.append("")
@@ -745,6 +763,7 @@ def build_structured_review(
         "status": payload.get("status", "ok") if payload else "incomplete",
         "market_breadth": payload.get("breadth", {}),
         "signal_recommendation": payload.get("signal_recommendation", {}),
+        "risk_policy": payload.get("risk_policy", {}),
         "completeness_errors": payload.get("completeness_errors", []),
         "staleness_error": stale_error,
         "rejected_candidates": rejected,
