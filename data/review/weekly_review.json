@@ -1,18 +1,18 @@
 {
-  "generated_at": "2026-09-04T23:35:20.237495",
+  "generated_at": "2026-09-11T23:43:01.442846",
   "source": "local-report:data/results/latest_report.json",
-  "source_timestamp": "2026-09-04T23:35:19.464866",
+  "source_timestamp": "2026-09-11T23:43:00.573050",
   "status": "ok",
   "market_breadth": {
     "total_stocks": 27,
-    "phase_1_count": 11,
+    "phase_1_count": 12,
     "phase_2_count": 11,
     "phase_3_count": 0,
-    "phase_4_count": 5,
-    "phase_1_pct": 40.7,
+    "phase_4_count": 4,
+    "phase_1_pct": 44.4,
     "phase_2_pct": 40.7,
     "phase_3_pct": 0.0,
-    "phase_4_pct": 18.5,
+    "phase_4_pct": 14.8,
     "breadth_quality": "Good"
   },
   "signal_recommendation": {
@@ -25,18 +25,27 @@
     "phase_2_pct": 40.7,
     "spy_phase": 2
   },
+  "risk_policy": {
+    "atr_period": 14,
+    "spy_atr_period": 14,
+    "spy_atr_multiple": 2.0,
+    "min_atr_distance_multiple": 1.5,
+    "max_atr_distance_multiple": 3.0,
+    "max_stop_distance_pct": 0.08,
+    "min_rr": 2.5,
+    "max_data_staleness_days": 3,
+    "min_entry_price": 10.0,
+    "min_median_20d_dollar_volume": 20000000,
+    "base_risk_budget_pct": 1.0,
+    "default_capital": 10000.0,
+    "max_notional_pct": 10.0,
+    "max_new_buys": 2
+  },
   "completeness_errors": [],
   "staleness_error": null,
   "rejected_candidates": [
     {
       "ticker": "CVX",
-      "status": "REJECT",
-      "reasons": [
-        "风险状态=REJECT（非PASS）"
-      ]
-    },
-    {
-      "ticker": "JNJ",
       "status": "REJECT",
       "reasons": [
         "风险状态=REJECT（非PASS）"
@@ -57,7 +66,14 @@
       ]
     },
     {
-      "ticker": "ABBV",
+      "ticker": "AMZN",
+      "status": "REJECT",
+      "reasons": [
+        "风险状态=REJECT（非PASS）"
+      ]
+    },
+    {
+      "ticker": "PFE",
       "status": "REJECT",
       "reasons": [
         "风险状态=REJECT（非PASS）"
@@ -65,6 +81,13 @@
     },
     {
       "ticker": "XOM",
+      "status": "REJECT",
+      "reasons": [
+        "风险状态=REJECT（非PASS）"
+      ]
+    },
+    {
+      "ticker": "BAC",
       "status": "REJECT",
       "reasons": [
         "风险状态=REJECT（非PASS）"
@@ -82,74 +105,26 @@
   "holdings_actions": [],
   "sell_warnings": [
     {
-      "ticker": "TSLA",
-      "is_sell": true,
-      "score": 85,
-      "severity": "critical",
-      "phase": 4,
-      "breakdown_level": 357.95,
-      "reasons": [
-        "In Phase 4 (Downtrend)",
-        "Just below 50 SMA (1.1%)",
-        "50 SMA declining (slope: -0.2868)",
-        "High volume breakdown: 1.8x",
-        "RS still positive: 0.43",
-        "Failed breakout - closed back inside base"
-      ],
-      "details": {
-        "breakdown_level": 357.95,
-        "breakdown_score": 45,
-        "volume_ratio": 1.76,
-        "volume_score": 30,
-        "rs_slope": 0.43,
-        "rs_score": 0
-      }
-    },
-    {
-      "ticker": "NKE",
+      "ticker": "HD",
       "is_sell": true,
       "score": 75,
       "severity": "high",
       "phase": 4,
-      "breakdown_level": 41.1,
+      "breakdown_level": 333.65,
       "reasons": [
         "In Phase 4 (Downtrend)",
-        "Broke below 50 SMA by 6.6%",
-        "50 SMA declining (slope: -0.2095)",
-        "Low volume breakdown: 0.7x",
-        "Weak RS rollover: -0.32",
+        "Broke below 50 SMA by 7.5%",
+        "50 SMA declining (slope: -0.0207)",
+        "Low volume breakdown: 1.0x",
+        "Weak RS rollover: -0.63",
         "Failed breakout - closed back inside base"
       ],
       "details": {
-        "breakdown_level": 41.1,
+        "breakdown_level": 333.65,
         "breakdown_score": 55,
-        "volume_ratio": 0.74,
+        "volume_ratio": 0.98,
         "volume_score": 5,
-        "rs_slope": -0.319,
-        "rs_score": 5
-      }
-    },
-    {
-      "ticker": "WMT",
-      "is_sell": true,
-      "score": 70,
-      "severity": "high",
-      "phase": 4,
-      "breakdown_level": 110.67,
-      "reasons": [
-        "In Phase 4 (Downtrend)",
-        "Below 50 SMA by 3.2%",
-        "50 SMA declining (slope: -0.1898)",
-        "Low volume breakdown: 0.7x",
-        "Weak RS rollover: -0.42",
-        "Failed breakout - closed back inside base"
-      ],
-      "details": {
-        "breakdown_level": 110.67,
-        "breakdown_score": 50,
-        "volume_ratio": 0.74,
-        "volume_score": 5,
-        "rs_slope": -0.419,
+        "rs_slope": -0.629,
         "rs_score": 5
       }
     },
@@ -159,49 +134,73 @@
       "score": 70,
       "severity": "high",
       "phase": 4,
-      "breakdown_level": 219.41,
+      "breakdown_level": 218.72,
       "reasons": [
         "In Phase 4 (Downtrend)",
-        "Below 50 SMA by 3.3%",
-        "50 SMA declining (slope: -0.0320)",
-        "Low volume breakdown: 0.9x",
-        "Weak RS rollover: -0.50",
+        "Below 50 SMA by 3.8%",
+        "50 SMA declining (slope: -0.0801)",
+        "Low volume breakdown: 0.8x",
+        "Weak RS rollover: -0.11",
         "Failed breakout - closed back inside base"
       ],
       "details": {
-        "breakdown_level": 219.41,
+        "breakdown_level": 218.72,
         "breakdown_score": 50,
-        "volume_ratio": 0.94,
+        "volume_ratio": 0.81,
         "volume_score": 5,
-        "rs_slope": -0.504,
+        "rs_slope": -0.108,
         "rs_score": 5
       }
     },
     {
-      "ticker": "HD",
+      "ticker": "WMT",
       "is_sell": true,
-      "score": 60,
+      "score": 65,
       "severity": "medium",
       "phase": 4,
-      "breakdown_level": 336.73,
+      "breakdown_level": 110.14,
       "reasons": [
         "In Phase 4 (Downtrend)",
-        "Below 50 SMA by 4.7%",
+        "Below 50 SMA by 2.7%",
+        "50 SMA declining (slope: -0.2187)",
         "Low volume breakdown: 0.6x",
-        "Weak RS rollover: -0.48",
+        "RS still positive: 0.21",
         "Failed breakout - closed back inside base"
       ],
       "details": {
-        "breakdown_level": 336.73,
-        "breakdown_score": 40,
+        "breakdown_level": 110.14,
+        "breakdown_score": 50,
         "volume_ratio": 0.61,
         "volume_score": 5,
-        "rs_slope": -0.479,
+        "rs_slope": 0.21,
+        "rs_score": 0
+      }
+    },
+    {
+      "ticker": "NKE",
+      "is_sell": true,
+      "score": 65,
+      "severity": "medium",
+      "phase": 4,
+      "breakdown_level": 40.79,
+      "reasons": [
+        "In Phase 4 (Downtrend)",
+        "Broke below 50 SMA by 9.8%",
+        "50 SMA declining (slope: -0.2102)",
+        "Low volume breakdown: 0.7x",
+        "Weak RS rollover: -0.49"
+      ],
+      "details": {
+        "breakdown_level": 40.79,
+        "breakdown_score": 55,
+        "volume_ratio": 0.69,
+        "volume_score": 5,
+        "rs_slope": -0.495,
         "rs_score": 5
       }
     }
   ],
-  "summary_text": "市场广度：{'total_stocks': 27, 'phase_1_count': 11, 'phase_2_count': 11, 'phase_3_count': 0, 'phase_4_count': 5, 'phase_1_pct': 40.7, 'phase_2_pct': 40.7, 'phase_3_pct': 0.0, 'phase_4_pct': 18.5, 'breadth_quality': 'Good'}\n\n本周无高置信买入（PASS且>70分）\n\n筛选剔除（硬性规则）：\n  - CVX: 风险状态=REJECT（非PASS）\n  - JNJ: 风险状态=REJECT（非PASS）\n  - AAPL: 风险状态=REJECT（非PASS）\n  - NVDA: 风险状态=REJECT（非PASS）\n  - ABBV: 风险状态=REJECT（非PASS）\n  - XOM: 风险状态=REJECT（非PASS）\n  - JPM: 风险状态=REJECT（非PASS）\n\n卖出警示（>=60分）：\n  - TSLA（分数85.0）: critical\n  - NKE（分数75.0）: high\n  - WMT（分数70.0）: high\n  - BA（分数70.0）: high\n  - HD（分数60.0）: medium\n\n说明：卖出警示仅对已列入 holdings 的股票形成持仓 SELL 复核；未列入 holdings 的股票只是观察信号，不代表要求卖出。",
+  "summary_text": "市场广度：{'total_stocks': 27, 'phase_1_count': 12, 'phase_2_count': 11, 'phase_3_count': 0, 'phase_4_count': 4, 'phase_1_pct': 44.4, 'phase_2_pct': 40.7, 'phase_3_pct': 0.0, 'phase_4_pct': 14.8, 'breadth_quality': 'Good'}\n\n本周无高置信买入（PASS且>70分）\n示例本金：$10,000.00（仅为计算示例）\n调整公式：单笔风险额 = 个人本金 C × 风险预算比例；最大股数 = floor(单笔风险额 ÷ (入场价 − 止损价))\n\n筛选剔除（硬性规则）：\n  - CVX: 风险状态=REJECT（非PASS）\n  - AAPL: 风险状态=REJECT（非PASS）\n  - NVDA: 风险状态=REJECT（非PASS）\n  - AMZN: 风险状态=REJECT（非PASS）\n  - PFE: 风险状态=REJECT（非PASS）\n  - XOM: 风险状态=REJECT（非PASS）\n  - BAC: 风险状态=REJECT（非PASS）\n  - JPM: 风险状态=REJECT（非PASS）\n\n卖出警示（>=60分）：\n  - HD（分数75.0）: high\n  - BA（分数70.0）: high\n  - WMT（分数65.0）: medium\n  - NKE（分数65.0）: medium\n\n说明：卖出警示仅对已列入 holdings 的股票形成持仓 SELL 复核；未列入 holdings 的股票只是观察信号，不代表要求卖出。",
   "notes": [
     "loaded JSON report from data/results/latest_report.json"
   ]
