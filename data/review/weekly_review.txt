@@ -1,23 +1,23 @@
-市场广度：{'total_stocks': 27, 'phase_1_count': 12, 'phase_2_count': 11, 'phase_3_count': 0, 'phase_4_count': 4, 'phase_1_pct': 44.4, 'phase_2_pct': 40.7, 'phase_3_pct': 0.0, 'phase_4_pct': 14.8, 'breadth_quality': 'Good'}
+市场广度：{'total_stocks': 27, 'phase_1_count': 14, 'phase_2_count': 8, 'phase_3_count': 0, 'phase_4_count': 5, 'phase_1_pct': 51.9, 'phase_2_pct': 29.6, 'phase_3_pct': 0.0, 'phase_4_pct': 18.5, 'breadth_quality': 'Fair'}
 
 本周无高置信买入（PASS且>70分）
 示例本金：$10,000.00（仅为计算示例）
 调整公式：单笔风险额 = 个人本金 C × 风险预算比例；最大股数 = floor(单笔风险额 ÷ (入场价 − 止损价))
 
 筛选剔除（硬性规则）：
-  - CVX: 风险状态=REJECT（非PASS）
-  - AAPL: 风险状态=REJECT（非PASS）
-  - NVDA: 风险状态=REJECT（非PASS）
-  - AMZN: 风险状态=REJECT（非PASS）
-  - PFE: 风险状态=REJECT（非PASS）
   - XOM: 风险状态=REJECT（非PASS）
-  - BAC: 风险状态=REJECT（非PASS）
-  - JPM: 风险状态=REJECT（非PASS）
+  - AAPL: 风险状态=REJECT（非PASS）
+  - PFE: 风险状态=REJECT（非PASS）
+  - CVX: 风险状态=REJECT（非PASS）
+  - NVDA: 风险状态=REJECT（非PASS）
+  - MSFT: 风险状态=REJECT（非PASS）
+  - ABBV: 风险状态=REJECT（非PASS）
 
 卖出警示（>=60分）：
-  - HD（分数75.0）: high
-  - BA（分数70.0）: high
-  - WMT（分数65.0）: medium
-  - NKE（分数65.0）: medium
+  - HD（分数100.0）: critical
+  - NKE（分数100.0）: critical
+  - NFLX（分数90.0）: critical
+  - BA（分数90.0）: critical
+  - WMT（分数80.0）: critical
 
 说明：卖出警示仅对已列入 holdings 的股票形成持仓 SELL 复核；未列入 holdings 的股票只是观察信号，不代表要求卖出。
