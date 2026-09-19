@@ -511,7 +511,15 @@ def _format_decision(payload: Dict[str, Any], min_buy_score: float = 70.0) -> st
         risk_metrics = _candidate_risk_metrics(b)
         status = risk_metrics.get("status")
         if status != "PASS":
-            reasons.append(f"风险状态={status or 'UNKNOWN'}（非PASS）")
+            upstream_reasons = [
+                str(reason)
+                for reason in risk_metrics.get("reasons", [])
+                if reason
+            ]
+            reasons.extend(
+                upstream_reasons
+                or [f"风险状态={status or 'UNKNOWN'}（非PASS）"]
+            )
             rejected.append(f"{ticker}: {'; '.join(reasons)}")
             continue
 
@@ -533,18 +541,6 @@ def _format_decision(payload: Dict[str, Any], min_buy_score: float = 70.0) -> st
             rejected.append(f"{ticker}: {'; '.join(reasons)}")
             continue
 
-        if rr < 2.5:
-            reasons.append(f"R/R不足（{rr:.2f} < 2.5）")
-            rejected.append(f"{ticker}: {'; '.join(reasons)}")
-            continue
-        if stop_distance_atr_multiple < 2.0:
-            reasons.append(f"ATR止损距离不足（{stop_distance_atr_multiple:.2f} < 2.0）")
-            rejected.append(f"{ticker}: {'; '.join(reasons)}")
-            continue
-        if stop_distance_pct > 0.08:
-            reasons.append(f"止损过宽（{stop_distance_pct:.2%} > 8%）")
-            rejected.append(f"{ticker}: {'; '.join(reasons)}")
-            continue
         selected.append(b)
 
     selected = sorted(
@@ -682,8 +678,20 @@ def build_structured_review(
         metrics = _candidate_risk_metrics(b)
         status = metrics.get("status")
         if status != "PASS":
-            reasons.append(f"风险状态={status or 'UNKNOWN'}（非PASS）")
-            rejected.append({"ticker": ticker, "status": "REJECT", "reasons": reasons})
+            upstream_reasons = [
+                str(reason)
+                for reason in metrics.get("reasons", [])
+                if reason
+            ]
+            reasons.extend(
+                upstream_reasons
+                or [f"风险状态={status or 'UNKNOWN'}（非PASS）"]
+            )
+            rejected.append({
+                "ticker": ticker,
+                "status": status or "REJECT",
+                "reasons": reasons,
+            })
             continue
         rr = metrics.get("risk_reward_ratio")
         atr_multiple = metrics.get("stop_distance_atr_multiple")
@@ -703,21 +711,6 @@ def build_structured_review(
             rejected.append({"ticker": ticker, "status": "DATA_INCOMPLETE", "reasons": reasons})
             continue
 
-        if _extract_float(rr) < 2.5:
-            reasons.append(f"R/R不足（{_extract_float(rr):.2f} < 2.5）")
-            rejected.append({"ticker": ticker, "status": "REJECT", "reasons": reasons})
-            continue
-        if _extract_float(atr_multiple) < 1.5:
-            reasons.append(f"ATR止损距离不足（{_extract_float(atr_multiple):.2f} < 1.5）")
-        elif _extract_float(atr_multiple) > 3.0:
-            reasons.append(f"ATR止损距离过宽（{_extract_float(atr_multiple):.2f} > 3.0）")
-        if reasons:
-            rejected.append({"ticker": ticker, "status": "REJECT", "reasons": reasons})
-            continue
-        if _extract_float(stop_pct) is not None and _extract_float(stop_pct) > 0.08:
-            reasons.append(f"止损过宽（{_extract_float(stop_pct):.2%} > 8%）")
-            rejected.append({"ticker": ticker, "status": "REJECT", "reasons": reasons})
-            continue
         selected.append(
             {
                 "ticker": ticker,

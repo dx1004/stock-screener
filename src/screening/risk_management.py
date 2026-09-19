@@ -83,7 +83,9 @@ def _grade_multiplier(grade: str) -> float:
         "R2": 1.0,
         "R3": 0.8,
         "R4": 0.5,
-        "R5": 0.0,
+        # Preserve the high-risk label while reducing, rather than eliminating,
+        # exposure for an otherwise valid setup.
+        "R5": 0.25,
         DEFAULT_SPY_GRADE_LABEL: 0.0,
     }.get(grade, 0.0)
 
@@ -284,13 +286,24 @@ def evaluate_buy_risk(
             "sizing": sizing,
         }
 
-    # S&P500-relative risk grade
+    # S&P500-relative risk grade. Compare like-for-like ATR volatility
+    # percentages; a structural stop distance is not a volatility proxy.
     spy_atr = calculate_atr(spy_context.get("price_data", pd.DataFrame()), int(risk_policy.get("spy_atr_period", 14)))
     if spy_atr is None or spy_context.get("current_price", 0) in (0, None):
         spy_relative_risk_ratio = None
+        stock_atr_risk_pct = None
+        spy_atr_risk_pct = None
     else:
-        spy_risk_pct = (spy_atr * float(risk_policy.get("spy_atr_multiple", 2.0))) / float(spy_context["current_price"])
-        spy_relative_risk_ratio = stop_distance_pct / spy_risk_pct if spy_risk_pct > 0 else None
+        comparison_multiple = float(risk_policy.get("spy_atr_multiple", 2.0))
+        stock_atr_risk_pct = (atr * comparison_multiple) / entry_price
+        spy_atr_risk_pct = (
+            spy_atr * comparison_multiple
+        ) / float(spy_context["current_price"])
+        spy_relative_risk_ratio = (
+            stock_atr_risk_pct / spy_atr_risk_pct
+            if spy_atr_risk_pct > 0
+            else None
+        )
 
     spy_risk_grade = _spy_risk_grade(spy_relative_risk_ratio)
     if spy_risk_grade == "RX":
@@ -304,17 +317,6 @@ def evaluate_buy_risk(
             },
             "sizing": sizing,
         }
-    if spy_risk_grade == "R5":
-        return {
-            "status": "REJECT",
-            "reasons": ["SPY 相对风险等级为 R5，不纳入本周候选"],
-            "risk": {
-                "spy_risk_ratio": spy_relative_risk_ratio,
-                "risk_grade": spy_risk_grade,
-            },
-            "sizing": sizing,
-        }
-
     # Position sizing guidance (symbolic C)
     grade_multiplier = _grade_multiplier(spy_risk_grade)
     regime_multiplier = _market_regime_multiplier(benchmark_regime)
@@ -356,6 +358,8 @@ def evaluate_buy_risk(
             "swing_target_1_4m": round(target, 4),
             "risk_reward_ratio": round(rr_ratio, 4),
             "spy_risk_ratio": round(spy_relative_risk_ratio, 4) if spy_relative_risk_ratio is not None else None,
+            "stock_atr_risk_pct": round(stock_atr_risk_pct, 4) if stock_atr_risk_pct is not None else None,
+            "spy_atr_risk_pct": round(spy_atr_risk_pct, 4) if spy_atr_risk_pct is not None else None,
             "spy_risk_grade": spy_risk_grade,
             "risk_budget_per_trade_pct": round(risk_budget_per_trade_pct, 4),
             "default_capital": round(default_capital, 2),
@@ -369,7 +373,7 @@ def evaluate_buy_risk(
         {
             "risk_grade": "交易设置风险等级",
             "risk_grade_basis": (
-                "基于 S&P 500 指数风险标准（SPY 代理）；"
+                "基于个股与 S&P 500 指数（SPY 代理）的等周期ATR百分比对比；"
                 "仅为风险评分标准，不构成官方评级。"
             ),
             "risk_basis_symbolic": (
@@ -395,7 +399,7 @@ def evaluate_buy_risk(
             f"ATR止损距离：{stop_distance_atr_multiple:.2f}x ATR",
             f"入场到ATR止损距离：{stop_distance_pct:.2%}",
             f"目标RR：{rr_ratio:.2f}:1",
-            f"风险等级：{spy_risk_grade}",
+            f"风险等级（以S&P 500指数风险作为标准）：{spy_risk_grade}",
         ]
     )
 

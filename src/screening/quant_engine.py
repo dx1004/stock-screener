@@ -282,7 +282,9 @@ class QuantAnalysisEngine:
                     current_price=analysis["current_price"],
                     phase_info=analysis["phase_info"],
                     rs_series=analysis["rs_series"],
-                    fundamentals=analysis["fundamental_analysis"],
+                    # score_buy_signal consumes raw quarterly fields. The
+                    # normalized summary has a different schema.
+                    fundamentals=analysis["quarterly_data"],
                 )
 
                 if not buy_signal.get("is_buy", False):
