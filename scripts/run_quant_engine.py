@@ -24,6 +24,7 @@ if str(ROOT_DIR) not in sys.path:
 import yaml
 
 from src.screening.quant_engine import QuantAnalysisEngine
+from src.screening.event_risk import build_event_risk_overlay, format_event_risk_text
 
 logging.basicConfig(
     level=logging.INFO,
@@ -186,6 +187,16 @@ def main():
     try:
         logger.info("Starting Quant Analysis Engine...")
         report, payload = engine.run_report(tickers)
+        event_overlay = build_event_risk_overlay(
+            config.get("event_risk", {}) if isinstance(config, dict) else {},
+            candidate_tickers=[
+                candidate.get("ticker")
+                for candidate in payload.get("qualified_buys", [])
+                if isinstance(candidate, dict) and candidate.get("ticker")
+            ],
+        )
+        payload["event_risk"] = event_overlay
+        report += format_event_risk_text(event_overlay)
 
         # Print report
         print(report)

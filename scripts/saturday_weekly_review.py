@@ -437,6 +437,50 @@ def _fmt_float(x: Any, fmt: str = ".2f") -> str:
         return "-"
 
 
+def _event_risk_from_payload(payload: Dict[str, Any]) -> Dict[str, Any]:
+    """Pass through Friday's overlay; never fetch or recalculate on Saturday."""
+    event_risk = payload.get("event_risk")
+    if isinstance(event_risk, dict):
+        return event_risk
+    return {
+        "schema_version": "legacy-missing",
+        "policy_version": None,
+        "mode": "legacy",
+        "generated_at_utc": None,
+        "as_of_session": None,
+        "valid_until_utc": None,
+        "policy": {},
+        "feeds": [],
+        "events": [],
+        "market_decision": {
+            "status": "DATA_INCOMPLETE",
+            "level": "UNKNOWN",
+            "reason_codes": ["EVENT_RISK_OVERLAY_MISSING"],
+            "event_ids": [],
+            "enforced": False,
+        },
+        "ticker_decisions": {},
+    }
+
+
+def _format_event_risk_lines(payload: Dict[str, Any]) -> List[str]:
+    overlay = _event_risk_from_payload(payload)
+    decision = overlay.get("market_decision", {})
+    status = decision.get("status", "DATA_INCOMPLETE") if isinstance(decision, dict) else "DATA_INCOMPLETE"
+    mode = str(overlay.get("mode", "legacy")).upper()
+    lines = [f"事件风险：{status}（{mode}，周五产物；周六不重新计算）"]
+    next_event = decision.get("next_event") if isinstance(decision, dict) else None
+    if isinstance(next_event, dict):
+        lines.append(
+            "下一事件："
+            f"{next_event.get('family', '-')} {next_event.get('event_date_local', '-')}，"
+            f"距有效交易时点 {next_event.get('sessions_until', '-')} 个交易日"
+        )
+    if mode == "SHADOW":
+        lines.append("事件风险当前仅观察，不改变技术买入、持仓或卖出动作。")
+    return lines
+
+
 def _format_decision(payload: Dict[str, Any], min_buy_score: float = 70.0) -> str:
     lines: List[str] = []
     if not payload:
@@ -458,12 +502,13 @@ def _format_decision(payload: Dict[str, Any], min_buy_score: float = 70.0) -> st
     breadth = payload.get("breadth", {})
     if breadth:
         lines.append(f"市场广度：{breadth}")
+    lines.extend(_format_event_risk_lines(payload))
     holds = payload.get("holdings_actions", []) or []
     buys = payload.get("buys", []) or []
     sells = payload.get("sells", []) or []
 
     qualified = payload.get("qualified_buys")
-    if not qualified:
+    if qualified is None:
         qualified = [b for b in buys if isinstance(b, dict)]
 
     if stale_error:
@@ -648,7 +693,7 @@ def build_structured_review(
 
     stale_error = _is_report_stale(payload)
     qualified = payload.get("qualified_buys")
-    if not qualified:
+    if qualified is None:
         qualified = [b for b in payload.get("buys", []) if isinstance(b, dict)]
 
     selected: List[Dict[str, Any]] = []
@@ -757,6 +802,7 @@ def build_structured_review(
         "market_breadth": payload.get("breadth", {}),
         "signal_recommendation": payload.get("signal_recommendation", {}),
         "risk_policy": payload.get("risk_policy", {}),
+        "event_risk": _event_risk_from_payload(payload),
         "completeness_errors": payload.get("completeness_errors", []),
         "staleness_error": stale_error,
         "rejected_candidates": rejected,

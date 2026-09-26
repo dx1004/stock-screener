@@ -105,3 +105,29 @@ risk_control:
 
   # Output / selection constraints
   max_new_buys: 2
+
+# Friday-only macro event overlay. Shadow mode records timing risk without
+# changing technical BUY/HOLD/SELL decisions. Earnings remains unconfigured
+# until provider entitlement and unattended-use terms are verified.
+event_risk:
+  enabled: true
+  schema_version: "1.0"
+  policy_version: "2026-09-shadow-v1"
+  mode: shadow
+  timezone: America/New_York
+  exchange_calendar: XNYS
+  macro_window_sessions: 2
+  required_macro_families:
+    - FOMC_DECISION
+    - CPI
+    - PCE
+    - EMPLOYMENT_SITUATION
+  max_fetch_age_hours: 36
+  request_timeout_seconds: 15
+  require_earnings_for_new_buys: false
+  allow_event_only_sell: false
+  providers:
+    fed: official_json
+    bls: official_ics
+    bea: official_ics
+    earnings: unconfigured
