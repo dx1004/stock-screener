@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-09-18T23:48:02.994944",
+  "generated_at": "2026-09-26T00:17:04.167722",
   "source": "local-report:data/results/latest_report.json",
-  "source_timestamp": "2026-09-18T23:48:02.311030",
+  "source_timestamp": "2026-09-26T00:17:03.237964",
   "status": "ok",
   "market_breadth": {
     "total_stocks": 27,
@@ -43,179 +43,180 @@
   },
   "completeness_errors": [],
   "staleness_error": null,
-  "rejected_candidates": [
-    {
-      "ticker": "XOM",
-      "status": "REJECT",
-      "reasons": [
-        "风险状态=REJECT（非PASS）"
-      ]
-    },
-    {
-      "ticker": "AAPL",
-      "status": "REJECT",
-      "reasons": [
-        "风险状态=REJECT（非PASS）"
-      ]
-    },
-    {
-      "ticker": "PFE",
-      "status": "REJECT",
-      "reasons": [
-        "风险状态=REJECT（非PASS）"
-      ]
-    },
-    {
-      "ticker": "CVX",
-      "status": "REJECT",
-      "reasons": [
-        "风险状态=REJECT（非PASS）"
-      ]
-    },
+  "rejected_candidates": [],
+  "buy_candidates": [
     {
       "ticker": "NVDA",
-      "status": "REJECT",
-      "reasons": [
-        "风险状态=REJECT（非PASS）"
-      ]
-    },
-    {
-      "ticker": "MSFT",
-      "status": "REJECT",
-      "reasons": [
-        "风险状态=REJECT（非PASS）"
-      ]
+      "score": 93.4,
+      "entry_price": 225.07,
+      "stop_distance_atr_multiple": 2.1965,
+      "stop_distance_pct": 0.0508,
+      "risk_reward_ratio": 4.7358,
+      "risk_grade_spy": "R5",
+      "risk_status": "PASS",
+      "risk_reasons": [
+        "ATR止损距离：2.20x ATR",
+        "入场到ATR止损距离：5.08%",
+        "目标RR：4.74:1",
+        "风险等级（以S&P 500指数风险作为标准）：R5"
+      ],
+      "sizing": {
+        "risk_grade": "交易设置风险等级",
+        "risk_grade_basis": "基于个股与 S&P 500 指数（SPY 代理）的等周期ATR百分比对比；仅为风险评分标准，不构成官方评级。",
+        "risk_basis_symbolic": "每笔最大可承担风险额 = C × (0.19%)",
+        "max_shares_symbolic": "每股风险 = (Entry - Stop); 最大可买股数上限 = floor((C × 0.19%) / (Entry - Stop))",
+        "notional_cap_symbolic": "单标的建仓名义规模建议 ≤ min(10.00%, 10.00%)"
+      },
+      "phase": 2,
+      "recommended": true
     },
     {
       "ticker": "ABBV",
-      "status": "REJECT",
-      "reasons": [
-        "风险状态=REJECT（非PASS）"
-      ]
+      "score": 93.2,
+      "entry_price": 264.34,
+      "stop_distance_atr_multiple": 1.5311,
+      "stop_distance_pct": 0.03,
+      "risk_reward_ratio": 4.1917,
+      "risk_grade_spy": "R5",
+      "risk_status": "PASS",
+      "risk_reasons": [
+        "ATR止损距离：1.53x ATR",
+        "入场到ATR止损距离：3.00%",
+        "目标RR：4.19:1",
+        "风险等级（以S&P 500指数风险作为标准）：R5"
+      ],
+      "sizing": {
+        "risk_grade": "交易设置风险等级",
+        "risk_grade_basis": "基于个股与 S&P 500 指数（SPY 代理）的等周期ATR百分比对比；仅为风险评分标准，不构成官方评级。",
+        "risk_basis_symbolic": "每笔最大可承担风险额 = C × (0.19%)",
+        "max_shares_symbolic": "每股风险 = (Entry - Stop); 最大可买股数上限 = floor((C × 0.19%) / (Entry - Stop))",
+        "notional_cap_symbolic": "单标的建仓名义规模建议 ≤ min(10.00%, 10.00%)"
+      },
+      "phase": 2,
+      "recommended": true
     }
   ],
-  "buy_candidates": [],
   "holdings_actions": [],
   "sell_warnings": [
     {
       "ticker": "HD",
       "is_sell": true,
-      "score": 100,
+      "score": 90,
       "severity": "critical",
       "phase": 4,
-      "breakdown_level": 329.75,
+      "breakdown_level": 325.54,
       "reasons": [
         "In Phase 4 (Downtrend)",
-        "Broke below 50 SMA by 9.0%",
-        "50 SMA declining (slope: -0.1333)",
-        "High volume breakdown: 2.2x",
-        "Weak RS rollover: -0.49",
+        "Broke below 50 SMA by 9.9%",
+        "50 SMA declining (slope: -0.2089)",
+        "Elevated volume: 1.4x",
+        "Weak RS rollover: -0.62",
         "Failed breakout - closed back inside base"
       ],
       "details": {
-        "breakdown_level": 329.75,
+        "breakdown_level": 325.54,
         "breakdown_score": 55,
-        "volume_ratio": 2.24,
-        "volume_score": 30,
-        "rs_slope": -0.485,
+        "volume_ratio": 1.36,
+        "volume_score": 20,
+        "rs_slope": -0.618,
         "rs_score": 5
       }
     },
     {
       "ticker": "NKE",
       "is_sell": true,
-      "score": 100,
-      "severity": "critical",
+      "score": 70,
+      "severity": "high",
       "phase": 4,
-      "breakdown_level": 40.13,
+      "breakdown_level": 39.4,
       "reasons": [
         "In Phase 4 (Downtrend)",
-        "Broke below 50 SMA by 11.5%",
-        "50 SMA declining (slope: -0.2263)",
-        "High volume breakdown: 1.8x",
-        "Weak RS rollover: -0.57",
-        "Failed breakout - closed back inside base"
+        "Broke below 50 SMA by 9.3%",
+        "50 SMA declining (slope: -0.2648)",
+        "Moderate volume: 1.2x",
+        "Weak RS rollover: -0.52"
       ],
       "details": {
-        "breakdown_level": 40.13,
+        "breakdown_level": 39.4,
         "breakdown_score": 55,
-        "volume_ratio": 1.82,
-        "volume_score": 30,
-        "rs_slope": -0.569,
+        "volume_ratio": 1.18,
+        "volume_score": 10,
+        "rs_slope": -0.525,
         "rs_score": 5
       }
     },
     {
       "ticker": "NFLX",
       "is_sell": true,
-      "score": 90,
-      "severity": "critical",
+      "score": 65,
+      "severity": "medium",
       "phase": 4,
-      "breakdown_level": 75.72,
+      "breakdown_level": 75.54,
       "reasons": [
         "In Phase 4 (Downtrend)",
-        "Broke below 50 SMA by 5.2%",
-        "High volume breakdown: 4.3x",
-        "Weak RS rollover: -0.61",
+        "Broke below 50 SMA by 5.8%",
+        "Low volume breakdown: 0.7x",
+        "Weak RS rollover: -0.80",
         "Failed breakout - closed back inside base"
       ],
       "details": {
-        "breakdown_level": 75.72,
+        "breakdown_level": 75.54,
         "breakdown_score": 45,
-        "volume_ratio": 4.31,
-        "volume_score": 30,
-        "rs_slope": -0.614,
+        "volume_ratio": 0.71,
+        "volume_score": 5,
+        "rs_slope": -0.802,
         "rs_score": 5
       }
     },
     {
       "ticker": "BA",
       "is_sell": true,
-      "score": 90,
-      "severity": "critical",
+      "score": 65,
+      "severity": "medium",
       "phase": 4,
-      "breakdown_level": 216.25,
+      "breakdown_level": 214.37,
       "reasons": [
         "In Phase 4 (Downtrend)",
-        "Broke below 50 SMA by 8.3%",
-        "50 SMA declining (slope: -0.1206)",
-        "High volume breakdown: 1.7x",
-        "Weak RS rollover: -0.21"
+        "Broke below 50 SMA by 7.6%",
+        "50 SMA declining (slope: -0.1502)",
+        "Low volume breakdown: 0.8x",
+        "Weak RS rollover: -0.63"
       ],
       "details": {
-        "breakdown_level": 216.25,
+        "breakdown_level": 214.37,
         "breakdown_score": 55,
-        "volume_ratio": 1.69,
-        "volume_score": 30,
-        "rs_slope": -0.205,
+        "volume_ratio": 0.83,
+        "volume_score": 5,
+        "rs_slope": -0.627,
         "rs_score": 5
       }
     },
     {
       "ticker": "WMT",
       "is_sell": true,
-      "score": 80,
-      "severity": "critical",
+      "score": 60,
+      "severity": "medium",
       "phase": 4,
-      "breakdown_level": 109.75,
+      "breakdown_level": 109.25,
       "reasons": [
         "In Phase 4 (Downtrend)",
-        "Below 50 SMA by 2.8%",
-        "50 SMA declining (slope: -0.1677)",
-        "High volume breakdown: 1.7x",
-        "RS still positive: 0.27"
+        "Just below 50 SMA (1.2%)",
+        "50 SMA declining (slope: -0.1089)",
+        "Low volume breakdown: 0.8x",
+        "RS still positive: 0.08",
+        "Failed breakout - closed back inside base"
       ],
       "details": {
-        "breakdown_level": 109.75,
-        "breakdown_score": 50,
-        "volume_ratio": 1.66,
-        "volume_score": 30,
-        "rs_slope": 0.273,
+        "breakdown_level": 109.25,
+        "breakdown_score": 45,
+        "volume_ratio": 0.84,
+        "volume_score": 5,
+        "rs_slope": 0.08,
         "rs_score": 0
       }
     }
   ],
-  "summary_text": "市场广度：{'total_stocks': 27, 'phase_1_count': 14, 'phase_2_count': 8, 'phase_3_count': 0, 'phase_4_count': 5, 'phase_1_pct': 51.9, 'phase_2_pct': 29.6, 'phase_3_pct': 0.0, 'phase_4_pct': 18.5, 'breadth_quality': 'Fair'}\n\n本周无高置信买入（PASS且>70分）\n示例本金：$10,000.00（仅为计算示例）\n调整公式：单笔风险额 = 个人本金 C × 风险预算比例；最大股数 = floor(单笔风险额 ÷ (入场价 − 止损价))\n\n筛选剔除（硬性规则）：\n  - XOM: 风险状态=REJECT（非PASS）\n  - AAPL: 风险状态=REJECT（非PASS）\n  - PFE: 风险状态=REJECT（非PASS）\n  - CVX: 风险状态=REJECT（非PASS）\n  - NVDA: 风险状态=REJECT（非PASS）\n  - MSFT: 风险状态=REJECT（非PASS）\n  - ABBV: 风险状态=REJECT（非PASS）\n\n卖出警示（>=60分）：\n  - HD（分数100.0）: critical\n  - NKE（分数100.0）: critical\n  - NFLX（分数90.0）: critical\n  - BA（分数90.0）: critical\n  - WMT（分数80.0）: critical\n\n说明：卖出警示仅对已列入 holdings 的股票形成持仓 SELL 复核；未列入 holdings 的股票只是观察信号，不代表要求卖出。",
+  "summary_text": "市场广度：{'total_stocks': 27, 'phase_1_count': 14, 'phase_2_count': 8, 'phase_3_count': 0, 'phase_4_count': 5, 'phase_1_pct': 51.9, 'phase_2_pct': 29.6, 'phase_3_pct': 0.0, 'phase_4_pct': 18.5, 'breadth_quality': 'Fair'}\n\n合规买入结论（最多2只）：\n  • NVDA（得分 93.4）：PASS\n    - 入场价：225.07\n    - 入场到ATR止损距离：2.20x ATR\n    - 预估止损距离：5.08%（占比）\n    - 1-4月风险回报：4.74:1\n    - 风险等级（以S&P 500指数风险作为标准）：R5\n    - 仓位（符号化）：每笔最大可承担风险额 = C × (0.19%)\n  • ABBV（得分 93.2）：PASS\n    - 入场价：264.34\n    - 入场到ATR止损距离：1.53x ATR\n    - 预估止损距离：3.00%（占比）\n    - 1-4月风险回报：4.19:1\n    - 风险等级（以S&P 500指数风险作为标准）：R5\n    - 仓位（符号化）：每笔最大可承担风险额 = C × (0.19%)\n\n卖出警示（>=60分）：\n  - HD（分数90.0）: critical\n  - NKE（分数70.0）: high\n  - NFLX（分数65.0）: medium\n  - BA（分数65.0）: medium\n  - WMT（分数60.0）: medium\n\n说明：卖出警示仅对已列入 holdings 的股票形成持仓 SELL 复核；未列入 holdings 的股票只是观察信号，不代表要求卖出。",
   "notes": [
     "loaded JSON report from data/results/latest_report.json"
   ]
