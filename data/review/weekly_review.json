@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-09-26T00:17:04.167722",
+  "generated_at": "2026-09-26T23:20:35.611048",
   "source": "local-report:data/results/latest_report.json",
-  "source_timestamp": "2026-09-26T00:17:03.237964",
+  "source_timestamp": "2026-09-26T23:20:33.887030",
   "status": "ok",
   "market_breadth": {
     "total_stocks": 27,
@@ -40,6 +40,220 @@
     "default_capital": 10000.0,
     "max_notional_pct": 10.0,
     "max_new_buys": 2
+  },
+  "event_risk": {
+    "schema_version": "1.0",
+    "policy_version": "2026-09-shadow-v1",
+    "mode": "shadow",
+    "generated_at_utc": "2026-09-26T23:20:33.887809Z",
+    "as_of_session": "2026-09-25",
+    "valid_until_utc": "2026-09-28T11:20:33.887809Z",
+    "policy": {
+      "enabled": true,
+      "mode": "shadow",
+      "timezone": "America/New_York",
+      "exchange_calendar": "XNYS",
+      "macro_window_sessions": 2,
+      "required_macro_families": [
+        "FOMC_DECISION",
+        "CPI",
+        "PCE",
+        "EMPLOYMENT_SITUATION"
+      ],
+      "max_fetch_age_hours": 36,
+      "require_earnings_for_new_buys": false,
+      "allow_event_only_sell": false,
+      "providers": {
+        "fed": "official_json",
+        "bls": "official_ics",
+        "bea": "official_ics",
+        "earnings": "unconfigured"
+      }
+    },
+    "feeds": [
+      {
+        "provider": "fed",
+        "source_url": "https://www.federalreserve.gov/json/calendar.json",
+        "source_format": "JSON",
+        "primary_error_code": null,
+        "fetched_at_utc": "2026-09-26T23:20:33.887809Z",
+        "source_updated_at": null,
+        "etag": null,
+        "content_sha256": "88204fae937e931ef53eade92bbd32a2bbf1991b74ae0b110decd35176d2650f",
+        "coverage_start": "2017-02-01",
+        "coverage_end": "2026-12-09",
+        "coverage_verified": true,
+        "status": "OK",
+        "error_code": null
+      },
+      {
+        "provider": "bls",
+        "source_url": "https://www.bls.gov/schedule/news_release/bls.ics",
+        "source_format": null,
+        "primary_error_code": null,
+        "fetched_at_utc": "2026-09-26T23:20:33.887809Z",
+        "source_updated_at": null,
+        "etag": null,
+        "content_sha256": null,
+        "coverage_start": null,
+        "coverage_end": null,
+        "coverage_verified": false,
+        "status": "DATA_INCOMPLETE",
+        "error_code": "PRIMARY_AND_OFFICIAL_FALLBACK_FAILED"
+      },
+      {
+        "provider": "bea",
+        "source_url": "https://www.bea.gov/news/schedule/ics/online-calendar-subscription.ics",
+        "source_format": "ICS",
+        "primary_error_code": null,
+        "fetched_at_utc": "2026-09-26T23:20:33.887809Z",
+        "source_updated_at": null,
+        "etag": null,
+        "content_sha256": "dbb86bc80b5b99a691a59ffb0651e588c9f2fe5cc920d556208f9d6db890b6ca",
+        "coverage_start": "2025-01-31",
+        "coverage_end": "2026-12-23",
+        "coverage_verified": true,
+        "status": "OK",
+        "error_code": null
+      }
+    ],
+    "events": [
+      {
+        "event_id": "bea:e28caae2-24c3-4772-8b33-e2334573db41",
+        "family": "PCE",
+        "name": "Personal Income and Outlays, August 2026",
+        "symbol": null,
+        "event_at_utc": "2026-09-30T12:30:00Z",
+        "event_date_local": "2026-09-30",
+        "source_timezone": "America/New_York",
+        "time_precision": "EXACT",
+        "timing": "EXACT",
+        "confirmation_status": "SCHEDULED",
+        "source_id": "bea",
+        "source_url": "https://www.bea.gov/news/schedule/ics/online-calendar-subscription.ics",
+        "sessions_until": 3,
+        "effective_session": "2026-09-30"
+      },
+      {
+        "event_id": "fed:fomc:2026-10-28",
+        "family": "FOMC_DECISION",
+        "name": "FOMC Meeting",
+        "symbol": null,
+        "event_at_utc": "2026-10-28T18:00:00Z",
+        "event_date_local": "2026-10-28",
+        "source_timezone": "America/New_York",
+        "time_precision": "EXACT",
+        "timing": "EXACT",
+        "confirmation_status": "SCHEDULED",
+        "source_id": "fed",
+        "source_url": "https://www.federalreserve.gov/json/calendar.json",
+        "sessions_until": 23,
+        "effective_session": "2026-10-28"
+      },
+      {
+        "event_id": "bea:ff8bd8ad-bb92-43c5-8a30-7e7b5baa33c2",
+        "family": "PCE",
+        "name": "Personal Income and Outlays, September 2026",
+        "symbol": null,
+        "event_at_utc": "2026-10-29T12:30:00Z",
+        "event_date_local": "2026-10-29",
+        "source_timezone": "America/New_York",
+        "time_precision": "EXACT",
+        "timing": "EXACT",
+        "confirmation_status": "SCHEDULED",
+        "source_id": "bea",
+        "source_url": "https://www.bea.gov/news/schedule/ics/online-calendar-subscription.ics",
+        "sessions_until": 24,
+        "effective_session": "2026-10-29"
+      },
+      {
+        "event_id": "bea:c6b23055-287a-4975-bcf7-026c2c6dd8e1",
+        "family": "PCE",
+        "name": "Personal Income and Outlays, October 2026",
+        "symbol": null,
+        "event_at_utc": "2026-11-25T13:30:00Z",
+        "event_date_local": "2026-11-25",
+        "source_timezone": "America/New_York",
+        "time_precision": "EXACT",
+        "timing": "EXACT",
+        "confirmation_status": "SCHEDULED",
+        "source_id": "bea",
+        "source_url": "https://www.bea.gov/news/schedule/ics/online-calendar-subscription.ics",
+        "sessions_until": 43,
+        "effective_session": "2026-11-25"
+      },
+      {
+        "event_id": "fed:fomc:2026-12-09",
+        "family": "FOMC_DECISION",
+        "name": "FOMC Meeting",
+        "symbol": null,
+        "event_at_utc": "2026-12-09T19:00:00Z",
+        "event_date_local": "2026-12-09",
+        "source_timezone": "America/New_York",
+        "time_precision": "EXACT",
+        "timing": "EXACT",
+        "confirmation_status": "SCHEDULED",
+        "source_id": "fed",
+        "source_url": "https://www.federalreserve.gov/json/calendar.json",
+        "sessions_until": 52,
+        "effective_session": "2026-12-09"
+      },
+      {
+        "event_id": "bea:715d281b-925d-40f9-8400-6a9096a861ec",
+        "family": "PCE",
+        "name": "Personal Income and Outlays, November 2026",
+        "symbol": null,
+        "event_at_utc": "2026-12-23T13:30:00Z",
+        "event_date_local": "2026-12-23",
+        "source_timezone": "America/New_York",
+        "time_precision": "EXACT",
+        "timing": "EXACT",
+        "confirmation_status": "SCHEDULED",
+        "source_id": "bea",
+        "source_url": "https://www.bea.gov/news/schedule/ics/online-calendar-subscription.ics",
+        "sessions_until": 62,
+        "effective_session": "2026-12-23"
+      }
+    ],
+    "market_decision": {
+      "status": "DATA_INCOMPLETE",
+      "level": "UNKNOWN",
+      "reason_codes": [
+        "REQUIRED_FEED_INCOMPLETE",
+        "REQUIRED_FAMILY_MISSING"
+      ],
+      "event_ids": [],
+      "missing_families": [
+        "CPI",
+        "EMPLOYMENT_SITUATION"
+      ],
+      "failed_providers": [
+        "bls"
+      ],
+      "enforced": false
+    },
+    "ticker_decisions": {
+      "ABBV": {
+        "status": "DATA_INCOMPLETE",
+        "reason_codes": [
+          "REQUIRED_FEED_INCOMPLETE",
+          "REQUIRED_FAMILY_MISSING"
+        ],
+        "event_ids": [],
+        "earnings_status": "NOT_CONFIGURED",
+        "enforced": false
+      },
+      "NVDA": {
+        "status": "DATA_INCOMPLETE",
+        "reason_codes": [
+          "REQUIRED_FEED_INCOMPLETE",
+          "REQUIRED_FAMILY_MISSING"
+        ],
+        "event_ids": [],
+        "earnings_status": "NOT_CONFIGURED",
+        "enforced": false
+      }
+    }
   },
   "completeness_errors": [],
   "staleness_error": null,
@@ -216,7 +430,7 @@
       }
     }
   ],
-  "summary_text": "市场广度：{'total_stocks': 27, 'phase_1_count': 14, 'phase_2_count': 8, 'phase_3_count': 0, 'phase_4_count': 5, 'phase_1_pct': 51.9, 'phase_2_pct': 29.6, 'phase_3_pct': 0.0, 'phase_4_pct': 18.5, 'breadth_quality': 'Fair'}\n\n合规买入结论（最多2只）：\n  • NVDA（得分 93.4）：PASS\n    - 入场价：225.07\n    - 入场到ATR止损距离：2.20x ATR\n    - 预估止损距离：5.08%（占比）\n    - 1-4月风险回报：4.74:1\n    - 风险等级（以S&P 500指数风险作为标准）：R5\n    - 仓位（符号化）：每笔最大可承担风险额 = C × (0.19%)\n  • ABBV（得分 93.2）：PASS\n    - 入场价：264.34\n    - 入场到ATR止损距离：1.53x ATR\n    - 预估止损距离：3.00%（占比）\n    - 1-4月风险回报：4.19:1\n    - 风险等级（以S&P 500指数风险作为标准）：R5\n    - 仓位（符号化）：每笔最大可承担风险额 = C × (0.19%)\n\n卖出警示（>=60分）：\n  - HD（分数90.0）: critical\n  - NKE（分数70.0）: high\n  - NFLX（分数65.0）: medium\n  - BA（分数65.0）: medium\n  - WMT（分数60.0）: medium\n\n说明：卖出警示仅对已列入 holdings 的股票形成持仓 SELL 复核；未列入 holdings 的股票只是观察信号，不代表要求卖出。",
+  "summary_text": "市场广度：{'total_stocks': 27, 'phase_1_count': 14, 'phase_2_count': 8, 'phase_3_count': 0, 'phase_4_count': 5, 'phase_1_pct': 51.9, 'phase_2_pct': 29.6, 'phase_3_pct': 0.0, 'phase_4_pct': 18.5, 'breadth_quality': 'Fair'}\n事件风险：DATA_INCOMPLETE（SHADOW，周五产物；周六不重新计算）\n事件风险当前仅观察，不改变技术买入、持仓或卖出动作。\n\n合规买入结论（最多2只）：\n  • NVDA（得分 93.4）：PASS\n    - 入场价：225.07\n    - 入场到ATR止损距离：2.20x ATR\n    - 预估止损距离：5.08%（占比）\n    - 1-4月风险回报：4.74:1\n    - 风险等级（以S&P 500指数风险作为标准）：R5\n    - 仓位（符号化）：每笔最大可承担风险额 = C × (0.19%)\n  • ABBV（得分 93.2）：PASS\n    - 入场价：264.34\n    - 入场到ATR止损距离：1.53x ATR\n    - 预估止损距离：3.00%（占比）\n    - 1-4月风险回报：4.19:1\n    - 风险等级（以S&P 500指数风险作为标准）：R5\n    - 仓位（符号化）：每笔最大可承担风险额 = C × (0.19%)\n\n卖出警示（>=60分）：\n  - HD（分数90.0）: critical\n  - NKE（分数70.0）: high\n  - NFLX（分数65.0）: medium\n  - BA（分数65.0）: medium\n  - WMT（分数60.0）: medium\n\n说明：卖出警示仅对已列入 holdings 的股票形成持仓 SELL 复核；未列入 holdings 的股票只是观察信号，不代表要求卖出。",
   "notes": [
     "loaded JSON report from data/results/latest_report.json"
   ]
