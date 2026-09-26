@@ -13,6 +13,7 @@ import re
 from datetime import date, datetime, time, timedelta, timezone
 from html.parser import HTMLParser
 from typing import Any, Callable, Dict, Iterable, List, Mapping, Optional, Tuple
+from urllib.parse import parse_qs, urlencode, urlparse
 from zoneinfo import ZoneInfo
 
 import exchange_calendars as xcals
@@ -30,6 +31,11 @@ OFFICIAL_SOURCES = {
     "bea": "https://www.bea.gov/news/schedule/ics/online-calendar-subscription.ics",
 }
 BLS_ANNUAL_SOURCE = "https://www.bls.gov/schedule/{year}/home.htm"
+FRED_CALENDAR_SOURCE = "https://fred.stlouisfed.org/releases/calendar"
+FRED_BLS_RELEASES = {
+    "CPI": {"rid": 10, "name": "Consumer Price Index"},
+    "EMPLOYMENT_SITUATION": {"rid": 50, "name": "Employment Situation"},
+}
 SOURCE_FAMILIES = {
     "fed": {"FOMC_DECISION"},
     "bls": {"CPI", "EMPLOYMENT_SITUATION"},
@@ -258,6 +264,205 @@ def parse_bls_html_events(
     return parsed
 
 
+class _FREDPagerHTMLParser(HTMLParser):
+    """Collect table-cell text and links from FRED's release-calendar pager."""
+
+    def __init__(self) -> None:
+        super().__init__()
+        self._in_row = False
+        self._in_cell = False
+        self._cell_parts: List[str] = []
+        self._cell_hrefs: List[str] = []
+        self._row: List[Dict[str, Any]] = []
+        self.rows: List[List[Dict[str, Any]]] = []
+
+    def handle_starttag(
+        self, tag: str, attrs: List[Tuple[str, Optional[str]]]
+    ) -> None:
+        folded = tag.casefold()
+        if folded == "tr":
+            self._in_row = True
+            self._row = []
+        elif self._in_row and folded in {"td", "th"}:
+            self._in_cell = True
+            self._cell_parts = []
+            self._cell_hrefs = []
+        elif self._in_cell and folded == "a":
+            href = dict(attrs).get("href")
+            if href:
+                self._cell_hrefs.append(href)
+
+    def handle_data(self, data: str) -> None:
+        if self._in_cell:
+            self._cell_parts.append(data)
+
+    def handle_endtag(self, tag: str) -> None:
+        folded = tag.casefold()
+        if self._in_cell and folded in {"td", "th"}:
+            self._row.append(
+                {
+                    "text": _normalize_text(" ".join(self._cell_parts)),
+                    "hrefs": list(self._cell_hrefs),
+                }
+            )
+            self._in_cell = False
+            self._cell_parts = []
+            self._cell_hrefs = []
+        elif self._in_row and folded == "tr":
+            if self._row:
+                self.rows.append(self._row)
+            self._in_row = False
+            self._row = []
+
+
+def _fred_release_url(family: str, start: date, end: date) -> str:
+    release = FRED_BLS_RELEASES[family]
+    query = urlencode(
+        {
+            "po": 1,
+            "ptic": 0,
+            "vs": start.isoformat(),
+            "ve": end.isoformat(),
+            "rid": release["rid"],
+        }
+    )
+    return f"{FRED_CALENDAR_SOURCE}?{query}"
+
+
+def parse_fred_release_events(
+    content: bytes,
+    family: str,
+    source_url: str,
+    timezone_name: str = "America/New_York",
+) -> List[Dict[str, Any]]:
+    """Parse one strict FRED/BLS release pager response.
+
+    FRED is a secondary institutional calendar, not a BLS-direct source.  Its
+    calendar page states that displayed times are US Central Time.
+    """
+    if family not in FRED_BLS_RELEASES:
+        raise ValueError("fred_family_unsupported")
+    release = FRED_BLS_RELEASES[family]
+    expected_rid = int(release["rid"])
+    expected_name = str(release["name"])
+
+    query = parse_qs(urlparse(source_url).query)
+    if query.get("rid") != [str(expected_rid)]:
+        raise ValueError("fred_source_rid_mismatch")
+    try:
+        requested_start = date.fromisoformat(query["vs"][0])
+        requested_end = date.fromisoformat(query["ve"][0])
+    except (KeyError, IndexError, ValueError) as exc:
+        raise ValueError("fred_source_range_invalid") from exc
+    if requested_end < requested_start:
+        raise ValueError("fred_source_range_invalid")
+
+    payload = json.loads(content.decode("utf-8-sig"))
+    if not isinstance(payload, Mapping):
+        raise ValueError("fred_payload_invalid")
+    pager = payload.get("pager")
+    total = payload.get("ptic")
+    if not isinstance(pager, str) or not pager.strip():
+        raise ValueError("fred_pager_missing")
+    if isinstance(total, bool) or not isinstance(total, int) or total <= 0:
+        raise ValueError("fred_total_invalid")
+
+    parser = _FREDPagerHTMLParser()
+    parser.feed(pager)
+    central_tz = ZoneInfo("America/Chicago")
+    output_tz = ZoneInfo(timezone_name)
+    current_date: Optional[date] = None
+    parsed: List[Dict[str, Any]] = []
+    footer: Optional[Tuple[int, int, int]] = None
+    seen_dates: Dict[date, datetime] = {}
+
+    date_pattern = re.compile(
+        r"^(Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday) "
+        r"([A-Za-z]+ \d{1,2}, \d{4})(?: Updated)?$"
+    )
+    footer_pattern = re.compile(r"^Releases (\d+) - (\d+) of (\d+)$")
+    clock_pattern = re.compile(r"^\d{1,2}:\d{2} [ap]m$", re.IGNORECASE)
+
+    for row in parser.rows:
+        row_text = _normalize_text(" ".join(str(cell["text"]) for cell in row))
+        footer_match = footer_pattern.fullmatch(row_text)
+        if footer_match:
+            footer = tuple(int(value) for value in footer_match.groups())
+            continue
+
+        date_match = date_pattern.fullmatch(row_text)
+        if date_match:
+            current_date = datetime.strptime(
+                f"{date_match.group(1)} {date_match.group(2)}", "%A %B %d, %Y"
+            ).date()
+            continue
+
+        release_cells = [
+            cell
+            for cell in row
+            if any(urlparse(href).path == "/release" for href in cell["hrefs"])
+        ]
+        if not release_cells:
+            continue
+        if current_date is None:
+            raise ValueError("fred_release_without_date")
+
+        names = [str(cell["text"]) for cell in release_cells]
+        if names != [expected_name]:
+            raise ValueError("fred_release_name_mismatch")
+        hrefs = [
+            href
+            for href in release_cells[0]["hrefs"]
+            if urlparse(href).path == "/release"
+        ]
+        if len(hrefs) != 1:
+            raise ValueError("fred_release_link_invalid")
+        href_rid = parse_qs(urlparse(hrefs[0]).query).get("rid")
+        if href_rid != [str(expected_rid)]:
+            raise ValueError("fred_release_rid_mismatch")
+
+        clocks = [str(cell["text"]) for cell in row if clock_pattern.fullmatch(str(cell["text"]))]
+        if len(clocks) != 1:
+            raise ValueError("fred_release_time_invalid")
+        if not requested_start <= current_date <= requested_end:
+            raise ValueError("fred_release_out_of_range")
+        clock = datetime.strptime(clocks[0].upper(), "%I:%M %p").time()
+        event_central = datetime.combine(current_date, clock, tzinfo=central_tz)
+        if current_date in seen_dates:
+            raise ValueError("fred_release_date_conflict")
+        seen_dates[current_date] = event_central
+        event_output = event_central.astimezone(output_tz)
+        parsed.append(
+            {
+                "event_id": f"fred:{expected_rid}:{current_date.isoformat()}",
+                "family": family,
+                "name": expected_name,
+                "symbol": None,
+                "event_at_utc": _utc_iso(event_central),
+                "event_date_local": event_output.date().isoformat(),
+                "source_timezone": "America/Chicago",
+                "time_precision": "EXACT",
+                "timing": "EXACT",
+                "confirmation_status": "SCHEDULED",
+                "source_id": "fred",
+                "source_tier": "SECONDARY_INSTITUTIONAL",
+                "source_publisher": "Federal Reserve Bank of St. Louis",
+                "source_url": source_url,
+                "source_release_id": expected_rid,
+            }
+        )
+        current_date = None
+
+    if footer is None:
+        raise ValueError("fred_pagination_missing")
+    first, last, footer_total = footer
+    if first != 1 or last != footer_total or footer_total != total:
+        raise ValueError("fred_pagination_incomplete")
+    if len(parsed) != total:
+        raise ValueError("fred_release_count_mismatch")
+    return parsed
+
+
 def _last_completed_session(calendar: Any, generated_at: datetime, local_tz: ZoneInfo) -> pd.Timestamp:
     local_now = generated_at.astimezone(local_tz)
     local_day = pd.Timestamp(local_now.date())
@@ -341,15 +546,20 @@ def _request_bytes(
     url: str,
     timeout: float,
     http_get: Callable[..., Any],
+    headers: Optional[Mapping[str, str]] = None,
 ) -> bytes:
-    response = http_get(
-        url,
-        timeout=timeout,
-        headers={
+    request_headers = (
+        {
             "User-Agent": "dx1004-stock-screener/1.0 event-calendar",
             "Accept": "application/json,text/calendar;q=0.9,*/*;q=0.1",
-        },
+        }
+        if headers is None
+        else dict(headers)
     )
+    request_kwargs: Dict[str, Any] = {"timeout": timeout}
+    if request_headers:
+        request_kwargs["headers"] = request_headers
+    response = http_get(url, **request_kwargs)
     response.raise_for_status()
     content = bytes(response.content)
     if not content:
@@ -371,6 +581,76 @@ def _safe_fetch_error(exc: Exception) -> str:
     return "FETCH_ERROR"
 
 
+def _load_fred_bls_fallback(
+    generated_at: datetime,
+    timezone_name: str,
+    timeout: float,
+    http_get: Callable[..., Any],
+    primary_error_code: str,
+    official_fallback_error_code: str,
+) -> Tuple[List[Dict[str, Any]], Dict[str, Any]]:
+    """Load both BLS families from FRED's secondary institutional calendar."""
+    local_date = generated_at.astimezone(ZoneInfo(timezone_name)).date()
+    range_start = date(local_date.year, 1, 1)
+    range_end = date(local_date.year + 1, 12, 31)
+    fetched: List[Tuple[str, bytes]] = []
+    parsed: List[Dict[str, Any]] = []
+
+    for family in ("CPI", "EMPLOYMENT_SITUATION"):
+        source_url = _fred_release_url(family, range_start, range_end)
+        # FRED currently stalls this project's descriptive custom User-Agent,
+        # while its normal public response succeeds with the client's default.
+        content = _request_bytes(source_url, timeout, http_get, headers={})
+        family_events = parse_fred_release_events(
+            content, family, source_url, timezone_name
+        )
+        if not any(
+            date.fromisoformat(str(event["event_date_local"])) >= local_date
+            for event in family_events
+        ):
+            raise ValueError("fred_future_coverage_missing")
+        fetched.append((source_url, content))
+        parsed.extend(family_events)
+
+    combined_content = b"\n--FRED-RESPONSE--\n".join(
+        content for _, content in fetched
+    )
+    feed = _feed_record(
+        "bls",
+        combined_content,
+        parsed,
+        generated_at,
+        source_url=FRED_CALENDAR_SOURCE,
+        source_format="FRED_PAGER_HTML",
+        primary_error_code=primary_error_code,
+    )
+    feed.update(
+        {
+            "source_id": "fred",
+            "source_tier": "SECONDARY_INSTITUTIONAL",
+            "source_publisher": "Federal Reserve Bank of St. Louis",
+            "source_urls": [url for url, _ in fetched],
+            "official_fallback_error_code": official_fallback_error_code,
+            "coverage_verified": True,
+        }
+    )
+    return parsed, feed
+
+
+def _has_future_bls_family_coverage(
+    events: Iterable[Mapping[str, Any]],
+    generated_at: datetime,
+    timezone_name: str,
+) -> bool:
+    local_date = generated_at.astimezone(ZoneInfo(timezone_name)).date()
+    future_families = {
+        str(event.get("family"))
+        for event in events
+        if date.fromisoformat(str(event["event_date_local"])) >= local_date
+    }
+    return set(FRED_BLS_RELEASES).issubset(future_families)
+
+
 def _load_official_events(
     policy: Mapping[str, Any],
     generated_at: datetime,
@@ -387,6 +667,10 @@ def _load_official_events(
                 parsed = parse_fed_events(json.loads(content.decode("utf-8-sig")), timezone_name)
             else:
                 parsed = parse_ics_events(content, provider, timezone_name)
+            if provider == "bls" and not _has_future_bls_family_coverage(
+                parsed, generated_at, timezone_name
+            ):
+                raise ValueError("bls_required_coverage_missing")
             events.extend(parsed)
             feeds.append(
                 _feed_record(
@@ -410,6 +694,10 @@ def _load_official_events(
                 fallback_events = parse_bls_html_events(
                     fallback_content, fallback_url, timezone_name
                 )
+                if not _has_future_bls_family_coverage(
+                    fallback_events, generated_at, timezone_name
+                ):
+                    raise ValueError("bls_html_required_coverage_missing")
                 events.extend(fallback_events)
                 feeds.append(
                     _feed_record(
@@ -422,12 +710,46 @@ def _load_official_events(
                         primary_error_code=primary_error,
                     )
                 )
-            except (requests.RequestException, ValueError, KeyError, TypeError, UnicodeError):
-                feeds.append(
-                    _failed_feed(
-                        provider, generated_at, "PRIMARY_AND_OFFICIAL_FALLBACK_FAILED"
+            except (
+                requests.RequestException,
+                ValueError,
+                KeyError,
+                TypeError,
+                UnicodeError,
+            ) as fallback_exc:
+                official_fallback_error = _safe_fetch_error(fallback_exc)
+                try:
+                    fred_events, fred_feed = _load_fred_bls_fallback(
+                        generated_at,
+                        timezone_name,
+                        timeout,
+                        http_get,
+                        primary_error,
+                        official_fallback_error,
                     )
-                )
+                    events.extend(fred_events)
+                    feeds.append(fred_feed)
+                except (
+                    requests.RequestException,
+                    ValueError,
+                    KeyError,
+                    TypeError,
+                    UnicodeError,
+                ) as fred_exc:
+                    failed = _failed_feed(
+                        provider,
+                        generated_at,
+                        "PRIMARY_OFFICIAL_AND_FRED_FALLBACK_FAILED",
+                    )
+                    failed.update(
+                        {
+                            "primary_error_code": primary_error,
+                            "official_fallback_error_code": official_fallback_error,
+                            "secondary_error_code": _safe_fetch_error(fred_exc),
+                            "secondary_source_url": FRED_CALENDAR_SOURCE,
+                        }
+                    )
+                    feeds.append(failed)
     return events, feeds
 
 

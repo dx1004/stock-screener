@@ -1,5 +1,6 @@
 """Offline contract tests for the Friday macro event-risk overlay."""
 
+import json
 from datetime import datetime, timezone
 
 import exchange_calendars as xcals
@@ -13,6 +14,7 @@ from src.screening.event_risk import (
     evaluate_macro_events,
     parse_bls_html_events,
     parse_fed_events,
+    parse_fred_release_events,
     parse_ics_events,
 )
 
@@ -131,6 +133,102 @@ def test_bls_official_html_fallback_parser_maps_release_rows():
         "CPI",
     ]
     assert events[0]["event_at_utc"] == "2026-10-02T12:30:00Z"
+
+
+def _fred_pager(name, rid, rows, *, total=None):
+    total = len(rows) if total is None else total
+    body = [
+        '<tr><th><a href="/releases/calendar?ob=rd">Date</a>'
+        '<a href="/releases/calendar?ob=n">Name</a></th></tr>'
+    ]
+    for date_label, clock in rows:
+        body.append(f'<tr><td colspan="2"><span>{date_label}</span></td></tr>')
+        body.append(
+            f'<tr><td>{clock}</td><td><a href="/release?rid={rid}">{name}</a></td></tr>'
+        )
+    body.append(
+        f'<tr><td colspan="2">Releases 1 - {total} of {total}</td></tr>'
+    )
+    return json.dumps({"pager": "<table>" + "".join(body) + "</table>", "ptic": total}).encode()
+
+
+def test_fred_parser_uses_central_time_and_strict_release_identity():
+    cpi_url = (
+        "https://fred.stlouisfed.org/releases/calendar?"
+        "po=1&ptic=0&vs=2026-01-01&ve=2026-10-31&rid=10"
+    )
+    jobs_url = cpi_url.replace("rid=10", "rid=50")
+    cpi = parse_fred_release_events(
+        _fred_pager(
+            "Consumer Price Index",
+            10,
+            [
+                ("Thursday January 15, 2026", "7:30 am"),
+                ("Wednesday October 14, 2026", "7:30 am"),
+            ],
+        ),
+        "CPI",
+        cpi_url,
+    )
+    jobs = parse_fred_release_events(
+        _fred_pager(
+            "Employment Situation",
+            50,
+            [("Friday October 2, 2026", "7:30 am")],
+        ),
+        "EMPLOYMENT_SITUATION",
+        jobs_url,
+    )
+
+    assert cpi[0]["event_at_utc"] == "2026-01-15T13:30:00Z"
+    assert cpi[1]["event_at_utc"] == "2026-10-14T12:30:00Z"
+    assert jobs[0]["event_at_utc"] == "2026-10-02T12:30:00Z"
+    assert cpi[0]["source_timezone"] == "America/Chicago"
+    assert cpi[0]["source_tier"] == "SECONDARY_INSTITUTIONAL"
+    assert cpi[0]["source_release_id"] == 10
+
+
+def test_fred_parser_rejects_mismatch_partial_page_and_duplicate_date():
+    source_url = (
+        "https://fred.stlouisfed.org/releases/calendar?"
+        "po=1&ptic=0&vs=2026-01-01&ve=2026-12-31&rid=10"
+    )
+    with pytest.raises(ValueError, match="fred_release_name_mismatch"):
+        parse_fred_release_events(
+            _fred_pager(
+                "Employment Situation",
+                10,
+                [("Wednesday October 14, 2026", "7:30 am")],
+            ),
+            "CPI",
+            source_url,
+        )
+
+    with pytest.raises(ValueError, match="fred_release_count_mismatch"):
+        parse_fred_release_events(
+            _fred_pager(
+                "Consumer Price Index",
+                10,
+                [("Wednesday October 14, 2026", "7:30 am")],
+                total=2,
+            ),
+            "CPI",
+            source_url,
+        )
+
+    with pytest.raises(ValueError, match="fred_release_date_conflict"):
+        parse_fred_release_events(
+            _fred_pager(
+                "Consumer Price Index",
+                10,
+                [
+                    ("Wednesday October 14, 2026", "7:30 am"),
+                    ("Wednesday October 14, 2026", "8:30 am"),
+                ],
+            ),
+            "CPI",
+            source_url,
+        )
 
 
 def test_near_event_waits_and_outside_window_clears():
@@ -296,6 +394,117 @@ END:VCALENDAR\r
     assert bls_feed["source_format"] == "HTML"
     assert bls_feed["primary_error_code"] == "HTTP_ERROR"
     assert overlay["market_decision"]["status"] == "CLEAR"
+
+
+def test_overlay_uses_fred_secondary_when_both_bls_sources_are_blocked():
+    fed = b'{"events":[{"type":"FOMC","title":"FOMC Meeting","month":"2026-10","days":"28","time":"2:00 p.m."}]}'
+    bea = b"""BEGIN:VCALENDAR\r
+VERSION:2.0\r
+BEGIN:VEVENT\r
+UID:pce\r
+DTSTART:20260930T123000Z\r
+SUMMARY:Personal Income Outlays, August 2026\r
+END:VEVENT\r
+END:VCALENDAR\r
+"""
+    cpi = _fred_pager(
+        "Consumer Price Index",
+        10,
+        [("Wednesday October 14, 2026", "7:30 am")],
+    )
+    jobs = _fred_pager(
+        "Employment Situation",
+        50,
+        [("Friday October 2, 2026", "7:30 am")],
+    )
+
+    class Response:
+        def __init__(self, content=b"", error=None):
+            self.content = content
+            self.error = error
+
+        def raise_for_status(self):
+            if self.error:
+                raise self.error
+
+    def fake_get(url, **_kwargs):
+        if url.endswith("bls.ics") or "/schedule/2026/home.htm" in url:
+            return Response(error=requests.HTTPError("403"))
+        if url.endswith("calendar.json"):
+            return Response(fed)
+        if "fred.stlouisfed.org" in url and "rid=10" in url:
+            assert "headers" not in _kwargs
+            return Response(cpi)
+        if "fred.stlouisfed.org" in url and "rid=50" in url:
+            assert "headers" not in _kwargs
+            return Response(jobs)
+        return Response(bea)
+
+    overlay = build_event_risk_overlay(
+        {"mode": "shadow"},
+        generated_at=datetime(2026, 9, 25, 22, 0, tzinfo=timezone.utc),
+        http_get=fake_get,
+    )
+
+    bls_feed = next(feed for feed in overlay["feeds"] if feed["provider"] == "bls")
+    assert bls_feed["status"] == "OK"
+    assert bls_feed["source_format"] == "FRED_PAGER_HTML"
+    assert bls_feed["source_id"] == "fred"
+    assert bls_feed["source_tier"] == "SECONDARY_INSTITUTIONAL"
+    assert bls_feed["primary_error_code"] == "HTTP_ERROR"
+    assert bls_feed["official_fallback_error_code"] == "HTTP_ERROR"
+    assert len(bls_feed["source_urls"]) == 2
+    assert overlay["market_decision"]["status"] == "CLEAR"
+
+
+def test_partial_fred_secondary_fails_closed():
+    fed = b'{"events":[{"type":"FOMC","title":"FOMC Meeting","month":"2026-10","days":"28","time":"2:00 p.m."}]}'
+    bea = b"""BEGIN:VCALENDAR\r
+VERSION:2.0\r
+BEGIN:VEVENT\r
+UID:pce\r
+DTSTART:20260930T123000Z\r
+SUMMARY:Personal Income Outlays, August 2026\r
+END:VEVENT\r
+END:VCALENDAR\r
+"""
+    cpi = _fred_pager(
+        "Consumer Price Index",
+        10,
+        [("Wednesday October 14, 2026", "7:30 am")],
+    )
+
+    class Response:
+        def __init__(self, content=b"", error=None):
+            self.content = content
+            self.error = error
+
+        def raise_for_status(self):
+            if self.error:
+                raise self.error
+
+    def fake_get(url, **_kwargs):
+        if url.endswith("bls.ics") or "/schedule/2026/home.htm" in url:
+            return Response(error=requests.HTTPError("403"))
+        if url.endswith("calendar.json"):
+            return Response(fed)
+        if "fred.stlouisfed.org" in url and "rid=10" in url:
+            return Response(cpi)
+        if "fred.stlouisfed.org" in url and "rid=50" in url:
+            return Response(error=requests.HTTPError("503"))
+        return Response(bea)
+
+    overlay = build_event_risk_overlay(
+        {"mode": "shadow"},
+        generated_at=datetime(2026, 9, 25, 22, 0, tzinfo=timezone.utc),
+        http_get=fake_get,
+    )
+
+    bls_feed = next(feed for feed in overlay["feeds"] if feed["provider"] == "bls")
+    assert bls_feed["status"] == "DATA_INCOMPLETE"
+    assert bls_feed["error_code"] == "PRIMARY_OFFICIAL_AND_FRED_FALLBACK_FAILED"
+    assert bls_feed["secondary_error_code"] == "HTTP_ERROR"
+    assert overlay["market_decision"]["status"] == "DATA_INCOMPLETE"
 
 
 def test_disabled_overlay_does_not_fetch_and_unexpected_errors_are_not_hidden():
