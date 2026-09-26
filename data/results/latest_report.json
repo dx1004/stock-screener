@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0",
   "status": "ok",
-  "timestamp": "2026-09-26T23:20:33.887030",
+  "timestamp": "2026-09-26T23:46:42.328619",
   "error": null,
   "spy_analysis": {
     "ticker": "SPY",
@@ -1622,9 +1622,9 @@
     "schema_version": "1.0",
     "policy_version": "2026-09-shadow-v1",
     "mode": "shadow",
-    "generated_at_utc": "2026-09-26T23:20:33.887809Z",
+    "generated_at_utc": "2026-09-26T23:46:42.329337Z",
     "as_of_session": "2026-09-25",
-    "valid_until_utc": "2026-09-28T11:20:33.887809Z",
+    "valid_until_utc": "2026-09-28T11:46:42.329337Z",
     "policy": {
       "enabled": true,
       "mode": "shadow",
@@ -1653,7 +1653,7 @@
         "source_url": "https://www.federalreserve.gov/json/calendar.json",
         "source_format": "JSON",
         "primary_error_code": null,
-        "fetched_at_utc": "2026-09-26T23:20:33.887809Z",
+        "fetched_at_utc": "2026-09-26T23:46:42.329337Z",
         "source_updated_at": null,
         "etag": null,
         "content_sha256": "88204fae937e931ef53eade92bbd32a2bbf1991b74ae0b110decd35176d2650f",
@@ -1665,25 +1665,33 @@
       },
       {
         "provider": "bls",
-        "source_url": "https://www.bls.gov/schedule/news_release/bls.ics",
-        "source_format": null,
-        "primary_error_code": null,
-        "fetched_at_utc": "2026-09-26T23:20:33.887809Z",
+        "source_url": "https://fred.stlouisfed.org/releases/calendar",
+        "source_format": "FRED_PAGER_HTML",
+        "primary_error_code": "HTTP_ERROR",
+        "fetched_at_utc": "2026-09-26T23:46:42.329337Z",
         "source_updated_at": null,
         "etag": null,
-        "content_sha256": null,
-        "coverage_start": null,
-        "coverage_end": null,
-        "coverage_verified": false,
-        "status": "DATA_INCOMPLETE",
-        "error_code": "PRIMARY_AND_OFFICIAL_FALLBACK_FAILED"
+        "content_sha256": "62db502d2432a342051c594787ba0bba3bd56a1e1cab3ccb4789e0922e12ccda",
+        "coverage_start": "2026-01-09",
+        "coverage_end": "2026-12-10",
+        "coverage_verified": true,
+        "status": "OK",
+        "error_code": null,
+        "source_id": "fred",
+        "source_tier": "SECONDARY_INSTITUTIONAL",
+        "source_publisher": "Federal Reserve Bank of St. Louis",
+        "source_urls": [
+          "https://fred.stlouisfed.org/releases/calendar?po=1&ptic=0&vs=2026-01-01&ve=2027-12-31&rid=10",
+          "https://fred.stlouisfed.org/releases/calendar?po=1&ptic=0&vs=2026-01-01&ve=2027-12-31&rid=50"
+        ],
+        "official_fallback_error_code": "HTTP_ERROR"
       },
       {
         "provider": "bea",
         "source_url": "https://www.bea.gov/news/schedule/ics/online-calendar-subscription.ics",
         "source_format": "ICS",
         "primary_error_code": null,
-        "fetched_at_utc": "2026-09-26T23:20:33.887809Z",
+        "fetched_at_utc": "2026-09-26T23:46:42.329337Z",
         "source_updated_at": null,
         "etag": null,
         "content_sha256": "dbb86bc80b5b99a691a59ffb0651e588c9f2fe5cc920d556208f9d6db890b6ca",
@@ -1710,6 +1718,44 @@
         "source_url": "https://www.bea.gov/news/schedule/ics/online-calendar-subscription.ics",
         "sessions_until": 3,
         "effective_session": "2026-09-30"
+      },
+      {
+        "event_id": "fred:50:2026-10-02",
+        "family": "EMPLOYMENT_SITUATION",
+        "name": "Employment Situation",
+        "symbol": null,
+        "event_at_utc": "2026-10-02T12:30:00Z",
+        "event_date_local": "2026-10-02",
+        "source_timezone": "America/Chicago",
+        "time_precision": "EXACT",
+        "timing": "EXACT",
+        "confirmation_status": "SCHEDULED",
+        "source_id": "fred",
+        "source_tier": "SECONDARY_INSTITUTIONAL",
+        "source_publisher": "Federal Reserve Bank of St. Louis",
+        "source_url": "https://fred.stlouisfed.org/releases/calendar?po=1&ptic=0&vs=2026-01-01&ve=2027-12-31&rid=50",
+        "source_release_id": 50,
+        "sessions_until": 5,
+        "effective_session": "2026-10-02"
+      },
+      {
+        "event_id": "fred:10:2026-10-14",
+        "family": "CPI",
+        "name": "Consumer Price Index",
+        "symbol": null,
+        "event_at_utc": "2026-10-14T12:30:00Z",
+        "event_date_local": "2026-10-14",
+        "source_timezone": "America/Chicago",
+        "time_precision": "EXACT",
+        "timing": "EXACT",
+        "confirmation_status": "SCHEDULED",
+        "source_id": "fred",
+        "source_tier": "SECONDARY_INSTITUTIONAL",
+        "source_publisher": "Federal Reserve Bank of St. Louis",
+        "source_url": "https://fred.stlouisfed.org/releases/calendar?po=1&ptic=0&vs=2026-01-01&ve=2027-12-31&rid=10",
+        "source_release_id": 10,
+        "sessions_until": 13,
+        "effective_session": "2026-10-14"
       },
       {
         "event_id": "fed:fomc:2026-10-28",
@@ -1744,6 +1790,44 @@
         "effective_session": "2026-10-29"
       },
       {
+        "event_id": "fred:50:2026-11-06",
+        "family": "EMPLOYMENT_SITUATION",
+        "name": "Employment Situation",
+        "symbol": null,
+        "event_at_utc": "2026-11-06T13:30:00Z",
+        "event_date_local": "2026-11-06",
+        "source_timezone": "America/Chicago",
+        "time_precision": "EXACT",
+        "timing": "EXACT",
+        "confirmation_status": "SCHEDULED",
+        "source_id": "fred",
+        "source_tier": "SECONDARY_INSTITUTIONAL",
+        "source_publisher": "Federal Reserve Bank of St. Louis",
+        "source_url": "https://fred.stlouisfed.org/releases/calendar?po=1&ptic=0&vs=2026-01-01&ve=2027-12-31&rid=50",
+        "source_release_id": 50,
+        "sessions_until": 30,
+        "effective_session": "2026-11-06"
+      },
+      {
+        "event_id": "fred:10:2026-11-10",
+        "family": "CPI",
+        "name": "Consumer Price Index",
+        "symbol": null,
+        "event_at_utc": "2026-11-10T13:30:00Z",
+        "event_date_local": "2026-11-10",
+        "source_timezone": "America/Chicago",
+        "time_precision": "EXACT",
+        "timing": "EXACT",
+        "confirmation_status": "SCHEDULED",
+        "source_id": "fred",
+        "source_tier": "SECONDARY_INSTITUTIONAL",
+        "source_publisher": "Federal Reserve Bank of St. Louis",
+        "source_url": "https://fred.stlouisfed.org/releases/calendar?po=1&ptic=0&vs=2026-01-01&ve=2027-12-31&rid=10",
+        "source_release_id": 10,
+        "sessions_until": 32,
+        "effective_session": "2026-11-10"
+      },
+      {
         "event_id": "bea:c6b23055-287a-4975-bcf7-026c2c6dd8e1",
         "family": "PCE",
         "name": "Personal Income and Outlays, October 2026",
@@ -1760,6 +1844,25 @@
         "effective_session": "2026-11-25"
       },
       {
+        "event_id": "fred:50:2026-12-04",
+        "family": "EMPLOYMENT_SITUATION",
+        "name": "Employment Situation",
+        "symbol": null,
+        "event_at_utc": "2026-12-04T13:30:00Z",
+        "event_date_local": "2026-12-04",
+        "source_timezone": "America/Chicago",
+        "time_precision": "EXACT",
+        "timing": "EXACT",
+        "confirmation_status": "SCHEDULED",
+        "source_id": "fred",
+        "source_tier": "SECONDARY_INSTITUTIONAL",
+        "source_publisher": "Federal Reserve Bank of St. Louis",
+        "source_url": "https://fred.stlouisfed.org/releases/calendar?po=1&ptic=0&vs=2026-01-01&ve=2027-12-31&rid=50",
+        "source_release_id": 50,
+        "sessions_until": 49,
+        "effective_session": "2026-12-04"
+      },
+      {
         "event_id": "fed:fomc:2026-12-09",
         "family": "FOMC_DECISION",
         "name": "FOMC Meeting",
@@ -1774,6 +1877,25 @@
         "source_url": "https://www.federalreserve.gov/json/calendar.json",
         "sessions_until": 52,
         "effective_session": "2026-12-09"
+      },
+      {
+        "event_id": "fred:10:2026-12-10",
+        "family": "CPI",
+        "name": "Consumer Price Index",
+        "symbol": null,
+        "event_at_utc": "2026-12-10T13:30:00Z",
+        "event_date_local": "2026-12-10",
+        "source_timezone": "America/Chicago",
+        "time_precision": "EXACT",
+        "timing": "EXACT",
+        "confirmation_status": "SCHEDULED",
+        "source_id": "fred",
+        "source_tier": "SECONDARY_INSTITUTIONAL",
+        "source_publisher": "Federal Reserve Bank of St. Louis",
+        "source_url": "https://fred.stlouisfed.org/releases/calendar?po=1&ptic=0&vs=2026-01-01&ve=2027-12-31&rid=10",
+        "source_release_id": 10,
+        "sessions_until": 53,
+        "effective_session": "2026-12-10"
       },
       {
         "event_id": "bea:715d281b-925d-40f9-8400-6a9096a861ec",
@@ -1793,38 +1915,28 @@
       }
     ],
     "market_decision": {
-      "status": "DATA_INCOMPLETE",
-      "level": "UNKNOWN",
+      "status": "CLEAR",
+      "level": "LOW",
       "reason_codes": [
-        "REQUIRED_FEED_INCOMPLETE",
-        "REQUIRED_FAMILY_MISSING"
+        "NO_HIGH_IMPACT_MACRO_WITHIN_WINDOW"
       ],
       "event_ids": [],
-      "missing_families": [
-        "CPI",
-        "EMPLOYMENT_SITUATION"
-      ],
-      "failed_providers": [
-        "bls"
-      ],
       "enforced": false
     },
     "ticker_decisions": {
       "ABBV": {
-        "status": "DATA_INCOMPLETE",
+        "status": "CLEAR",
         "reason_codes": [
-          "REQUIRED_FEED_INCOMPLETE",
-          "REQUIRED_FAMILY_MISSING"
+          "NO_HIGH_IMPACT_MACRO_WITHIN_WINDOW"
         ],
         "event_ids": [],
         "earnings_status": "NOT_CONFIGURED",
         "enforced": false
       },
       "NVDA": {
-        "status": "DATA_INCOMPLETE",
+        "status": "CLEAR",
         "reason_codes": [
-          "REQUIRED_FEED_INCOMPLETE",
-          "REQUIRED_FAMILY_MISSING"
+          "NO_HIGH_IMPACT_MACRO_WITHIN_WINDOW"
         ],
         "event_ids": [],
         "earnings_status": "NOT_CONFIGURED",
