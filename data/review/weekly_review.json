@@ -1,18 +1,18 @@
 {
-  "generated_at": "2026-09-26T23:46:44.526647",
+  "generated_at": "2026-10-03T00:50:15.898143",
   "source": "local-report:data/results/latest_report.json",
-  "source_timestamp": "2026-09-26T23:46:42.328619",
+  "source_timestamp": "2026-10-03T00:50:13.605102",
   "status": "ok",
   "market_breadth": {
     "total_stocks": 27,
-    "phase_1_count": 14,
+    "phase_1_count": 13,
     "phase_2_count": 8,
     "phase_3_count": 0,
-    "phase_4_count": 5,
-    "phase_1_pct": 51.9,
+    "phase_4_count": 6,
+    "phase_1_pct": 48.1,
     "phase_2_pct": 29.6,
     "phase_3_pct": 0.0,
-    "phase_4_pct": 18.5,
+    "phase_4_pct": 22.2,
     "breadth_quality": "Fair"
   },
   "signal_recommendation": {
@@ -45,9 +45,9 @@
     "schema_version": "1.0",
     "policy_version": "2026-09-shadow-v1",
     "mode": "shadow",
-    "generated_at_utc": "2026-09-26T23:46:42.329337Z",
-    "as_of_session": "2026-09-25",
-    "valid_until_utc": "2026-09-28T11:46:42.329337Z",
+    "generated_at_utc": "2026-10-03T00:50:13.605776Z",
+    "as_of_session": "2026-10-02",
+    "valid_until_utc": "2026-10-04T12:50:13.605776Z",
     "policy": {
       "enabled": true,
       "mode": "shadow",
@@ -76,10 +76,10 @@
         "source_url": "https://www.federalreserve.gov/json/calendar.json",
         "source_format": "JSON",
         "primary_error_code": null,
-        "fetched_at_utc": "2026-09-26T23:46:42.329337Z",
+        "fetched_at_utc": "2026-10-03T00:50:13.605776Z",
         "source_updated_at": null,
         "etag": null,
-        "content_sha256": "88204fae937e931ef53eade92bbd32a2bbf1991b74ae0b110decd35176d2650f",
+        "content_sha256": "83a0c45b9ce4df1b738151e2dfc555309dacdcb23f3f0948ee5aa7409e5ae509",
         "coverage_start": "2017-02-01",
         "coverage_end": "2026-12-09",
         "coverage_verified": true,
@@ -91,10 +91,10 @@
         "source_url": "https://fred.stlouisfed.org/releases/calendar",
         "source_format": "FRED_PAGER_HTML",
         "primary_error_code": "HTTP_ERROR",
-        "fetched_at_utc": "2026-09-26T23:46:42.329337Z",
+        "fetched_at_utc": "2026-10-03T00:50:13.605776Z",
         "source_updated_at": null,
         "etag": null,
-        "content_sha256": "62db502d2432a342051c594787ba0bba3bd56a1e1cab3ccb4789e0922e12ccda",
+        "content_sha256": "8598c33a4a23ad3a73d2293d604f561730bbff9a555596eb64957d97c07d62d0",
         "coverage_start": "2026-01-09",
         "coverage_end": "2026-12-10",
         "coverage_verified": true,
@@ -114,7 +114,7 @@
         "source_url": "https://www.bea.gov/news/schedule/ics/online-calendar-subscription.ics",
         "source_format": "ICS",
         "primary_error_code": null,
-        "fetched_at_utc": "2026-09-26T23:46:42.329337Z",
+        "fetched_at_utc": "2026-10-03T00:50:13.605776Z",
         "source_updated_at": null,
         "etag": null,
         "content_sha256": "dbb86bc80b5b99a691a59ffb0651e588c9f2fe5cc920d556208f9d6db890b6ca",
@@ -126,22 +126,6 @@
       }
     ],
     "events": [
-      {
-        "event_id": "bea:e28caae2-24c3-4772-8b33-e2334573db41",
-        "family": "PCE",
-        "name": "Personal Income and Outlays, August 2026",
-        "symbol": null,
-        "event_at_utc": "2026-09-30T12:30:00Z",
-        "event_date_local": "2026-09-30",
-        "source_timezone": "America/New_York",
-        "time_precision": "EXACT",
-        "timing": "EXACT",
-        "confirmation_status": "SCHEDULED",
-        "source_id": "bea",
-        "source_url": "https://www.bea.gov/news/schedule/ics/online-calendar-subscription.ics",
-        "sessions_until": 3,
-        "effective_session": "2026-09-30"
-      },
       {
         "event_id": "fred:50:2026-10-02",
         "family": "EMPLOYMENT_SITUATION",
@@ -158,7 +142,7 @@
         "source_publisher": "Federal Reserve Bank of St. Louis",
         "source_url": "https://fred.stlouisfed.org/releases/calendar?po=1&ptic=0&vs=2026-01-01&ve=2027-12-31&rid=50",
         "source_release_id": 50,
-        "sessions_until": 5,
+        "sessions_until": 0,
         "effective_session": "2026-10-02"
       },
       {
@@ -177,7 +161,7 @@
         "source_publisher": "Federal Reserve Bank of St. Louis",
         "source_url": "https://fred.stlouisfed.org/releases/calendar?po=1&ptic=0&vs=2026-01-01&ve=2027-12-31&rid=10",
         "source_release_id": 10,
-        "sessions_until": 13,
+        "sessions_until": 8,
         "effective_session": "2026-10-14"
       },
       {
@@ -193,7 +177,7 @@
         "confirmation_status": "SCHEDULED",
         "source_id": "fed",
         "source_url": "https://www.federalreserve.gov/json/calendar.json",
-        "sessions_until": 23,
+        "sessions_until": 18,
         "effective_session": "2026-10-28"
       },
       {
@@ -209,7 +193,7 @@
         "confirmation_status": "SCHEDULED",
         "source_id": "bea",
         "source_url": "https://www.bea.gov/news/schedule/ics/online-calendar-subscription.ics",
-        "sessions_until": 24,
+        "sessions_until": 19,
         "effective_session": "2026-10-29"
       },
       {
@@ -228,7 +212,7 @@
         "source_publisher": "Federal Reserve Bank of St. Louis",
         "source_url": "https://fred.stlouisfed.org/releases/calendar?po=1&ptic=0&vs=2026-01-01&ve=2027-12-31&rid=50",
         "source_release_id": 50,
-        "sessions_until": 30,
+        "sessions_until": 25,
         "effective_session": "2026-11-06"
       },
       {
@@ -247,7 +231,7 @@
         "source_publisher": "Federal Reserve Bank of St. Louis",
         "source_url": "https://fred.stlouisfed.org/releases/calendar?po=1&ptic=0&vs=2026-01-01&ve=2027-12-31&rid=10",
         "source_release_id": 10,
-        "sessions_until": 32,
+        "sessions_until": 27,
         "effective_session": "2026-11-10"
       },
       {
@@ -263,7 +247,7 @@
         "confirmation_status": "SCHEDULED",
         "source_id": "bea",
         "source_url": "https://www.bea.gov/news/schedule/ics/online-calendar-subscription.ics",
-        "sessions_until": 43,
+        "sessions_until": 38,
         "effective_session": "2026-11-25"
       },
       {
@@ -282,7 +266,7 @@
         "source_publisher": "Federal Reserve Bank of St. Louis",
         "source_url": "https://fred.stlouisfed.org/releases/calendar?po=1&ptic=0&vs=2026-01-01&ve=2027-12-31&rid=50",
         "source_release_id": 50,
-        "sessions_until": 49,
+        "sessions_until": 44,
         "effective_session": "2026-12-04"
       },
       {
@@ -298,7 +282,7 @@
         "confirmation_status": "SCHEDULED",
         "source_id": "fed",
         "source_url": "https://www.federalreserve.gov/json/calendar.json",
-        "sessions_until": 52,
+        "sessions_until": 47,
         "effective_session": "2026-12-09"
       },
       {
@@ -317,7 +301,7 @@
         "source_publisher": "Federal Reserve Bank of St. Louis",
         "source_url": "https://fred.stlouisfed.org/releases/calendar?po=1&ptic=0&vs=2026-01-01&ve=2027-12-31&rid=10",
         "source_release_id": 10,
-        "sessions_until": 53,
+        "sessions_until": 48,
         "effective_session": "2026-12-10"
       },
       {
@@ -333,35 +317,60 @@
         "confirmation_status": "SCHEDULED",
         "source_id": "bea",
         "source_url": "https://www.bea.gov/news/schedule/ics/online-calendar-subscription.ics",
-        "sessions_until": 62,
+        "sessions_until": 57,
         "effective_session": "2026-12-23"
       }
     ],
     "market_decision": {
-      "status": "CLEAR",
-      "level": "LOW",
+      "status": "WAIT",
+      "level": "HIGH",
       "reason_codes": [
-        "NO_HIGH_IMPACT_MACRO_WITHIN_WINDOW"
+        "HIGH_IMPACT_MACRO_WITHIN_WINDOW"
       ],
-      "event_ids": [],
+      "event_ids": [
+        "fred:50:2026-10-02"
+      ],
+      "next_event": {
+        "event_id": "fred:50:2026-10-02",
+        "family": "EMPLOYMENT_SITUATION",
+        "name": "Employment Situation",
+        "symbol": null,
+        "event_at_utc": "2026-10-02T12:30:00Z",
+        "event_date_local": "2026-10-02",
+        "source_timezone": "America/Chicago",
+        "time_precision": "EXACT",
+        "timing": "EXACT",
+        "confirmation_status": "SCHEDULED",
+        "source_id": "fred",
+        "source_tier": "SECONDARY_INSTITUTIONAL",
+        "source_publisher": "Federal Reserve Bank of St. Louis",
+        "source_url": "https://fred.stlouisfed.org/releases/calendar?po=1&ptic=0&vs=2026-01-01&ve=2027-12-31&rid=50",
+        "source_release_id": 50,
+        "sessions_until": 0,
+        "effective_session": "2026-10-02"
+      },
       "enforced": false
     },
     "ticker_decisions": {
-      "ABBV": {
-        "status": "CLEAR",
+      "NVDA": {
+        "status": "WAIT",
         "reason_codes": [
-          "NO_HIGH_IMPACT_MACRO_WITHIN_WINDOW"
+          "HIGH_IMPACT_MACRO_WITHIN_WINDOW"
         ],
-        "event_ids": [],
+        "event_ids": [
+          "fred:50:2026-10-02"
+        ],
         "earnings_status": "NOT_CONFIGURED",
         "enforced": false
       },
-      "NVDA": {
-        "status": "CLEAR",
+      "XOM": {
+        "status": "WAIT",
         "reason_codes": [
-          "NO_HIGH_IMPACT_MACRO_WITHIN_WINDOW"
+          "HIGH_IMPACT_MACRO_WITHIN_WINDOW"
         ],
-        "event_ids": [],
+        "event_ids": [
+          "fred:50:2026-10-02"
+        ],
         "earnings_status": "NOT_CONFIGURED",
         "enforced": false
       }
@@ -372,18 +381,18 @@
   "rejected_candidates": [],
   "buy_candidates": [
     {
-      "ticker": "NVDA",
-      "score": 93.4,
-      "entry_price": 225.07,
-      "stop_distance_atr_multiple": 2.1965,
-      "stop_distance_pct": 0.0508,
-      "risk_reward_ratio": 4.7358,
+      "ticker": "XOM",
+      "score": 99.8,
+      "entry_price": 164.01,
+      "stop_distance_atr_multiple": 1.502,
+      "stop_distance_pct": 0.0329,
+      "risk_reward_ratio": 7.2412,
       "risk_grade_spy": "R5",
       "risk_status": "PASS",
       "risk_reasons": [
-        "ATR止损距离：2.20x ATR",
-        "入场到ATR止损距离：5.08%",
-        "目标RR：4.74:1",
+        "ATR止损距离：1.50x ATR",
+        "入场到ATR止损距离：3.29%",
+        "目标RR：7.24:1",
         "风险等级（以S&P 500指数风险作为标准）：R5"
       ],
       "sizing": {
@@ -397,18 +406,18 @@
       "recommended": true
     },
     {
-      "ticker": "ABBV",
-      "score": 93.2,
-      "entry_price": 264.34,
-      "stop_distance_atr_multiple": 1.5311,
-      "stop_distance_pct": 0.03,
-      "risk_reward_ratio": 4.1917,
+      "ticker": "NVDA",
+      "score": 99.3,
+      "entry_price": 233.95,
+      "stop_distance_atr_multiple": 2.7129,
+      "stop_distance_pct": 0.0597,
+      "risk_reward_ratio": 3.2391,
       "risk_grade_spy": "R5",
       "risk_status": "PASS",
       "risk_reasons": [
-        "ATR止损距离：1.53x ATR",
-        "入场到ATR止损距离：3.00%",
-        "目标RR：4.19:1",
+        "ATR止损距离：2.71x ATR",
+        "入场到ATR止损距离：5.97%",
+        "目标RR：3.24:1",
         "风险等级（以S&P 500指数风险作为标准）：R5"
       ],
       "sizing": {
@@ -425,124 +434,148 @@
   "holdings_actions": [],
   "sell_warnings": [
     {
-      "ticker": "HD",
+      "ticker": "NKE",
       "is_sell": true,
       "score": 90,
       "severity": "critical",
       "phase": 4,
-      "breakdown_level": 325.54,
+      "breakdown_level": 38.72,
       "reasons": [
         "In Phase 4 (Downtrend)",
-        "Broke below 50 SMA by 9.9%",
-        "50 SMA declining (slope: -0.2089)",
-        "Elevated volume: 1.4x",
-        "Weak RS rollover: -0.62",
-        "Failed breakout - closed back inside base"
+        "Broke below 50 SMA by 12.5%",
+        "50 SMA declining (slope: -0.3302)",
+        "High volume breakdown: 3.7x",
+        "Weak RS rollover: -0.40"
       ],
       "details": {
-        "breakdown_level": 325.54,
+        "breakdown_level": 38.72,
         "breakdown_score": 55,
-        "volume_ratio": 1.36,
-        "volume_score": 20,
-        "rs_slope": -0.618,
-        "rs_score": 5
-      }
-    },
-    {
-      "ticker": "NKE",
-      "is_sell": true,
-      "score": 70,
-      "severity": "high",
-      "phase": 4,
-      "breakdown_level": 39.4,
-      "reasons": [
-        "In Phase 4 (Downtrend)",
-        "Broke below 50 SMA by 9.3%",
-        "50 SMA declining (slope: -0.2648)",
-        "Moderate volume: 1.2x",
-        "Weak RS rollover: -0.52"
-      ],
-      "details": {
-        "breakdown_level": 39.4,
-        "breakdown_score": 55,
-        "volume_ratio": 1.18,
-        "volume_score": 10,
-        "rs_slope": -0.525,
-        "rs_score": 5
-      }
-    },
-    {
-      "ticker": "NFLX",
-      "is_sell": true,
-      "score": 65,
-      "severity": "medium",
-      "phase": 4,
-      "breakdown_level": 75.54,
-      "reasons": [
-        "In Phase 4 (Downtrend)",
-        "Broke below 50 SMA by 5.8%",
-        "Low volume breakdown: 0.7x",
-        "Weak RS rollover: -0.80",
-        "Failed breakout - closed back inside base"
-      ],
-      "details": {
-        "breakdown_level": 75.54,
-        "breakdown_score": 45,
-        "volume_ratio": 0.71,
-        "volume_score": 5,
-        "rs_slope": -0.802,
+        "volume_ratio": 3.72,
+        "volume_score": 30,
+        "rs_slope": -0.398,
         "rs_score": 5
       }
     },
     {
       "ticker": "BA",
       "is_sell": true,
-      "score": 65,
-      "severity": "medium",
+      "score": 90,
+      "severity": "critical",
       "phase": 4,
-      "breakdown_level": 214.37,
+      "breakdown_level": 212.33,
       "reasons": [
         "In Phase 4 (Downtrend)",
-        "Broke below 50 SMA by 7.6%",
-        "50 SMA declining (slope: -0.1502)",
-        "Low volume breakdown: 0.8x",
-        "Weak RS rollover: -0.63"
+        "Broke below 50 SMA by 8.8%",
+        "50 SMA declining (slope: -0.1878)",
+        "High volume breakdown: 1.6x",
+        "Weak RS rollover: -0.80"
       ],
       "details": {
-        "breakdown_level": 214.37,
+        "breakdown_level": 212.33,
         "breakdown_score": 55,
-        "volume_ratio": 0.83,
+        "volume_ratio": 1.56,
+        "volume_score": 30,
+        "rs_slope": -0.796,
+        "rs_score": 5
+      }
+    },
+    {
+      "ticker": "NFLX",
+      "is_sell": true,
+      "score": 82,
+      "severity": "critical",
+      "phase": 4,
+      "breakdown_level": 75.56,
+      "reasons": [
+        "In Phase 4 (Downtrend)",
+        "Broke below 50 SMA by 11.2%",
+        "50 SMA declining (slope: -0.0015)",
+        "Moderate volume: 1.1x",
+        "RS declining: -1.18",
+        "Failed breakout - closed back inside base"
+      ],
+      "details": {
+        "breakdown_level": 75.56,
+        "breakdown_score": 55,
+        "volume_ratio": 1.1,
+        "volume_score": 10,
+        "rs_slope": -1.18,
+        "rs_score": 7
+      }
+    },
+    {
+      "ticker": "UPS",
+      "is_sell": true,
+      "score": 75,
+      "severity": "high",
+      "phase": 4,
+      "breakdown_level": 101.41,
+      "reasons": [
+        "In Phase 4 (Downtrend)",
+        "Broke below 50 SMA by 8.3%",
+        "50 SMA declining (slope: -0.2591)",
+        "Low volume breakdown: 1.0x",
+        "Weak RS rollover: -0.79",
+        "Failed breakout - closed back inside base"
+      ],
+      "details": {
+        "breakdown_level": 101.41,
+        "breakdown_score": 55,
+        "volume_ratio": 0.97,
         "volume_score": 5,
-        "rs_slope": -0.627,
+        "rs_slope": -0.793,
         "rs_score": 5
       }
     },
     {
       "ticker": "WMT",
       "is_sell": true,
-      "score": 60,
-      "severity": "medium",
+      "score": 70,
+      "severity": "high",
       "phase": 4,
-      "breakdown_level": 109.25,
+      "breakdown_level": 108.74,
       "reasons": [
         "In Phase 4 (Downtrend)",
-        "Just below 50 SMA (1.2%)",
-        "50 SMA declining (slope: -0.1089)",
-        "Low volume breakdown: 0.8x",
-        "RS still positive: 0.08",
+        "Below 50 SMA by 4.1%",
+        "50 SMA declining (slope: -0.0873)",
+        "Low volume breakdown: 1.0x",
+        "Weak RS rollover: -0.32",
         "Failed breakout - closed back inside base"
       ],
       "details": {
-        "breakdown_level": 109.25,
-        "breakdown_score": 45,
-        "volume_ratio": 0.84,
+        "breakdown_level": 108.74,
+        "breakdown_score": 50,
+        "volume_ratio": 1.05,
         "volume_score": 5,
-        "rs_slope": 0.08,
-        "rs_score": 0
+        "rs_slope": -0.324,
+        "rs_score": 5
+      }
+    },
+    {
+      "ticker": "HD",
+      "is_sell": true,
+      "score": 65,
+      "severity": "medium",
+      "phase": 4,
+      "breakdown_level": 321.15,
+      "reasons": [
+        "In Phase 4 (Downtrend)",
+        "Broke below 50 SMA by 11.9%",
+        "50 SMA declining (slope: -0.2488)",
+        "Low volume breakdown: 0.9x",
+        "Weak RS rollover: -0.74"
+      ],
+      "details": {
+        "breakdown_level": 321.15,
+        "breakdown_score": 55,
+        "volume_ratio": 0.95,
+        "volume_score": 5,
+        "rs_slope": -0.737,
+        "rs_score": 5
       }
     }
   ],
-  "summary_text": "市场广度：{'total_stocks': 27, 'phase_1_count': 14, 'phase_2_count': 8, 'phase_3_count': 0, 'phase_4_count': 5, 'phase_1_pct': 51.9, 'phase_2_pct': 29.6, 'phase_3_pct': 0.0, 'phase_4_pct': 18.5, 'breadth_quality': 'Fair'}\n事件风险：CLEAR（SHADOW，周五产物；周六不重新计算）\n事件风险当前仅观察，不改变技术买入、持仓或卖出动作。\n\n合规买入结论（最多2只）：\n  • NVDA（得分 93.4）：PASS\n    - 入场价：225.07\n    - 入场到ATR止损距离：2.20x ATR\n    - 预估止损距离：5.08%（占比）\n    - 1-4月风险回报：4.74:1\n    - 风险等级（以S&P 500指数风险作为标准）：R5\n    - 仓位（符号化）：每笔最大可承担风险额 = C × (0.19%)\n  • ABBV（得分 93.2）：PASS\n    - 入场价：264.34\n    - 入场到ATR止损距离：1.53x ATR\n    - 预估止损距离：3.00%（占比）\n    - 1-4月风险回报：4.19:1\n    - 风险等级（以S&P 500指数风险作为标准）：R5\n    - 仓位（符号化）：每笔最大可承担风险额 = C × (0.19%)\n\n卖出警示（>=60分）：\n  - HD（分数90.0）: critical\n  - NKE（分数70.0）: high\n  - NFLX（分数65.0）: medium\n  - BA（分数65.0）: medium\n  - WMT（分数60.0）: medium\n\n说明：卖出警示仅对已列入 holdings 的股票形成持仓 SELL 复核；未列入 holdings 的股票只是观察信号，不代表要求卖出。",
+  "summary_text": "市场广度：{'total_stocks': 27, 'phase_1_count': 13, 'phase_2_count': 8, 'phase_3_count': 0, 'phase_4_count': 6, 'phase_1_pct': 48.1, 'phase_2_pct': 29.6, 'phase_3_pct': 0.0, 'phase_4_pct': 22.2, 'breadth_quality': 'Fair'}\n事件风险：WAIT（SHADOW，周五产物；周六不重新计算）\n下一事件：EMPLOYMENT_SITUATION 2026-10-02，距有效交易时点 0 个交易日\n事件风险当前仅观察，不改变技术买入、持仓或卖出动作。\n\n合规买入结论（最多2只）：\n  • XOM（得分 99.8）：PASS\n    - 入场价：164.01\n    - 入场到ATR止损距离：1.50x ATR\n    - 预估止损距离：3.29%（占比）\n    - 1-4月风险回报：7.24:1\n    - 风险等级（以S&P 500指数风险作为标准）：R5\n    - 仓位（符号化）：每笔最大可承担风险额 = C × (0.19%)\n  • NVDA（得分 99.3）：PASS\n    - 入场价：233.95\n    - 入场到ATR止损距离：2.71x ATR\n    - 预估止损距离：5.97%（占比）\n    - 1-4月风险回报：3.24:1\n    - 风险等级（以S&P 500指数风险作为标准）：R5\n    - 仓位（符号化）：每笔最大可承担风险额 = C × (0.19%)\n\n卖出警示（>=60分）：\n  - NKE（分数90.0）: critical\n  - BA（分数90.0）: critical\n  - NFLX（分数82.0）: critical\n  - UPS（分数75.0）: high\n  - WMT（分数70.0）: high\n  - HD（分数65.0）: medium\n\n说明：卖出警示仅对已列入 holdings 的股票形成持仓 SELL 复核；未列入 holdings 的股票只是观察信号，不代表要求卖出。",
   "notes": [
     "loaded JSON report from data/results/latest_report.json"
   ]

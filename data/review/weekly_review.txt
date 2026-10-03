@@ -1,28 +1,30 @@
-市场广度：{'total_stocks': 27, 'phase_1_count': 14, 'phase_2_count': 8, 'phase_3_count': 0, 'phase_4_count': 5, 'phase_1_pct': 51.9, 'phase_2_pct': 29.6, 'phase_3_pct': 0.0, 'phase_4_pct': 18.5, 'breadth_quality': 'Fair'}
-事件风险：CLEAR（SHADOW，周五产物；周六不重新计算）
+市场广度：{'total_stocks': 27, 'phase_1_count': 13, 'phase_2_count': 8, 'phase_3_count': 0, 'phase_4_count': 6, 'phase_1_pct': 48.1, 'phase_2_pct': 29.6, 'phase_3_pct': 0.0, 'phase_4_pct': 22.2, 'breadth_quality': 'Fair'}
+事件风险：WAIT（SHADOW，周五产物；周六不重新计算）
+下一事件：EMPLOYMENT_SITUATION 2026-10-02，距有效交易时点 0 个交易日
 事件风险当前仅观察，不改变技术买入、持仓或卖出动作。
 
 合规买入结论（最多2只）：
-  • NVDA（得分 93.4）：PASS
-    - 入场价：225.07
-    - 入场到ATR止损距离：2.20x ATR
-    - 预估止损距离：5.08%（占比）
-    - 1-4月风险回报：4.74:1
+  • XOM（得分 99.8）：PASS
+    - 入场价：164.01
+    - 入场到ATR止损距离：1.50x ATR
+    - 预估止损距离：3.29%（占比）
+    - 1-4月风险回报：7.24:1
     - 风险等级（以S&P 500指数风险作为标准）：R5
     - 仓位（符号化）：每笔最大可承担风险额 = C × (0.19%)
-  • ABBV（得分 93.2）：PASS
-    - 入场价：264.34
-    - 入场到ATR止损距离：1.53x ATR
-    - 预估止损距离：3.00%（占比）
-    - 1-4月风险回报：4.19:1
+  • NVDA（得分 99.3）：PASS
+    - 入场价：233.95
+    - 入场到ATR止损距离：2.71x ATR
+    - 预估止损距离：5.97%（占比）
+    - 1-4月风险回报：3.24:1
     - 风险等级（以S&P 500指数风险作为标准）：R5
     - 仓位（符号化）：每笔最大可承担风险额 = C × (0.19%)
 
 卖出警示（>=60分）：
-  - HD（分数90.0）: critical
-  - NKE（分数70.0）: high
-  - NFLX（分数65.0）: medium
-  - BA（分数65.0）: medium
-  - WMT（分数60.0）: medium
+  - NKE（分数90.0）: critical
+  - BA（分数90.0）: critical
+  - NFLX（分数82.0）: critical
+  - UPS（分数75.0）: high
+  - WMT（分数70.0）: high
+  - HD（分数65.0）: medium
 
 说明：卖出警示仅对已列入 holdings 的股票形成持仓 SELL 复核；未列入 holdings 的股票只是观察信号，不代表要求卖出。
