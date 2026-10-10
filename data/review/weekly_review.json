@@ -1,29 +1,29 @@
 {
-  "generated_at": "2026-10-10T01:25:06.748054",
+  "generated_at": "2026-10-10T17:17:18.466001",
   "source": "local-report:data/results/latest_report.json",
-  "source_timestamp": "2026-10-10T01:25:04.873255",
-  "status": "incomplete",
+  "source_timestamp": "2026-10-10T17:17:15.681651",
+  "status": "ok",
   "market_breadth": {
     "total_stocks": 27,
-    "phase_1_count": 27,
-    "phase_2_count": 0,
+    "phase_1_count": 12,
+    "phase_2_count": 10,
     "phase_3_count": 0,
-    "phase_4_count": 0,
-    "phase_1_pct": 100.0,
-    "phase_2_pct": 0.0,
+    "phase_4_count": 5,
+    "phase_1_pct": 44.4,
+    "phase_2_pct": 37.0,
     "phase_3_pct": 0.0,
-    "phase_4_pct": 0.0,
-    "breadth_quality": "Weak"
+    "phase_4_pct": 18.5,
+    "breadth_quality": "Good"
   },
   "signal_recommendation": {
-    "should_generate_buys": false,
+    "should_generate_buys": true,
     "should_generate_sells": true,
-    "regime": "RISK-OFF",
+    "regime": "RISK-ON (Moderate)",
     "reasons": [
-      "Market breadth weak (0.0% in Phase 2, need 15.0%)"
+      "Market breadth adequate (37.0% in Phase 2)"
     ],
-    "phase_2_pct": 0.0,
-    "spy_phase": 1
+    "phase_2_pct": 37.0,
+    "spy_phase": 2
   },
   "risk_policy": {
     "atr_period": 14,
@@ -45,9 +45,9 @@
     "schema_version": "1.0",
     "policy_version": "2026-09-shadow-v1",
     "mode": "shadow",
-    "generated_at_utc": "2026-10-10T01:25:04.873819Z",
+    "generated_at_utc": "2026-10-10T17:17:15.682654Z",
     "as_of_session": "2026-10-09",
-    "valid_until_utc": "2026-10-11T13:25:04.873819Z",
+    "valid_until_utc": "2026-10-12T05:17:15.682654Z",
     "policy": {
       "enabled": true,
       "mode": "shadow",
@@ -76,7 +76,7 @@
         "source_url": "https://www.federalreserve.gov/json/calendar.json",
         "source_format": "JSON",
         "primary_error_code": null,
-        "fetched_at_utc": "2026-10-10T01:25:04.873819Z",
+        "fetched_at_utc": "2026-10-10T17:17:15.682654Z",
         "source_updated_at": null,
         "etag": null,
         "content_sha256": "d5114f623c7786dd3cdfc243fbc229edf000a0e24344abc26b38d4a34eb6f4d9",
@@ -91,7 +91,7 @@
         "source_url": "https://fred.stlouisfed.org/releases/calendar",
         "source_format": "FRED_PAGER_HTML",
         "primary_error_code": "HTTP_ERROR",
-        "fetched_at_utc": "2026-10-10T01:25:04.873819Z",
+        "fetched_at_utc": "2026-10-10T17:17:15.682654Z",
         "source_updated_at": null,
         "etag": null,
         "content_sha256": "8598c33a4a23ad3a73d2293d604f561730bbff9a555596eb64957d97c07d62d0",
@@ -114,7 +114,7 @@
         "source_url": "https://www.bea.gov/news/schedule/ics/online-calendar-subscription.ics",
         "source_format": "ICS",
         "primary_error_code": null,
-        "fetched_at_utc": "2026-10-10T01:25:04.873819Z",
+        "fetched_at_utc": "2026-10-10T17:17:15.682654Z",
         "source_updated_at": null,
         "etag": null,
         "content_sha256": "c6320686f93a1200c1226ed92eed1c7d2531491006b6da7099fadaab57c433e9",
@@ -444,78 +444,215 @@
         "source_url": "https://www.bea.gov/news/schedule/ics/online-calendar-subscription.ics",
         "sessions_until": 244,
         "effective_session": "2027-09-30"
-      },
-      {
-        "event_id": "bea:76076163-d922-44ce-ab1a-0de5727afacd",
-        "family": "PCE",
-        "name": "Personal Income and Outlays, September 2027",
-        "symbol": null,
-        "event_at_utc": "2027-10-28T12:30:00Z",
-        "event_date_local": "2027-10-28",
-        "source_timezone": "America/New_York",
-        "time_precision": "EXACT",
-        "timing": "EXACT",
-        "confirmation_status": "SCHEDULED",
-        "source_id": "bea",
-        "source_url": "https://www.bea.gov/news/schedule/ics/online-calendar-subscription.ics",
-        "sessions_until": null,
-        "effective_session": null
-      },
-      {
-        "event_id": "bea:9fab5eb4-935e-4191-af97-50287c1380c4",
-        "family": "PCE",
-        "name": "Personal Income and Outlays, October 2027",
-        "symbol": null,
-        "event_at_utc": "2027-11-24T13:30:00Z",
-        "event_date_local": "2027-11-24",
-        "source_timezone": "America/New_York",
-        "time_precision": "EXACT",
-        "timing": "EXACT",
-        "confirmation_status": "SCHEDULED",
-        "source_id": "bea",
-        "source_url": "https://www.bea.gov/news/schedule/ics/online-calendar-subscription.ics",
-        "sessions_until": null,
-        "effective_session": null
-      },
-      {
-        "event_id": "bea:6c4e2eb6-96ac-464c-b525-f74503f2d66d",
-        "family": "PCE",
-        "name": "Personal Income and Outlays, November 2027",
-        "symbol": null,
-        "event_at_utc": "2027-12-22T13:30:00Z",
-        "event_date_local": "2027-12-22",
-        "source_timezone": "America/New_York",
-        "time_precision": "EXACT",
-        "timing": "EXACT",
-        "confirmation_status": "SCHEDULED",
-        "source_id": "bea",
-        "source_url": "https://www.bea.gov/news/schedule/ics/online-calendar-subscription.ics",
-        "sessions_until": null,
-        "effective_session": null
       }
     ],
     "market_decision": {
-      "status": "DATA_INCOMPLETE",
-      "level": "UNKNOWN",
+      "status": "CLEAR",
+      "level": "LOW",
       "reason_codes": [
-        "EVENT_TIME_INVALID"
+        "NO_HIGH_IMPACT_MACRO_WITHIN_WINDOW"
       ],
       "event_ids": [],
-      "missing_families": [],
-      "failed_providers": [],
       "enforced": false
     },
-    "ticker_decisions": {}
+    "ticker_decisions": {
+      "CVX": {
+        "status": "CLEAR",
+        "reason_codes": [
+          "NO_HIGH_IMPACT_MACRO_WITHIN_WINDOW"
+        ],
+        "event_ids": [],
+        "earnings_status": "NOT_CONFIGURED",
+        "enforced": false
+      },
+      "XOM": {
+        "status": "CLEAR",
+        "reason_codes": [
+          "NO_HIGH_IMPACT_MACRO_WITHIN_WINDOW"
+        ],
+        "event_ids": [],
+        "earnings_status": "NOT_CONFIGURED",
+        "enforced": false
+      }
+    }
   },
-  "completeness_errors": [
-    "当前市场环境不支持新买入（市场条件不足）"
-  ],
+  "completeness_errors": [],
   "staleness_error": null,
   "rejected_candidates": [],
-  "buy_candidates": [],
+  "buy_candidates": [
+    {
+      "ticker": "XOM",
+      "score": 98.6,
+      "entry_price": 168.94,
+      "stop_distance_atr_multiple": 2.7687,
+      "stop_distance_pct": 0.0545,
+      "risk_reward_ratio": 2.9043,
+      "risk_grade_spy": "R5",
+      "risk_status": "PASS",
+      "risk_reasons": [
+        "ATR止损距离：2.77x ATR",
+        "入场到ATR止损距离：5.45%",
+        "目标RR：2.90:1",
+        "风险等级（以S&P 500指数风险作为标准）：R5"
+      ],
+      "sizing": {
+        "risk_grade": "交易设置风险等级",
+        "risk_grade_basis": "基于个股与 S&P 500 指数（SPY 代理）的等周期ATR百分比对比；仅为风险评分标准，不构成官方评级。",
+        "risk_basis_symbolic": "每笔最大可承担风险额 = C × (0.19%)",
+        "max_shares_symbolic": "每股风险 = (Entry - Stop); 最大可买股数上限 = floor((C × 0.19%) / (Entry - Stop))",
+        "notional_cap_symbolic": "单标的建仓名义规模建议 ≤ min(10.00%, 10.00%)"
+      },
+      "phase": 2,
+      "recommended": true
+    },
+    {
+      "ticker": "CVX",
+      "score": 98.0,
+      "entry_price": 211.98,
+      "stop_distance_atr_multiple": 2.5129,
+      "stop_distance_pct": 0.0481,
+      "risk_reward_ratio": 4.2399,
+      "risk_grade_spy": "R5",
+      "risk_status": "PASS",
+      "risk_reasons": [
+        "ATR止损距离：2.51x ATR",
+        "入场到ATR止损距离：4.81%",
+        "目标RR：4.24:1",
+        "风险等级（以S&P 500指数风险作为标准）：R5"
+      ],
+      "sizing": {
+        "risk_grade": "交易设置风险等级",
+        "risk_grade_basis": "基于个股与 S&P 500 指数（SPY 代理）的等周期ATR百分比对比；仅为风险评分标准，不构成官方评级。",
+        "risk_basis_symbolic": "每笔最大可承担风险额 = C × (0.19%)",
+        "max_shares_symbolic": "每股风险 = (Entry - Stop); 最大可买股数上限 = floor((C × 0.19%) / (Entry - Stop))",
+        "notional_cap_symbolic": "单标的建仓名义规模建议 ≤ min(10.00%, 10.00%)"
+      },
+      "phase": 2,
+      "recommended": true
+    }
+  ],
   "holdings_actions": [],
-  "sell_warnings": [],
-  "summary_text": "⚠ 市场/输入完整性异常：\n  • 当前市场环境不支持新买入（市场条件不足）\n本周筛选状态异常：不触发新增买入建议。\n市场广度：{'total_stocks': 27, 'phase_1_count': 27, 'phase_2_count': 0, 'phase_3_count': 0, 'phase_4_count': 0, 'phase_1_pct': 100.0, 'phase_2_pct': 0.0, 'phase_3_pct': 0.0, 'phase_4_pct': 0.0, 'breadth_quality': 'Weak'}\n事件风险：DATA_INCOMPLETE（SHADOW，周五产物；周六不重新计算）\n事件风险当前仅观察，不改变技术买入、持仓或卖出动作。\n\n本周无高置信买入（PASS且>70分）\n示例本金：$10,000.00（仅为计算示例）\n调整公式：单笔风险额 = 个人本金 C × 风险预算比例；最大股数 = floor(单笔风险额 ÷ (入场价 − 止损价))\n\n说明：卖出警示仅对已列入 holdings 的股票形成持仓 SELL 复核；未列入 holdings 的股票只是观察信号，不代表要求卖出。",
+  "sell_warnings": [
+    {
+      "ticker": "NFLX",
+      "is_sell": true,
+      "score": 75,
+      "severity": "high",
+      "phase": 4,
+      "breakdown_level": 75.33,
+      "reasons": [
+        "In Phase 4 (Downtrend)",
+        "Broke below 50 SMA by 6.7%",
+        "50 SMA declining (slope: -0.0289)",
+        "Low volume breakdown: 0.8x",
+        "Weak RS rollover: -0.39",
+        "Failed breakout - closed back inside base"
+      ],
+      "details": {
+        "breakdown_level": 75.33,
+        "breakdown_score": 55,
+        "volume_ratio": 0.78,
+        "volume_score": 5,
+        "rs_slope": -0.391,
+        "rs_score": 5
+      }
+    },
+    {
+      "ticker": "BA",
+      "is_sell": true,
+      "score": 75,
+      "severity": "high",
+      "phase": 4,
+      "breakdown_level": 209.76,
+      "reasons": [
+        "In Phase 4 (Downtrend)",
+        "Broke below 50 SMA by 9.2%",
+        "50 SMA declining (slope: -0.1999)",
+        "Low volume breakdown: 0.6x",
+        "Weak RS rollover: -0.47",
+        "Failed breakout - closed back inside base"
+      ],
+      "details": {
+        "breakdown_level": 209.76,
+        "breakdown_score": 55,
+        "volume_ratio": 0.56,
+        "volume_score": 5,
+        "rs_slope": -0.466,
+        "rs_score": 5
+      }
+    },
+    {
+      "ticker": "UPS",
+      "is_sell": true,
+      "score": 75,
+      "severity": "high",
+      "phase": 4,
+      "breakdown_level": 100.06,
+      "reasons": [
+        "In Phase 4 (Downtrend)",
+        "Broke below 50 SMA by 5.5%",
+        "50 SMA declining (slope: -0.3290)",
+        "Low volume breakdown: 0.7x",
+        "Weak RS rollover: -0.18",
+        "Failed breakout - closed back inside base"
+      ],
+      "details": {
+        "breakdown_level": 100.06,
+        "breakdown_score": 55,
+        "volume_ratio": 0.69,
+        "volume_score": 5,
+        "rs_slope": -0.184,
+        "rs_score": 5
+      }
+    },
+    {
+      "ticker": "HD",
+      "is_sell": true,
+      "score": 65,
+      "severity": "medium",
+      "phase": 4,
+      "breakdown_level": 316.49,
+      "reasons": [
+        "In Phase 4 (Downtrend)",
+        "Broke below 50 SMA by 8.1%",
+        "50 SMA declining (slope: -0.2664)",
+        "Low volume breakdown: 1.0x",
+        "Weak RS rollover: -0.36"
+      ],
+      "details": {
+        "breakdown_level": 316.49,
+        "breakdown_score": 55,
+        "volume_ratio": 0.96,
+        "volume_score": 5,
+        "rs_slope": -0.361,
+        "rs_score": 5
+      }
+    },
+    {
+      "ticker": "NKE",
+      "is_sell": true,
+      "score": 65,
+      "severity": "medium",
+      "phase": 4,
+      "breakdown_level": 37.96,
+      "reasons": [
+        "In Phase 4 (Downtrend)",
+        "Broke below 50 SMA by 8.6%",
+        "50 SMA declining (slope: -0.3602)",
+        "Low volume breakdown: 0.6x",
+        "Weak RS rollover: -0.50"
+      ],
+      "details": {
+        "breakdown_level": 37.96,
+        "breakdown_score": 55,
+        "volume_ratio": 0.57,
+        "volume_score": 5,
+        "rs_slope": -0.504,
+        "rs_score": 5
+      }
+    }
+  ],
+  "summary_text": "市场广度：{'total_stocks': 27, 'phase_1_count': 12, 'phase_2_count': 10, 'phase_3_count': 0, 'phase_4_count': 5, 'phase_1_pct': 44.4, 'phase_2_pct': 37.0, 'phase_3_pct': 0.0, 'phase_4_pct': 18.5, 'breadth_quality': 'Good'}\n事件风险：CLEAR（SHADOW，周五产物；周六不重新计算）\n事件风险当前仅观察，不改变技术买入、持仓或卖出动作。\n\n合规买入结论（最多2只）：\n  • XOM（得分 98.6）：PASS\n    - 入场价：168.94\n    - 入场到ATR止损距离：2.77x ATR\n    - 预估止损距离：5.45%（占比）\n    - 1-4月风险回报：2.90:1\n    - 风险等级（以S&P 500指数风险作为标准）：R5\n    - 仓位（符号化）：每笔最大可承担风险额 = C × (0.19%)\n  • CVX（得分 98.0）：PASS\n    - 入场价：211.98\n    - 入场到ATR止损距离：2.51x ATR\n    - 预估止损距离：4.81%（占比）\n    - 1-4月风险回报：4.24:1\n    - 风险等级（以S&P 500指数风险作为标准）：R5\n    - 仓位（符号化）：每笔最大可承担风险额 = C × (0.19%)\n\n卖出警示（>=60分）：\n  - NFLX（分数75.0）: high\n  - BA（分数75.0）: high\n  - UPS（分数75.0）: high\n  - HD（分数65.0）: medium\n  - NKE（分数65.0）: medium\n\n说明：卖出警示仅对已列入 holdings 的股票形成持仓 SELL 复核；未列入 holdings 的股票只是观察信号，不代表要求卖出。",
   "notes": [
     "loaded JSON report from data/results/latest_report.json"
   ]
