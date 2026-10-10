@@ -12,6 +12,7 @@ from datetime import datetime, timedelta
 from pathlib import Path
 from typing import Dict, List, Optional, Tuple
 
+import numpy as np
 import pandas as pd
 import yfinance as yf
 
@@ -316,9 +317,30 @@ class YahooFinanceFetcher:
 
         available_cols = ['Open', 'High', 'Low', 'Close', 'Volume']
         history = history[[col for col in available_cols if col in history.columns]]
-        if history.empty or 'Close' not in history.columns:
+        required_price_cols = ['High', 'Low', 'Close']
+        if history.empty or not set(required_price_cols).issubset(history.columns):
             logger.warning("%s: provider returned incomplete price history", ticker)
             return pd.DataFrame()
+
+        # Providers can expose an in-progress trailing daily bar whose OHLC
+        # values are null/non-finite.  Letting that row through makes the
+        # latest price and moving averages NaN; every comparison then falls
+        # through to the Phase 1 default.  Sanitize at the provider boundary
+        # and fail closed when no usable price rows remain.
+        history = history.copy()
+        numeric_prices = history[required_price_cols].apply(pd.to_numeric, errors='coerce')
+        valid_price_rows = (
+            numeric_prices.notna().all(axis=1)
+            & np.isfinite(numeric_prices).all(axis=1)
+        )
+        dropped_rows = int((~valid_price_rows).sum())
+        if dropped_rows:
+            logger.warning("%s: dropped %d price rows with invalid OHLC values", ticker, dropped_rows)
+        history = history.loc[valid_price_rows].copy()
+        if history.empty:
+            logger.warning("%s: provider returned no usable price rows", ticker)
+            return pd.DataFrame()
+        history[required_price_cols] = numeric_prices.loc[valid_price_rows]
 
         self._save_to_cache(history, cache_path)
         logger.info("Successfully fetched %s price records for %s", len(history), ticker)

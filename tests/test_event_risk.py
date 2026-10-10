@@ -247,6 +247,27 @@ def test_near_event_waits_and_outside_window_clears():
     assert all(event["sessions_until"] > 2 for event in normalized if event["family"] != "FOMC_DECISION")
 
 
+def test_far_future_event_beyond_exchange_calendar_does_not_invalidate_current_window():
+    calendar = xcals.get_calendar("XNYS")
+    generated = datetime(2026, 9, 25, 22, 0, tzinfo=timezone.utc)
+    events = _complete_events()
+    events.append(
+        _event(
+            "PCE",
+            "2100-12-31T13:30:00Z",
+            "2100-12-31",
+        )
+    )
+
+    decision, _, normalized = evaluate_macro_events(
+        events, _feeds(), _policy(), generated, calendar
+    )
+
+    assert decision["status"] == "CLEAR"
+    assert "EVENT_TIME_INVALID" not in decision.get("reason_codes", [])
+    assert all(event["event_date_local"] != "2100-12-31" for event in normalized)
+
+
 def test_same_session_future_is_day_zero_and_good_friday_prices_monday():
     calendar = xcals.get_calendar("XNYS")
     same_day = _complete_events()

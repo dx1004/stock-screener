@@ -773,6 +773,13 @@ def evaluate_macro_events(
     for raw in events:
         event = dict(raw)
         try:
+            event_day = pd.Timestamp(date.fromisoformat(str(event["event_date_local"])))
+            # Official calendars can publish releases beyond the finite
+            # session range bundled by exchange_calendars.  Those distant
+            # events cannot affect the configured near-term macro window and
+            # must not make otherwise valid current data incomplete.
+            if event_day > calendar.last_session:
+                continue
             effective = _event_effective_session(event, calendar)
             distance = _session_distance(calendar, as_of, effective)
             event_at_raw = event.get("event_at_utc")

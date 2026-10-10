@@ -291,6 +291,31 @@ class TestFetchPriceHistory:
             "AAPL", period="5y", interval="1d"
         )
 
+    def test_fetch_price_history_drops_trailing_invalid_ohlc_row(
+        self, fetcher, mock_price_history
+    ):
+        history = mock_price_history.copy()
+        invalid = history.iloc[[-1]].copy()
+        invalid.index = invalid.index + pd.Timedelta(days=1)
+        invalid.loc[:, ["High", "Low", "Close"]] = float("nan")
+        provider_history = pd.concat([history, invalid])
+        fetcher.alpaca_fetcher.fetch_price_history = Mock(return_value=provider_history)
+
+        result = fetcher.fetch_price_history("AAPL", period="5y")
+
+        pd.testing.assert_frame_equal(result, history)
+
+    def test_fetch_price_history_rejects_all_invalid_ohlc_rows(
+        self, fetcher, mock_price_history
+    ):
+        provider_history = mock_price_history.copy()
+        provider_history.loc[:, ["High", "Low", "Close"]] = float("nan")
+        fetcher.alpaca_fetcher.fetch_price_history = Mock(return_value=provider_history)
+
+        result = fetcher.fetch_price_history("AAPL", period="5y")
+
+        assert result.empty
+
     def test_fetch_price_history_retries_transient_error(self, fetcher, mock_price_history):
         """Test transient history failures retry until a request succeeds."""
         with patch('yfinance.Ticker') as mock_ticker, patch('src.data.fetcher.time.sleep'):
