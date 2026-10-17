@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0",
   "status": "ok",
-  "timestamp": "2026-10-10T17:17:15.681651",
+  "timestamp": "2026-10-17T00:04:32.052090",
   "error": null,
   "spy_analysis": {
     "ticker": "SPY",
@@ -9,26 +9,26 @@
     "phase_name": "Uptrend/Breakout",
     "trend": "Bullish",
     "confidence": 85,
-    "sma_50": 766.28,
-    "sma_200": 719.66,
-    "slope_50": 0.0624,
-    "slope_200": 0.065,
-    "current_price": 778.5700073242188,
+    "sma_50": 767.47,
+    "sma_200": 721.47,
+    "slope_50": 0.0731,
+    "slope_200": 0.0664,
+    "current_price": 771.7899780273438,
     "reasons": [
-      "Price (778.57) above 50 SMA (766.28)",
+      "Price (771.79) above 50 SMA (767.47)",
       "50 SMA above 200 SMA (Golden Cross)",
-      "50 SMA rising (slope: 0.062%)",
-      "200 SMA also rising (slope: 0.065%)"
+      "50 SMA rising (slope: 0.073%)",
+      "200 SMA also rising (slope: 0.066%)"
     ]
   },
   "breadth": {
     "total_stocks": 27,
-    "phase_1_count": 12,
-    "phase_2_count": 10,
+    "phase_1_count": 13,
+    "phase_2_count": 9,
     "phase_3_count": 0,
     "phase_4_count": 5,
-    "phase_1_pct": 44.4,
-    "phase_2_pct": 37.0,
+    "phase_1_pct": 48.1,
+    "phase_2_pct": 33.3,
     "phase_3_pct": 0.0,
     "phase_4_pct": 18.5,
     "breadth_quality": "Good"
@@ -38,49 +38,49 @@
     "should_generate_sells": true,
     "regime": "RISK-ON (Moderate)",
     "reasons": [
-      "Market breadth adequate (37.0% in Phase 2)"
+      "Market breadth adequate (33.3% in Phase 2)"
     ],
-    "phase_2_pct": 37.0,
+    "phase_2_pct": 33.3,
     "spy_phase": 2
   },
   "buys": [
     {
-      "ticker": "AMD",
+      "ticker": "CVX",
       "is_buy": true,
-      "score": 112.0,
+      "score": 109.2,
       "phase": 2,
       "minervini_template_score": 100,
       "minervini_criteria_passed": 8,
       "breakout_price": null,
-      "stop_loss": 589.86,
-      "risk_reward_ratio": 10.0,
+      "stop_loss": 204.05,
+      "risk_reward_ratio": 4.31,
       "entry_quality": "Good",
       "reasons": [
-        "Strong Stage 2: 15.0% above 50 SMA",
-        "SMAs rising strongly (50:0.357, 200:0.542)",
-        "\ud83d\udfe2 Revenue: 3Q avg 7.8% QoQ (11.1% \u2192 -0.2% \u2192 12.5%)",
-        "\ud83d\udfe2 EPS: +156% YoY (strong earnings)",
-        "\u26a0 Inventory building (5.3% QoQ)",
-        "\u2713 Volume heavier on up days (24.2M vs 17.4M, ratio 1.40)",
-        "\u2713 Strong RS: 0.925 (outperforming SPY)",
-        "\ud83d\udfe2 Outstanding R/R: 10.0:1 ($182.43 upside, $18.24 risk)",
-        "\ud83d\udfe2 Near 52W high: 7.7% from high"
+        "Good Stage 2: 6.4% above 50 SMA",
+        "SMAs rising strongly (50:0.196, 200:0.170)",
+        "\ud83d\udfe2 Revenue: 3Q avg 13.4% QoQ (-4.9% \u2192 3.9% \u2192 41.3%)",
+        "\ud83d\udfe2 EPS: +321% YoY (strong earnings)",
+        "Inventory neutral (-0.3% QoQ)",
+        "Volume slightly heavier on up days (ratio 1.11)",
+        "\u2713 Strong RS: 0.293 (outperforming SPY)",
+        "\ud83d\udfe2 Excellent R/R: 4.3:1 ($65.80 upside, $15.27 risk)",
+        "\ud83d\udfe2 At 52W high: 1.9% from high (pivot zone)"
       ],
       "details": {
-        "trend_score": 30,
-        "fundamental_score": 44.081469761191876,
-        "avg_vol_up": 24245900.0,
-        "avg_vol_down": 17365300.0,
-        "volume_score": 8.962269583594871,
-        "rs_slope": 0.925,
-        "rs_score": 10,
-        "stop_loss": 589.8569763183593,
-        "risk_reward_ratio": 10.0,
-        "risk_amount": 18.24,
-        "reward_amount": 182.43,
-        "reward_target": 790.53,
+        "trend_score": 23.565833333333334,
+        "fundamental_score": 50,
+        "avg_vol_up": 7884750.0,
+        "avg_vol_down": 7100200.0,
+        "volume_score": 6.104968874116221,
+        "rs_slope": 0.293,
+        "rs_score": 9.89,
+        "stop_loss": 204.0489,
+        "risk_reward_ratio": 4.31,
+        "risk_amount": 15.27,
+        "reward_amount": 65.8,
+        "reward_target": 285.12,
         "rr_score": 15,
-        "entry_score": 3.99,
+        "entry_score": 4.68,
         "vcp_bonus": 0,
         "minervini_template": {
           "passes_template": true,
@@ -94,9 +94,9 @@
             "sma_50_above_150": true,
             "price_above_50": true,
             "price_30pct_above_52w_low": true,
-            "distance_from_52w_low_pct": 223.1,
+            "distance_from_52w_low_pct": 53.9,
             "price_near_52w_high": true,
-            "distance_from_52w_high_pct": 7.7,
+            "distance_from_52w_high_pct": 1.9,
             "confirmed_stage_2": true
           }
         }
@@ -106,32 +106,235 @@
         "phase_name": "Uptrend/Breakout",
         "confidence": 85,
         "reasons": [
-          "Price (608.10) above 50 SMA (528.92)",
+          "Price (219.32) above 50 SMA (206.11)",
           "50 SMA above 200 SMA (Golden Cross)",
-          "50 SMA rising (slope: 0.357%)",
-          "200 SMA also rising (slope: 0.542%)"
+          "50 SMA rising (slope: 0.196%)",
+          "200 SMA also rising (slope: 0.170%)"
         ],
-        "sma_50": 528.92,
-        "sma_150": 441.22,
-        "sma_200": 385.32,
-        "slope_50": 0.3566,
-        "slope_200": 0.5421,
-        "distance_from_50sma": 14.97,
-        "distance_from_200sma": 57.82,
+        "sma_50": 206.11,
+        "sma_150": 192.41,
+        "sma_200": 187.18,
+        "slope_50": 0.1959,
+        "slope_200": 0.1696,
+        "distance_from_50sma": 6.41,
+        "distance_from_200sma": 17.17,
+        "week_52_high": 223.46,
+        "week_52_low": 142.51,
+        "volatility_contraction": {
+          "is_contracting": false,
+          "contraction_quality": 8.79,
+          "current_volatility": 5.63,
+          "contraction_ratio": 0.91
+        }
+      },
+      "fundamental_snapshot": "\n============================================================\nFUNDAMENTAL SNAPSHOT - CVX\n============================================================\n\u2713 Revenue: ACCELERATING strongly (YoY: +51.4%, QoQ: +41.3%)\n  QoQ Trend (last 4Q): +8.5% \u2192 -4.9% \u2192 +3.9% \u2192 +41.3%\n\u2713 EPS: STRONG growth (YoY: +321.4%, QoQ: +450.5%)\n  QoQ Trend (last 4Q): +25.5% \u2192 -23.6% \u2192 -20.1% \u2192 +450.5%\n\u2713 Margins: EXPANDING (36.5%, +8.1pp QoQ)\n\u2022 Inventory: Slight draw (-0.3% QoQ, ratio: 0.16)\n  Note: Detailed breakdown (raw/WIP/finished) not available via API\n\nOverall Assessment:\n\u2713 Fundamentals SUPPORT technical breakout\n",
+      "risk_assessment": {
+        "status": "REJECT",
+        "reasons": [
+          "\u5165\u573a\u5230ATR\u6b62\u635f\u8ddd\u79bb\u8fc7\u5bbd\uff083.51x ATR > 3.0x ATR\uff09"
+        ],
+        "risk": {},
+        "sizing": {}
+      },
+      "risk_grade": "RX",
+      "risk_status": "REJECT",
+      "risk_reasons": [
+        "\u5165\u573a\u5230ATR\u6b62\u635f\u8ddd\u79bb\u8fc7\u5bbd\uff083.51x ATR > 3.0x ATR\uff09"
+      ],
+      "sizing_guidance": {},
+      "qualified": false,
+      "entry_price": 219.32000732421875
+    },
+    {
+      "ticker": "XOM",
+      "is_buy": true,
+      "score": 106.4,
+      "phase": 2,
+      "minervini_template_score": 100,
+      "minervini_criteria_passed": 8,
+      "breakout_price": null,
+      "stop_loss": 161.43,
+      "risk_reward_ratio": 3.95,
+      "entry_quality": "Good",
+      "reasons": [
+        "Good Stage 2: 7.1% above 50 SMA",
+        "SMAs rising strongly (50:0.171, 200:0.168)",
+        "\ud83d\udfe2 Revenue: 3Q avg 12.6% QoQ (-4.0% \u2192 3.9% \u2192 37.7%)",
+        "\ud83d\udfe2 EPS: +112% YoY (strong earnings)",
+        "Inventory neutral (2.4% QoQ)",
+        "Volume pattern neutral (ratio 0.93)",
+        "\u2713 Strong RS: 0.424 (outperforming SPY)",
+        "\ud83d\udfe2 Good R/R: 4.0:1 ($52.40 upside)",
+        "\ud83d\udfe2 At 52W high: 2.2% from high (pivot zone)"
+      ],
+      "details": {
+        "trend_score": 23.844166666666666,
+        "fundamental_score": 48.825,
+        "avg_vol_up": 10494675.0,
+        "avg_vol_down": 11227700.0,
+        "volume_score": 4.347128085004053,
+        "rs_slope": 0.424,
+        "rs_score": 10,
+        "stop_loss": 161.4294,
+        "risk_reward_ratio": 3.95,
+        "risk_amount": 13.25,
+        "reward_amount": 52.4,
+        "reward_target": 227.08,
+        "rr_score": 14.73,
+        "entry_score": 4.64,
+        "vcp_bonus": 0,
+        "minervini_template": {
+          "passes_template": true,
+          "criteria_passed": 8,
+          "criteria_total": 8,
+          "template_score": 100,
+          "criteria_details": {
+            "price_above_150_200": true,
+            "sma_150_above_200": true,
+            "sma_200_rising": true,
+            "sma_50_above_150": true,
+            "price_above_50": true,
+            "price_30pct_above_52w_low": true,
+            "distance_from_52w_low_pct": 62.8,
+            "price_near_52w_high": true,
+            "distance_from_52w_high_pct": 2.2,
+            "confirmed_stage_2": true
+          }
+        }
+      },
+      "phase_info": {
+        "phase": 2,
+        "phase_name": "Uptrend/Breakout",
+        "confidence": 85,
+        "reasons": [
+          "Price (174.68) above 50 SMA (163.06)",
+          "50 SMA above 200 SMA (Golden Cross)",
+          "50 SMA rising (slope: 0.171%)",
+          "200 SMA also rising (slope: 0.168%)"
+        ],
+        "sma_50": 163.06,
+        "sma_150": 154.05,
+        "sma_200": 150.08,
+        "slope_50": 0.1711,
+        "slope_200": 0.1676,
+        "distance_from_50sma": 7.12,
+        "distance_from_200sma": 16.39,
+        "week_52_high": 178.69,
+        "week_52_low": 107.28,
+        "volatility_contraction": {
+          "is_contracting": false,
+          "contraction_quality": 0,
+          "current_volatility": 5.4,
+          "contraction_ratio": 1.36
+        }
+      },
+      "fundamental_snapshot": "\n============================================================\nFUNDAMENTAL SNAPSHOT - XOM\n============================================================\n\u2713 Revenue: ACCELERATING strongly (YoY: +44.1%, QoQ: +37.7%)\n  QoQ Trend (last 4Q): +4.8% \u2192 -4.0% \u2192 +3.9% \u2192 +37.7%\n\u2713 EPS: STRONG growth (YoY: +112.2%, QoQ: +248.0%)\n  QoQ Trend (last 4Q): +7.3% \u2192 -13.1% \u2192 -34.6% \u2192 +248.0%\n\u2713 Margins: EXPANDING (22.5%, +5.8pp QoQ)\n\u2022 Inventory: Slight increase (+2.4% QoQ, ratio: 0.22)\n  Note: Detailed breakdown (raw/WIP/finished) not available via API\n\nOverall Assessment:\n\u2713 Fundamentals SUPPORT technical breakout\n",
+      "risk_assessment": {
+        "status": "REJECT",
+        "reasons": [
+          "\u98ce\u9669\u56de\u62a5\u4e0d\u8db3\uff08R/R=2.42\uff0c\u4f4e\u4e8e2.5\uff09"
+        ],
+        "risk": {},
+        "sizing": {}
+      },
+      "risk_grade": "RX",
+      "risk_status": "REJECT",
+      "risk_reasons": [
+        "\u98ce\u9669\u56de\u62a5\u4e0d\u8db3\uff08R/R=2.42\uff0c\u4f4e\u4e8e2.5\uff09"
+      ],
+      "sizing_guidance": {},
+      "qualified": false,
+      "entry_price": 174.67999267578125
+    },
+    {
+      "ticker": "AMD",
+      "is_buy": true,
+      "score": 97.7,
+      "phase": 2,
+      "minervini_template_score": 100,
+      "minervini_criteria_passed": 8,
+      "breakout_price": null,
+      "stop_loss": 530.99,
+      "risk_reward_ratio": 5.4,
+      "entry_quality": "Good",
+      "reasons": [
+        "Good Stage 2: 4.8% above 50 SMA",
+        "SMAs rising strongly (50:0.439, 200:0.543)",
+        "\ud83d\udfe2 Revenue: 3Q avg 7.8% QoQ (11.1% \u2192 -0.2% \u2192 12.5%)",
+        "\ud83d\udfe2 EPS: +156% YoY (strong earnings)",
+        "\u26a0 Inventory building (5.3% QoQ)",
+        "\u26a0 Volume heavier on down days (ratio 0.89 - distribution)",
+        "\u26a0 Declining RS: -0.190 (underperforming SPY)",
+        "\ud83d\udfe2 Outstanding R/R: 5.4:1 ($168.67 upside, $31.24 risk)",
+        "\ud83d\udfe2 Near 52W high: 14.6% from high"
+      ],
+      "details": {
+        "trend_score": 29.015,
+        "fundamental_score": 44.081469761191876,
+        "avg_vol_up": 17932700.0,
+        "avg_vol_down": 20066825.0,
+        "volume_score": 3.9364909496146003,
+        "rs_slope": -0.19,
+        "rs_score": 1.83,
+        "stop_loss": 530.9865,
+        "risk_reward_ratio": 5.4,
+        "risk_amount": 31.24,
+        "reward_amount": 168.67,
+        "reward_target": 730.9,
+        "rr_score": 15,
+        "entry_score": 3.8,
+        "vcp_bonus": 0,
+        "minervini_template": {
+          "passes_template": true,
+          "criteria_passed": 8,
+          "criteria_total": 8,
+          "template_score": 100,
+          "criteria_details": {
+            "price_above_150_200": true,
+            "sma_150_above_200": true,
+            "sma_200_rising": true,
+            "sma_50_above_150": true,
+            "price_above_50": true,
+            "price_30pct_above_52w_low": true,
+            "distance_from_52w_low_pct": 198.7,
+            "price_near_52w_high": true,
+            "distance_from_52w_high_pct": 14.6,
+            "confirmed_stage_2": true
+          }
+        }
+      },
+      "phase_info": {
+        "phase": 2,
+        "phase_name": "Uptrend/Breakout",
+        "confidence": 100,
+        "reasons": [
+          "Price (562.23) above 50 SMA (536.35)",
+          "50 SMA above 200 SMA (Golden Cross)",
+          "50 SMA rising (slope: 0.439%)",
+          "200 SMA also rising (slope: 0.543%)",
+          "Volume expansion (1.3x average)"
+        ],
+        "sma_50": 536.35,
+        "sma_150": 451.39,
+        "sma_200": 392.68,
+        "slope_50": 0.4391,
+        "slope_200": 0.5433,
+        "distance_from_50sma": 4.83,
+        "distance_from_200sma": 43.18,
         "week_52_high": 658.52,
         "week_52_low": 188.22,
         "volatility_contraction": {
           "is_contracting": false,
           "contraction_quality": 0,
-          "current_volatility": 47.72,
-          "contraction_ratio": 2.43
+          "current_volatility": 24.72,
+          "contraction_ratio": 1.35
         }
       },
       "fundamental_snapshot": "\n============================================================\nFUNDAMENTAL SNAPSHOT - AMD\n============================================================\n\u2713 Revenue: ACCELERATING strongly (YoY: +50.1%, QoQ: +12.5%)\n  QoQ Trend (last 4Q): +20.3% \u2192 +11.1% \u2192 -0.2% \u2192 +12.5%\n\u2713 EPS: STRONG growth (YoY: +155.6%, QoQ: +64.3%)\n  QoQ Trend (last 4Q): +38.9% \u2192 +22.7% \u2192 -8.7% \u2192 +64.3%\n\u2022 Margins: Stable/slightly up (53.8%, +0.9pp QoQ)\n\u2022 Inventory: Moderate build (+5.3% QoQ, ratio: 0.73)\n  Note: Detailed breakdown (raw/WIP/finished) not available via API\n\nOverall Assessment:\n\u2713 Fundamentals SUPPORT technical breakout\n",
       "risk_assessment": {
         "status": "REJECT",
         "reasons": [
-          "\u5165\u573a\u5230ATR\u6b62\u635f\u8ddd\u79bb\u4e0d\u8db3\uff080.82x ATR < 1.5x ATR\uff09"
+          "\u5165\u573a\u5230ATR\u6b62\u635f\u8ddd\u79bb\u4e0d\u8db3\uff081.19x ATR < 1.5x ATR\uff09"
         ],
         "risk": {},
         "sizing": {}
@@ -139,299 +342,49 @@
       "risk_grade": "RX",
       "risk_status": "REJECT",
       "risk_reasons": [
-        "\u5165\u573a\u5230ATR\u6b62\u635f\u8ddd\u79bb\u4e0d\u8db3\uff080.82x ATR < 1.5x ATR\uff09"
+        "\u5165\u573a\u5230ATR\u6b62\u635f\u8ddd\u79bb\u4e0d\u8db3\uff081.19x ATR < 1.5x ATR\uff09"
       ],
       "sizing_guidance": {},
       "qualified": false,
-      "entry_price": 608.0999755859375
+      "entry_price": 562.22998046875
     },
     {
-      "ticker": "AMZN",
+      "ticker": "ABBV",
       "is_buy": true,
-      "score": 103.1,
-      "phase": 2,
-      "minervini_template_score": 100,
-      "minervini_criteria_passed": 8,
-      "breakout_price": 259.1,
-      "stop_loss": 254.56,
-      "risk_reward_ratio": 10.0,
-      "entry_quality": "Good",
-      "reasons": [
-        "Weak Stage 2: 1.3% above 50 SMA",
-        "SMAs rising strongly (50:0.057, 200:0.047)",
-        "\ud83d\udfe1 50 SMA Breakout (low volume)",
-        "\ud83d\udd34 Revenue: 3Q avg nan% QoQ (18.4% \u2192 -14.9% \u2192 nan%)",
-        "\ud83d\udfe2 EPS: +242% YoY (strong earnings)",
-        "Inventory neutral (-4.7% QoQ)",
-        "\u26a0 Volume heavier on down days (ratio 0.90 - distribution)",
-        "Neutral RS: -0.011",
-        "\ud83d\udfe2 Outstanding R/R: 10.0:1 ($78.73 upside, $7.87 risk)",
-        "\ud83d\udfe2 Near 52W high: 8.6% from high"
-      ],
-      "details": {
-        "breakout": {
-          "is_breakout": true,
-          "breakout_level": 259.1,
-          "breakout_type": "50 SMA Breakout",
-          "volume_confirmed": false,
-          "volume_ratio": 0.95
-        },
-        "trend_score": 24.74,
-        "fundamental_score": 50,
-        "avg_vol_up": 35019033.0,
-        "avg_vol_down": 38961900.0,
-        "volume_score": 3.9880199203153177,
-        "rs_slope": -0.011,
-        "rs_score": 4.81,
-        "stop_loss": 254.5570928955078,
-        "risk_reward_ratio": 10.0,
-        "risk_amount": 7.87,
-        "reward_amount": 78.73,
-        "reward_target": 341.16,
-        "rr_score": 15,
-        "entry_score": 4.57,
-        "vcp_bonus": 0,
-        "minervini_template": {
-          "passes_template": true,
-          "criteria_passed": 8,
-          "criteria_total": 8,
-          "template_score": 100,
-          "criteria_details": {
-            "price_above_150_200": true,
-            "sma_150_above_200": true,
-            "sma_200_rising": true,
-            "sma_50_above_150": true,
-            "price_above_50": true,
-            "price_30pct_above_52w_low": true,
-            "distance_from_52w_low_pct": 33.9,
-            "price_near_52w_high": true,
-            "distance_from_52w_high_pct": 8.6,
-            "confirmed_stage_2": true
-          }
-        }
-      },
-      "phase_info": {
-        "phase": 2,
-        "phase_name": "Uptrend/Breakout",
-        "confidence": 85,
-        "reasons": [
-          "Price (262.43) above 50 SMA (259.10)",
-          "50 SMA above 200 SMA (Golden Cross)",
-          "50 SMA rising (slope: 0.057%)",
-          "200 SMA also rising (slope: 0.047%)"
-        ],
-        "sma_50": 259.1,
-        "sma_150": 247.74,
-        "sma_200": 242.15,
-        "slope_50": 0.0567,
-        "slope_200": 0.047,
-        "distance_from_50sma": 1.29,
-        "distance_from_200sma": 8.37,
-        "week_52_high": 287.2,
-        "week_52_low": 196.0,
-        "volatility_contraction": {
-          "is_contracting": true,
-          "contraction_quality": 57.05,
-          "current_volatility": 4.62,
-          "contraction_ratio": 0.43
-        }
-      },
-      "fundamental_snapshot": "\n============================================================\nFUNDAMENTAL SNAPSHOT - AMZN\n============================================================\n\u2022 Revenue: Data not available\n  QoQ Trend (last 4Q): +7.4% \u2192 +18.4% \u2192 -14.9% \u2192 N/A\n\u2713 EPS: STRONG growth (YoY: +242.3%, QoQ: +106.8%)\n  QoQ Trend (last 4Q): +16.1% \u2192 +0.0% \u2192 +42.6% \u2192 +106.8%\n\u2717 Margins: CONTRACTING (nan%, nanpp QoQ)\n\u2022 Inventory: Slight draw (-4.7% QoQ, ratio: nan)\n  Note: Detailed breakdown (raw/WIP/finished) not available via API\n\nOverall Assessment:\n\u2713 Fundamentals SUPPORT technical breakout\n",
-      "risk_assessment": {
-        "status": "REJECT",
-        "reasons": [
-          "\u5165\u573a\u5230ATR\u6b62\u635f\u8ddd\u79bb\u4e0d\u8db3\uff081.40x ATR < 1.5x ATR\uff09"
-        ],
-        "risk": {},
-        "sizing": {}
-      },
-      "risk_grade": "RX",
-      "risk_status": "REJECT",
-      "risk_reasons": [
-        "\u5165\u573a\u5230ATR\u6b62\u635f\u8ddd\u79bb\u4e0d\u8db3\uff081.40x ATR < 1.5x ATR\uff09"
-      ],
-      "sizing_guidance": {},
-      "qualified": false,
-      "entry_price": 262.42999267578125
-    },
-    {
-      "ticker": "XOM",
-      "is_buy": true,
-      "score": 98.6,
+      "score": 94.6,
       "phase": 2,
       "minervini_template_score": 100,
       "minervini_criteria_passed": 8,
       "breakout_price": null,
-      "stop_loss": 159.74,
-      "risk_reward_ratio": 5.51,
+      "stop_loss": 257.46,
+      "risk_reward_ratio": 3.28,
       "entry_quality": "Good",
       "reasons": [
-        "Good Stage 2: 4.7% above 50 SMA",
-        "SMAs rising strongly (50:0.193, 200:0.163)",
-        "\ud83d\udfe2 Revenue: 3Q avg 12.6% QoQ (-4.0% \u2192 3.9% \u2192 37.7%)",
-        "\ud83d\udfe2 EPS: +112% YoY (strong earnings)",
-        "Inventory neutral (2.4% QoQ)",
-        "Volume pattern neutral (ratio 0.93)",
-        "Weak RS: -0.045",
-        "\ud83d\udfe2 Outstanding R/R: 5.5:1 ($50.68 upside, $9.20 risk)",
-        "\ud83d\udfe2 At 52W high: 3.0% from high (pivot zone)"
-      ],
-      "details": {
-        "trend_score": 21.497500000000002,
-        "fundamental_score": 48.825,
-        "avg_vol_up": 10219033.0,
-        "avg_vol_down": 10995850.0,
-        "volume_score": 4.293536500892003,
-        "rs_slope": -0.045,
-        "rs_score": 4.25,
-        "stop_loss": 159.7365,
-        "risk_reward_ratio": 5.51,
-        "risk_amount": 9.2,
-        "reward_amount": 50.68,
-        "reward_target": 219.62,
-        "rr_score": 15,
-        "entry_score": 4.76,
-        "vcp_bonus": 0,
-        "minervini_template": {
-          "passes_template": true,
-          "criteria_passed": 8,
-          "criteria_total": 8,
-          "template_score": 100,
-          "criteria_details": {
-            "price_above_150_200": true,
-            "sma_150_above_200": true,
-            "sma_200_rising": true,
-            "sma_50_above_150": true,
-            "price_above_50": true,
-            "price_30pct_above_52w_low": true,
-            "distance_from_52w_low_pct": 57.5,
-            "price_near_52w_high": true,
-            "distance_from_52w_high_pct": 3.0,
-            "confirmed_stage_2": true
-          }
-        }
-      },
-      "phase_info": {
-        "phase": 2,
-        "phase_name": "Uptrend/Breakout",
-        "confidence": 85,
-        "reasons": [
-          "Price (168.94) above 50 SMA (161.35)",
-          "50 SMA above 200 SMA (Golden Cross)",
-          "50 SMA rising (slope: 0.193%)",
-          "200 SMA also rising (slope: 0.163%)"
-        ],
-        "sma_50": 161.35,
-        "sma_150": 153.36,
-        "sma_200": 148.94,
-        "slope_50": 0.1932,
-        "slope_200": 0.1626,
-        "distance_from_50sma": 4.71,
-        "distance_from_200sma": 13.43,
-        "week_52_high": 174.09,
-        "week_52_low": 107.28,
-        "volatility_contraction": {
-          "is_contracting": false,
-          "contraction_quality": 26.38,
-          "current_volatility": 2.94,
-          "contraction_ratio": 0.74
-        }
-      },
-      "fundamental_snapshot": "\n============================================================\nFUNDAMENTAL SNAPSHOT - XOM\n============================================================\n\u2713 Revenue: ACCELERATING strongly (YoY: +44.1%, QoQ: +37.7%)\n  QoQ Trend (last 4Q): +4.8% \u2192 -4.0% \u2192 +3.9% \u2192 +37.7%\n\u2713 EPS: STRONG growth (YoY: +112.2%, QoQ: +248.0%)\n  QoQ Trend (last 4Q): +7.3% \u2192 -13.1% \u2192 -34.6% \u2192 +248.0%\n\u2713 Margins: EXPANDING (22.5%, +5.8pp QoQ)\n\u2022 Inventory: Slight increase (+2.4% QoQ, ratio: 0.22)\n  Note: Detailed breakdown (raw/WIP/finished) not available via API\n\nOverall Assessment:\n\u2713 Fundamentals SUPPORT technical breakout\n",
-      "risk_assessment": {
-        "status": "PASS",
-        "reasons": [
-          "ATR\u6b62\u635f\u8ddd\u79bb\uff1a2.77x ATR",
-          "\u5165\u573a\u5230ATR\u6b62\u635f\u8ddd\u79bb\uff1a5.45%",
-          "\u76ee\u6807RR\uff1a2.90:1",
-          "\u98ce\u9669\u7b49\u7ea7\uff08\u4ee5S&P 500\u6307\u6570\u98ce\u9669\u4f5c\u4e3a\u6807\u51c6\uff09\uff1aR5"
-        ],
-        "risk": {
-          "entry_price": 168.94,
-          "latest_price": 168.94,
-          "stop_loss": 159.74,
-          "stop_distance": 9.2,
-          "stop_distance_pct": 0.0545,
-          "stop_distance_atr_multiple": 2.7687,
-          "atr": 3.3229,
-          "max_stop_pct": 0.08,
-          "median_20d_dollar_volume": 2036265092.65,
-          "swing_target_1_4m": 195.66,
-          "risk_reward_ratio": 2.9043,
-          "spy_risk_ratio": 2.4451,
-          "stock_atr_risk_pct": 0.0393,
-          "spy_atr_risk_pct": 0.0161,
-          "spy_risk_grade": "R5",
-          "risk_budget_per_trade_pct": 0.1875,
-          "default_capital": 10000.0,
-          "risk_budget_dollars": 18.75,
-          "max_shares": 2,
-          "benchmark_regime": "RISK-ON (Moderate)",
-          "status": "PASS"
-        },
-        "sizing": {
-          "risk_grade": "\u4ea4\u6613\u8bbe\u7f6e\u98ce\u9669\u7b49\u7ea7",
-          "risk_grade_basis": "\u57fa\u4e8e\u4e2a\u80a1\u4e0e S&P 500 \u6307\u6570\uff08SPY \u4ee3\u7406\uff09\u7684\u7b49\u5468\u671fATR\u767e\u5206\u6bd4\u5bf9\u6bd4\uff1b\u4ec5\u4e3a\u98ce\u9669\u8bc4\u5206\u6807\u51c6\uff0c\u4e0d\u6784\u6210\u5b98\u65b9\u8bc4\u7ea7\u3002",
-          "risk_basis_symbolic": "\u6bcf\u7b14\u6700\u5927\u53ef\u627f\u62c5\u98ce\u9669\u989d = C \u00d7 (0.19%)",
-          "max_shares_symbolic": "\u6bcf\u80a1\u98ce\u9669 = (Entry - Stop); \u6700\u5927\u53ef\u4e70\u80a1\u6570\u4e0a\u9650 = floor((C \u00d7 0.19%) / (Entry - Stop))",
-          "notional_cap_symbolic": "\u5355\u6807\u7684\u5efa\u4ed3\u540d\u4e49\u89c4\u6a21\u5efa\u8bae \u2264 min(10.00%, 10.00%)"
-        }
-      },
-      "risk_grade": "R5",
-      "risk_status": "PASS",
-      "risk_reasons": [
-        "ATR\u6b62\u635f\u8ddd\u79bb\uff1a2.77x ATR",
-        "\u5165\u573a\u5230ATR\u6b62\u635f\u8ddd\u79bb\uff1a5.45%",
-        "\u76ee\u6807RR\uff1a2.90:1",
-        "\u98ce\u9669\u7b49\u7ea7\uff08\u4ee5S&P 500\u6307\u6570\u98ce\u9669\u4f5c\u4e3a\u6807\u51c6\uff09\uff1aR5"
-      ],
-      "sizing_guidance": {
-        "risk_grade": "\u4ea4\u6613\u8bbe\u7f6e\u98ce\u9669\u7b49\u7ea7",
-        "risk_grade_basis": "\u57fa\u4e8e\u4e2a\u80a1\u4e0e S&P 500 \u6307\u6570\uff08SPY \u4ee3\u7406\uff09\u7684\u7b49\u5468\u671fATR\u767e\u5206\u6bd4\u5bf9\u6bd4\uff1b\u4ec5\u4e3a\u98ce\u9669\u8bc4\u5206\u6807\u51c6\uff0c\u4e0d\u6784\u6210\u5b98\u65b9\u8bc4\u7ea7\u3002",
-        "risk_basis_symbolic": "\u6bcf\u7b14\u6700\u5927\u53ef\u627f\u62c5\u98ce\u9669\u989d = C \u00d7 (0.19%)",
-        "max_shares_symbolic": "\u6bcf\u80a1\u98ce\u9669 = (Entry - Stop); \u6700\u5927\u53ef\u4e70\u80a1\u6570\u4e0a\u9650 = floor((C \u00d7 0.19%) / (Entry - Stop))",
-        "notional_cap_symbolic": "\u5355\u6807\u7684\u5efa\u4ed3\u540d\u4e49\u89c4\u6a21\u5efa\u8bae \u2264 min(10.00%, 10.00%)"
-      },
-      "qualified": true,
-      "entry_price": 168.94000244140625
-    },
-    {
-      "ticker": "CVX",
-      "is_buy": true,
-      "score": 98.0,
-      "phase": 2,
-      "minervini_template_score": 100,
-      "minervini_criteria_passed": 8,
-      "breakout_price": null,
-      "stop_loss": 201.79,
-      "risk_reward_ratio": 6.24,
-      "entry_quality": "Good",
-      "reasons": [
-        "Good Stage 2: 4.0% above 50 SMA",
-        "SMAs rising strongly (50:0.223, 200:0.165)",
-        "\ud83d\udfe2 Revenue: 3Q avg 13.4% QoQ (-4.9% \u2192 3.9% \u2192 41.3%)",
-        "\ud83d\udfe2 EPS: +321% YoY (strong earnings)",
-        "Inventory neutral (-0.3% QoQ)",
-        "Volume pattern neutral (ratio 1.06)",
-        "\u26a0 Declining RS: -0.217 (underperforming SPY)",
-        "\ud83d\udfe2 Outstanding R/R: 6.2:1 ($63.59 upside, $10.19 risk)",
+        "Good Stage 2: 9.0% above 50 SMA",
+        "SMAs rising strongly (50:0.105, 200:0.103)",
+        "\ud83d\udfe1 Revenue: 3Q avg 3.0% QoQ (5.3% \u2192 -9.7% \u2192 13.3%)",
+        "\ud83d\udfe2 EPS: +290% YoY (strong earnings)",
+        "Inventory neutral (1.5% QoQ)",
+        "Volume pattern neutral (ratio 0.90)",
+        "\u2713 Strong RS: 0.308 (outperforming SPY)",
+        "\ud83d\udfe2 Good R/R: 3.3:1 ($85.02 upside)",
         "\ud83d\udfe2 At 52W high: 2.7% from high (pivot zone)"
       ],
       "details": {
-        "trend_score": 21.199166666666667,
-        "fundamental_score": 50,
-        "avg_vol_up": 6462800.0,
-        "avg_vol_down": 6089050.0,
-        "volume_score": 5.6138067514636925,
-        "rs_slope": -0.217,
-        "rs_score": 1.38,
-        "stop_loss": 201.79170000000002,
-        "risk_reward_ratio": 6.24,
-        "risk_amount": 10.19,
-        "reward_amount": 63.59,
-        "reward_target": 275.57,
-        "rr_score": 15,
-        "entry_score": 4.8,
+        "trend_score": 26.729166666666664,
+        "fundamental_score": 38.66219615952839,
+        "avg_vol_up": 5783925.0,
+        "avg_vol_down": 6408500.0,
+        "volume_score": 4.025395958492627,
+        "rs_slope": 0.308,
+        "rs_score": 10,
+        "stop_loss": 257.4594,
+        "risk_reward_ratio": 3.28,
+        "risk_amount": 25.94,
+        "reward_amount": 85.02,
+        "reward_target": 368.42,
+        "rr_score": 10.66,
+        "entry_score": 4.55,
         "vcp_bonus": 0,
         "minervini_template": {
           "passes_template": true,
@@ -445,7 +398,7 @@
             "sma_50_above_150": true,
             "price_above_50": true,
             "price_30pct_above_52w_low": true,
-            "distance_from_52w_low_pct": 48.7,
+            "distance_from_52w_low_pct": 50.5,
             "price_near_52w_high": true,
             "distance_from_52w_high_pct": 2.7,
             "confirmed_stage_2": true
@@ -455,175 +408,35 @@
       "phase_info": {
         "phase": 2,
         "phase_name": "Uptrend/Breakout",
-        "confidence": 85,
+        "confidence": 100,
         "reasons": [
-          "Price (211.98) above 50 SMA (203.83)",
+          "Price (283.40) above 50 SMA (260.06)",
           "50 SMA above 200 SMA (Golden Cross)",
-          "50 SMA rising (slope: 0.223%)",
-          "200 SMA also rising (slope: 0.165%)"
+          "50 SMA rising (slope: 0.105%)",
+          "200 SMA also rising (slope: 0.103%)",
+          "Volume expansion (1.5x average)"
         ],
-        "sma_50": 203.83,
-        "sma_150": 191.59,
-        "sma_200": 185.74,
-        "slope_50": 0.2231,
-        "slope_200": 0.1654,
-        "distance_from_50sma": 4.0,
-        "distance_from_200sma": 14.13,
-        "week_52_high": 217.78,
-        "week_52_low": 142.51,
-        "volatility_contraction": {
-          "is_contracting": true,
-          "contraction_quality": 36.33,
-          "current_volatility": 3.88,
-          "contraction_ratio": 0.64
-        }
-      },
-      "fundamental_snapshot": "\n============================================================\nFUNDAMENTAL SNAPSHOT - CVX\n============================================================\n\u2713 Revenue: ACCELERATING strongly (YoY: +51.4%, QoQ: +41.3%)\n  QoQ Trend (last 4Q): +8.5% \u2192 -4.9% \u2192 +3.9% \u2192 +41.3%\n\u2713 EPS: STRONG growth (YoY: +321.4%, QoQ: +450.5%)\n  QoQ Trend (last 4Q): +25.5% \u2192 -23.6% \u2192 -20.1% \u2192 +450.5%\n\u2713 Margins: EXPANDING (36.5%, +8.1pp QoQ)\n\u2022 Inventory: Slight draw (-0.3% QoQ, ratio: 0.16)\n  Note: Detailed breakdown (raw/WIP/finished) not available via API\n\nOverall Assessment:\n\u2713 Fundamentals SUPPORT technical breakout\n",
-      "risk_assessment": {
-        "status": "PASS",
-        "reasons": [
-          "ATR\u6b62\u635f\u8ddd\u79bb\uff1a2.51x ATR",
-          "\u5165\u573a\u5230ATR\u6b62\u635f\u8ddd\u79bb\uff1a4.81%",
-          "\u76ee\u6807RR\uff1a4.24:1",
-          "\u98ce\u9669\u7b49\u7ea7\uff08\u4ee5S&P 500\u6307\u6570\u98ce\u9669\u4f5c\u4e3a\u6807\u51c6\uff09\uff1aR5"
-        ],
-        "risk": {
-          "entry_price": 211.98,
-          "latest_price": 211.98,
-          "stop_loss": 201.79,
-          "stop_distance": 10.19,
-          "stop_distance_pct": 0.0481,
-          "stop_distance_atr_multiple": 2.5129,
-          "atr": 4.055,
-          "max_stop_pct": 0.08,
-          "median_20d_dollar_volume": 1587555689.18,
-          "swing_target_1_4m": 255.1842,
-          "risk_reward_ratio": 4.2399,
-          "spy_risk_ratio": 2.378,
-          "stock_atr_risk_pct": 0.0383,
-          "spy_atr_risk_pct": 0.0161,
-          "spy_risk_grade": "R5",
-          "risk_budget_per_trade_pct": 0.1875,
-          "default_capital": 10000.0,
-          "risk_budget_dollars": 18.75,
-          "max_shares": 1,
-          "benchmark_regime": "RISK-ON (Moderate)",
-          "status": "PASS"
-        },
-        "sizing": {
-          "risk_grade": "\u4ea4\u6613\u8bbe\u7f6e\u98ce\u9669\u7b49\u7ea7",
-          "risk_grade_basis": "\u57fa\u4e8e\u4e2a\u80a1\u4e0e S&P 500 \u6307\u6570\uff08SPY \u4ee3\u7406\uff09\u7684\u7b49\u5468\u671fATR\u767e\u5206\u6bd4\u5bf9\u6bd4\uff1b\u4ec5\u4e3a\u98ce\u9669\u8bc4\u5206\u6807\u51c6\uff0c\u4e0d\u6784\u6210\u5b98\u65b9\u8bc4\u7ea7\u3002",
-          "risk_basis_symbolic": "\u6bcf\u7b14\u6700\u5927\u53ef\u627f\u62c5\u98ce\u9669\u989d = C \u00d7 (0.19%)",
-          "max_shares_symbolic": "\u6bcf\u80a1\u98ce\u9669 = (Entry - Stop); \u6700\u5927\u53ef\u4e70\u80a1\u6570\u4e0a\u9650 = floor((C \u00d7 0.19%) / (Entry - Stop))",
-          "notional_cap_symbolic": "\u5355\u6807\u7684\u5efa\u4ed3\u540d\u4e49\u89c4\u6a21\u5efa\u8bae \u2264 min(10.00%, 10.00%)"
-        }
-      },
-      "risk_grade": "R5",
-      "risk_status": "PASS",
-      "risk_reasons": [
-        "ATR\u6b62\u635f\u8ddd\u79bb\uff1a2.51x ATR",
-        "\u5165\u573a\u5230ATR\u6b62\u635f\u8ddd\u79bb\uff1a4.81%",
-        "\u76ee\u6807RR\uff1a4.24:1",
-        "\u98ce\u9669\u7b49\u7ea7\uff08\u4ee5S&P 500\u6307\u6570\u98ce\u9669\u4f5c\u4e3a\u6807\u51c6\uff09\uff1aR5"
-      ],
-      "sizing_guidance": {
-        "risk_grade": "\u4ea4\u6613\u8bbe\u7f6e\u98ce\u9669\u7b49\u7ea7",
-        "risk_grade_basis": "\u57fa\u4e8e\u4e2a\u80a1\u4e0e S&P 500 \u6307\u6570\uff08SPY \u4ee3\u7406\uff09\u7684\u7b49\u5468\u671fATR\u767e\u5206\u6bd4\u5bf9\u6bd4\uff1b\u4ec5\u4e3a\u98ce\u9669\u8bc4\u5206\u6807\u51c6\uff0c\u4e0d\u6784\u6210\u5b98\u65b9\u8bc4\u7ea7\u3002",
-        "risk_basis_symbolic": "\u6bcf\u7b14\u6700\u5927\u53ef\u627f\u62c5\u98ce\u9669\u989d = C \u00d7 (0.19%)",
-        "max_shares_symbolic": "\u6bcf\u80a1\u98ce\u9669 = (Entry - Stop); \u6700\u5927\u53ef\u4e70\u80a1\u6570\u4e0a\u9650 = floor((C \u00d7 0.19%) / (Entry - Stop))",
-        "notional_cap_symbolic": "\u5355\u6807\u7684\u5efa\u4ed3\u540d\u4e49\u89c4\u6a21\u5efa\u8bae \u2264 min(10.00%, 10.00%)"
-      },
-      "qualified": true,
-      "entry_price": 211.97999572753906
-    },
-    {
-      "ticker": "NVDA",
-      "is_buy": true,
-      "score": 97.4,
-      "phase": 2,
-      "minervini_template_score": 100,
-      "minervini_criteria_passed": 8,
-      "breakout_price": null,
-      "stop_loss": 222.4,
-      "risk_reward_ratio": 10.0,
-      "entry_quality": "Good",
-      "reasons": [
-        "Good Stage 2: 3.3% above 50 SMA",
-        "SMAs rising strongly (50:0.215, 200:0.122)",
-        "\ud83d\udfe2 Revenue: 3Q avg 19.1% QoQ (19.5% \u2192 19.8% \u2192 17.9%)",
-        "\ud83d\udfe2 EPS: +128% YoY (strong earnings)",
-        "\u26a0 Inventory building rapidly (22.4% QoQ - demand concern)",
-        "Volume slightly heavier on up days (ratio 1.20)",
-        "\u2713 Strong RS: 0.389 (outperforming SPY)",
-        "\ud83d\udfe2 Outstanding R/R: 10.0:1 ($68.78 upside, $6.88 risk)",
-        "\ud83d\udfe2 Near 52W high: 5.8% from high"
-      ],
-      "details": {
-        "trend_score": 20.606666666666666,
-        "fundamental_score": 40,
-        "avg_vol_up": 114436700.0,
-        "avg_vol_down": 94979933.0,
-        "volume_score": 7.0485134052877125,
-        "rs_slope": 0.389,
-        "rs_score": 10,
-        "stop_loss": 222.40159881591796,
-        "risk_reward_ratio": 10.0,
-        "risk_amount": 6.88,
-        "reward_amount": 68.78,
-        "reward_target": 298.06,
-        "rr_score": 15,
-        "entry_score": 4.76,
-        "vcp_bonus": 0,
-        "minervini_template": {
-          "passes_template": true,
-          "criteria_passed": 8,
-          "criteria_total": 8,
-          "template_score": 100,
-          "criteria_details": {
-            "price_above_150_200": true,
-            "sma_150_above_200": true,
-            "sma_200_rising": true,
-            "sma_50_above_150": true,
-            "price_above_50": true,
-            "price_30pct_above_52w_low": true,
-            "distance_from_52w_low_pct": 39.9,
-            "price_near_52w_high": true,
-            "distance_from_52w_high_pct": 5.8,
-            "confirmed_stage_2": true
-          }
-        }
-      },
-      "phase_info": {
-        "phase": 2,
-        "phase_name": "Uptrend/Breakout",
-        "confidence": 85,
-        "reasons": [
-          "Price (229.28) above 50 SMA (221.94)",
-          "50 SMA above 200 SMA (Golden Cross)",
-          "50 SMA rising (slope: 0.215%)",
-          "200 SMA also rising (slope: 0.122%)"
-        ],
-        "sma_50": 221.94,
-        "sma_150": 207.25,
-        "sma_200": 201.83,
-        "slope_50": 0.2146,
-        "slope_200": 0.122,
-        "distance_from_50sma": 3.31,
-        "distance_from_200sma": 13.6,
-        "week_52_high": 243.37,
-        "week_52_low": 163.9,
+        "sma_50": 260.06,
+        "sma_150": 234.08,
+        "sma_200": 230.46,
+        "slope_50": 0.105,
+        "slope_200": 0.1032,
+        "distance_from_50sma": 8.98,
+        "distance_from_200sma": 22.97,
+        "week_52_high": 291.4,
+        "week_52_low": 188.25,
         "volatility_contraction": {
           "is_contracting": false,
-          "contraction_quality": 0.96,
-          "current_volatility": 8.05,
-          "contraction_ratio": 0.99
+          "contraction_quality": 0,
+          "current_volatility": 7.43,
+          "contraction_ratio": 1.13
         }
       },
-      "fundamental_snapshot": "\n============================================================\nFUNDAMENTAL SNAPSHOT - NVDA\n============================================================\n\u2713 Revenue: ACCELERATING strongly (YoY: +105.9%, QoQ: +17.9%)\n  QoQ Trend (last 4Q): +22.0% \u2192 +19.5% \u2192 +19.8% \u2192 +17.9%\n\u2713 EPS: STRONG growth (YoY: +127.8%, QoQ: +2.9%)\n  QoQ Trend (last 4Q): +20.4% \u2192 +35.4% \u2192 +35.8% \u2192 +2.9%\n\u2022 Margins: Stable/slightly up (75.0%, +0.0pp QoQ)\n\u26a0 Inventory: BUILDING (+22.4% QoQ, ratio: 0.33)\n  \u2192 Potential demand weakness or production ramp\n  Note: Detailed breakdown (raw/WIP/finished) not available via API\n\nOverall Assessment:\n\u26a0 Some concerns: inventory building rapidly\n",
+      "fundamental_snapshot": "\n============================================================\nFUNDAMENTAL SNAPSHOT - ABBV\n============================================================\n\u2713 Revenue: Growing well (YoY: +10.2%, QoQ: +13.3%)\n  QoQ Trend (last 4Q): +2.3% \u2192 +5.3% \u2192 -9.7% \u2192 +13.3%\n\u2713 EPS: STRONG growth (YoY: +290.4%, QoQ: +420.5%)\n  QoQ Trend (last 4Q): -80.8% \u2192 +920.0% \u2192 -61.8% \u2192 +420.5%\n\u2713 Margins: EXPANDING (74.7%, +2.9pp QoQ)\n\u2022 Inventory: Slight increase (+1.5% QoQ, ratio: 0.30)\n  Note: Detailed breakdown (raw/WIP/finished) not available via API\n\nOverall Assessment:\n\u2713 Fundamentals SUPPORT technical breakout\n",
       "risk_assessment": {
         "status": "REJECT",
         "reasons": [
-          "\u5165\u573a\u5230ATR\u6b62\u635f\u8ddd\u79bb\u4e0d\u8db3\uff081.32x ATR < 1.5x ATR\uff09"
+          "\u98ce\u9669\u56de\u62a5\u4e0d\u8db3\uff08R/R=1.70\uff0c\u4f4e\u4e8e2.5\uff09"
         ],
         "risk": {},
         "sizing": {}
@@ -631,47 +444,47 @@
       "risk_grade": "RX",
       "risk_status": "REJECT",
       "risk_reasons": [
-        "\u5165\u573a\u5230ATR\u6b62\u635f\u8ddd\u79bb\u4e0d\u8db3\uff081.32x ATR < 1.5x ATR\uff09"
+        "\u98ce\u9669\u56de\u62a5\u4e0d\u8db3\uff08R/R=1.70\uff0c\u4f4e\u4e8e2.5\uff09"
       ],
       "sizing_guidance": {},
       "qualified": false,
-      "entry_price": 229.27999877929688
+      "entry_price": 283.3999938964844
     },
     {
-      "ticker": "ABBV",
+      "ticker": "MSFT",
       "is_buy": true,
-      "score": 93.3,
+      "score": 89.8,
       "phase": 2,
       "minervini_template_score": 100,
       "minervini_criteria_passed": 8,
       "breakout_price": null,
-      "stop_loss": 256.58,
-      "risk_reward_ratio": 4.17,
+      "stop_loss": 511.09,
+      "risk_reward_ratio": 5.71,
       "entry_quality": "Good",
       "reasons": [
-        "Good Stage 2: 6.8% above 50 SMA",
-        "SMAs rising strongly (50:0.095, 200:0.097)",
-        "\ud83d\udfe1 Revenue: 3Q avg 3.0% QoQ (5.3% \u2192 -9.7% \u2192 13.3%)",
-        "\ud83d\udfe2 EPS: +290% YoY (strong earnings)",
-        "Inventory neutral (1.5% QoQ)",
-        "Volume pattern neutral (ratio 1.00)",
-        "Neutral RS: 0.028",
-        "\ud83d\udfe2 Excellent R/R: 4.2:1 ($82.94 upside, $19.89 risk)",
-        "\ud83d\udfe2 At 52W high: 0.4% from high (pivot zone)"
+        "Good Stage 2: 6.9% above 50 SMA",
+        "SMAs rising strongly (50:0.470, 200:0.046)",
+        "\ud83d\udfe2 Revenue: 3Q avg 5.1% QoQ (4.6% \u2192 2.0% \u2192 8.6%)",
+        "\ud83d\udfe2 EPS: +32% YoY",
+        "\u26a0 Inventory building (14.6% QoQ)",
+        "Volume pattern neutral (ratio 0.95)",
+        "\u2713 Strong RS: 0.423 (outperforming SPY)",
+        "\ud83d\udfe2 Outstanding R/R: 5.7:1 ($161.83 upside, $28.35 risk)",
+        "\ud83d\udfe2 At 52W high: 2.1% from high (pivot zone)"
       ],
       "details": {
-        "trend_score": 24.481666666666666,
-        "fundamental_score": 38.66219615952839,
-        "avg_vol_up": 5581880.0,
-        "avg_vol_down": 0,
-        "volume_score": 5.0,
-        "rs_slope": 0.028,
-        "rs_score": 5.47,
-        "stop_loss": 256.58064514160156,
-        "risk_reward_ratio": 4.17,
-        "risk_amount": 19.89,
-        "reward_amount": 82.94,
-        "reward_target": 359.41,
+        "trend_score": 25.6675,
+        "fundamental_score": 30.014305278624317,
+        "avg_vol_up": 21204675.0,
+        "avg_vol_down": 22324300.0,
+        "volume_score": 4.498472516495477,
+        "rs_slope": 0.423,
+        "rs_score": 10,
+        "stop_loss": 511.09167327880857,
+        "risk_reward_ratio": 5.71,
+        "risk_amount": 28.35,
+        "reward_amount": 161.83,
+        "reward_target": 701.27,
         "rr_score": 15,
         "entry_score": 4.66,
         "vcp_bonus": 0,
@@ -687,9 +500,9 @@
             "sma_50_above_150": true,
             "price_above_50": true,
             "price_30pct_above_52w_low": true,
-            "distance_from_52w_low_pct": 46.0,
+            "distance_from_52w_low_pct": 54.8,
             "price_near_52w_high": true,
-            "distance_from_52w_high_pct": 0.4,
+            "distance_from_52w_high_pct": 2.1,
             "confirmed_stage_2": true
           }
         }
@@ -699,152 +512,51 @@
         "phase_name": "Uptrend/Breakout",
         "confidence": 85,
         "reasons": [
-          "Price (276.47) above 50 SMA (258.89)",
+          "Price (539.44) above 50 SMA (504.76)",
           "50 SMA above 200 SMA (Golden Cross)",
-          "50 SMA rising (slope: 0.095%)",
-          "200 SMA also rising (slope: 0.097%)"
+          "50 SMA rising (slope: 0.470%)",
+          "200 SMA also rising (slope: 0.047%)"
         ],
-        "sma_50": 258.89,
-        "sma_150": 233.98,
-        "sma_200": 230.75,
-        "slope_50": 0.0947,
-        "slope_200": 0.0973,
-        "distance_from_50sma": 6.79,
-        "distance_from_200sma": 19.82,
-        "week_52_high": 277.6,
-        "week_52_low": 189.4,
-        "volatility_contraction": {
-          "is_contracting": true,
-          "contraction_quality": 42.74,
-          "current_volatility": 3.96,
-          "contraction_ratio": 0.57
-        }
-      },
-      "fundamental_snapshot": "\n============================================================\nFUNDAMENTAL SNAPSHOT - ABBV\n============================================================\n\u2713 Revenue: Growing well (YoY: +10.2%, QoQ: +13.3%)\n  QoQ Trend (last 4Q): +2.3% \u2192 +5.3% \u2192 -9.7% \u2192 +13.3%\n\u2713 EPS: STRONG growth (YoY: +290.4%, QoQ: +420.5%)\n  QoQ Trend (last 4Q): -80.8% \u2192 +920.0% \u2192 -61.8% \u2192 +420.5%\n\u2713 Margins: EXPANDING (74.7%, +2.9pp QoQ)\n\u2022 Inventory: Slight increase (+1.5% QoQ, ratio: 0.30)\n  Note: Detailed breakdown (raw/WIP/finished) not available via API\n\nOverall Assessment:\n\u2713 Fundamentals SUPPORT technical breakout\n",
-      "risk_assessment": {
-        "status": "REJECT",
-        "reasons": [
-          "\u98ce\u9669\u56de\u62a5\u4e0d\u8db3\uff08R/R=1.62\uff0c\u4f4e\u4e8e2.5\uff09"
-        ],
-        "risk": {},
-        "sizing": {}
-      },
-      "risk_grade": "RX",
-      "risk_status": "REJECT",
-      "risk_reasons": [
-        "\u98ce\u9669\u56de\u62a5\u4e0d\u8db3\uff08R/R=1.62\uff0c\u4f4e\u4e8e2.5\uff09"
-      ],
-      "sizing_guidance": {},
-      "qualified": false,
-      "entry_price": 276.4700012207031
-    },
-    {
-      "ticker": "MSFT",
-      "is_buy": true,
-      "score": 89.9,
-      "phase": 2,
-      "minervini_template_score": 87,
-      "minervini_criteria_passed": 7,
-      "breakout_price": null,
-      "stop_loss": 499.71,
-      "risk_reward_ratio": 4.54,
-      "entry_quality": "Good",
-      "reasons": [
-        "Good Stage 2: 7.0% above 50 SMA",
-        "SMAs rising strongly (50:0.497, 200:0.035)",
-        "\ud83d\udfe2 Revenue: 3Q avg 5.1% QoQ (4.6% \u2192 2.0% \u2192 8.6%)",
-        "\ud83d\udfe2 EPS: +32% YoY",
-        "\u26a0 Inventory building (14.6% QoQ)",
-        "Volume pattern neutral (ratio 1.03)",
-        "\u2713 Strong RS: 0.266 (outperforming SPY)",
-        "\ud83d\udfe2 Excellent R/R: 4.5:1 ($160.52 upside, $35.36 risk)",
-        "\ud83d\udfe2 At 52W high: 2.6% from high (pivot zone)"
-      ],
-      "details": {
-        "trend_score": 25.561666666666667,
-        "fundamental_score": 30.014305278624317,
-        "avg_vol_up": 20746525.0,
-        "avg_vol_down": 20228700.0,
-        "volume_score": 5.255985308002986,
-        "rs_slope": 0.266,
-        "rs_score": 9.44,
-        "stop_loss": 499.7089012145996,
-        "risk_reward_ratio": 4.54,
-        "risk_amount": 35.36,
-        "reward_amount": 160.52,
-        "reward_target": 695.59,
-        "rr_score": 15,
-        "entry_score": 4.65,
-        "vcp_bonus": 0,
-        "minervini_template": {
-          "passes_template": true,
-          "criteria_passed": 7,
-          "criteria_total": 8,
-          "template_score": 87,
-          "criteria_details": {
-            "price_above_150_200": true,
-            "sma_150_above_200": false,
-            "sma_200_rising": true,
-            "sma_50_above_150": true,
-            "price_above_50": true,
-            "price_30pct_above_52w_low": true,
-            "distance_from_52w_low_pct": 53.5,
-            "price_near_52w_high": true,
-            "distance_from_52w_high_pct": 2.6,
-            "confirmed_stage_2": true
-          }
-        }
-      },
-      "phase_info": {
-        "phase": 2,
-        "phase_name": "Uptrend/Breakout",
-        "confidence": 85,
-        "reasons": [
-          "Price (535.07) above 50 SMA (500.19)",
-          "50 SMA above 200 SMA (Golden Cross)",
-          "50 SMA rising (slope: 0.497%)",
-          "200 SMA also rising (slope: 0.035%)"
-        ],
-        "sma_50": 500.19,
-        "sma_150": 431.87,
-        "sma_200": 432.7,
-        "slope_50": 0.4973,
-        "slope_200": 0.0345,
-        "distance_from_50sma": 6.97,
-        "distance_from_200sma": 23.66,
-        "week_52_high": 549.2,
+        "sma_50": 504.76,
+        "sma_150": 435.48,
+        "sma_200": 433.81,
+        "slope_50": 0.4702,
+        "slope_200": 0.0465,
+        "distance_from_50sma": 6.87,
+        "distance_from_200sma": 24.35,
+        "week_52_high": 551.15,
         "week_52_low": 348.54,
         "volatility_contraction": {
-          "is_contracting": true,
-          "contraction_quality": 42.17,
-          "current_volatility": 13.24,
-          "contraction_ratio": 0.58
+          "is_contracting": false,
+          "contraction_quality": 0,
+          "current_volatility": 15.71,
+          "contraction_ratio": 1.06
         }
       },
       "fundamental_snapshot": "\n============================================================\nFUNDAMENTAL SNAPSHOT - MSFT\n============================================================\n\u2713 Revenue: Growing well (YoY: +17.7%, QoQ: +8.6%)\n  QoQ Trend (last 4Q): +1.6% \u2192 +4.6% \u2192 +2.0% \u2192 +8.6%\n\u2713 EPS: STRONG growth (YoY: +31.8%, QoQ: +12.6%)\n  QoQ Trend (last 4Q): +1.9% \u2192 +38.7% \u2192 -17.2% \u2192 +12.6%\n\u2022 Margins: Flat (67.2%, -0.4pp QoQ)\n\u26a0 Inventory: BUILDING (+14.6% QoQ, ratio: 0.02)\n  \u2192 Potential demand weakness or production ramp\n  Note: Detailed breakdown (raw/WIP/finished) not available via API\n\nOverall Assessment:\n\u2713 Fundamentals SUPPORT technical breakout\n",
       "risk_assessment": {
         "status": "PASS",
         "reasons": [
-          "ATR\u6b62\u635f\u8ddd\u79bb\uff1a2.78x ATR",
-          "\u5165\u573a\u5230ATR\u6b62\u635f\u8ddd\u79bb\uff1a6.61%",
-          "\u76ee\u6807RR\uff1a3.78:1",
+          "ATR\u6b62\u635f\u8ddd\u79bb\uff1a2.50x ATR",
+          "\u5165\u573a\u5230ATR\u6b62\u635f\u8ddd\u79bb\uff1a5.26%",
+          "\u76ee\u6807RR\uff1a4.76:1",
           "\u98ce\u9669\u7b49\u7ea7\uff08\u4ee5S&P 500\u6307\u6570\u98ce\u9669\u4f5c\u4e3a\u6807\u51c6\uff09\uff1aR5"
         ],
         "risk": {
-          "entry_price": 535.07,
-          "latest_price": 535.07,
-          "stop_loss": 499.71,
-          "stop_distance": 35.36,
-          "stop_distance_pct": 0.0661,
-          "stop_distance_atr_multiple": 2.78,
-          "atr": 12.7193,
+          "entry_price": 539.44,
+          "latest_price": 539.44,
+          "stop_loss": 511.09,
+          "stop_distance": 28.35,
+          "stop_distance_pct": 0.0526,
+          "stop_distance_atr_multiple": 2.4973,
+          "atr": 11.3521,
           "max_stop_pct": 0.08,
-          "median_20d_dollar_volume": 10345119344.91,
-          "swing_target_1_4m": 668.8375,
-          "risk_reward_ratio": 3.783,
-          "spy_risk_ratio": 2.9551,
-          "stock_atr_risk_pct": 0.0475,
-          "spy_atr_risk_pct": 0.0161,
+          "median_20d_dollar_volume": 10822608372.82,
+          "swing_target_1_4m": 674.3,
+          "risk_reward_ratio": 4.757,
+          "spy_risk_ratio": 2.487,
+          "stock_atr_risk_pct": 0.0421,
+          "spy_atr_risk_pct": 0.0169,
           "spy_risk_grade": "R5",
           "risk_budget_per_trade_pct": 0.1875,
           "default_capital": 10000.0,
@@ -864,9 +576,9 @@
       "risk_grade": "R5",
       "risk_status": "PASS",
       "risk_reasons": [
-        "ATR\u6b62\u635f\u8ddd\u79bb\uff1a2.78x ATR",
-        "\u5165\u573a\u5230ATR\u6b62\u635f\u8ddd\u79bb\uff1a6.61%",
-        "\u76ee\u6807RR\uff1a3.78:1",
+        "ATR\u6b62\u635f\u8ddd\u79bb\uff1a2.50x ATR",
+        "\u5165\u573a\u5230ATR\u6b62\u635f\u8ddd\u79bb\uff1a5.26%",
+        "\u76ee\u6807RR\uff1a4.76:1",
         "\u98ce\u9669\u7b49\u7ea7\uff08\u4ee5S&P 500\u6307\u6570\u98ce\u9669\u4f5c\u4e3a\u6807\u51c6\uff09\uff1aR5"
       ],
       "sizing_guidance": {
@@ -877,44 +589,44 @@
         "notional_cap_symbolic": "\u5355\u6807\u7684\u5efa\u4ed3\u540d\u4e49\u89c4\u6a21\u5efa\u8bae \u2264 min(10.00%, 10.00%)"
       },
       "qualified": true,
-      "entry_price": 535.0700073242188
+      "entry_price": 539.4400024414062
     },
     {
       "ticker": "META",
       "is_buy": true,
-      "score": 87.3,
+      "score": 88.1,
       "phase": 2,
       "minervini_template_score": 87,
       "minervini_criteria_passed": 7,
       "breakout_price": null,
-      "stop_loss": 697.11,
-      "risk_reward_ratio": 10.0,
+      "stop_loss": 708.12,
+      "risk_reward_ratio": 7.73,
       "entry_quality": "Good",
       "reasons": [
-        "Strong Stage 2: 12.4% above 50 SMA",
-        "SMAs rising strongly (50:0.307, 200:0.062)",
+        "Strong Stage 2: 12.9% above 50 SMA",
+        "SMAs rising strongly (50:0.384, 200:0.064)",
         "\ud83d\udfe2 Revenue: 3Q avg 6.3% QoQ (16.9% \u2192 -6.0% \u2192 8.0%)",
         "\ud83d\udd34 EPS: -13% YoY",
-        "Volume slightly heavier on up days (ratio 1.12)",
-        "\u2713 Strong RS: 0.270 (outperforming SPY)",
-        "\ud83d\udfe2 Outstanding R/R: 10.0:1 ($215.60 upside, $21.56 risk)",
-        "\ud83d\udfe2 Near 52W high: 7.8% from high"
+        "\u2713 Volume heavier on up days (23.8M vs 15.2M, ratio 1.56)",
+        "Neutral RS: 0.021",
+        "\ud83d\udfe2 Outstanding R/R: 7.7:1 ($221.02 upside, $28.60 risk)",
+        "\ud83d\udfe2 Near 52W high: 5.5% from high"
       ],
       "details": {
-        "trend_score": 26.821666666666665,
+        "trend_score": 27.795,
         "fundamental_score": 25.666764167029946,
-        "avg_vol_up": 15215300.0,
-        "avg_vol_down": 13610225.0,
-        "volume_score": 6.179315551359363,
-        "rs_slope": 0.27,
-        "rs_score": 9.5,
-        "stop_loss": 697.1098834228516,
-        "risk_reward_ratio": 10.0,
-        "risk_amount": 21.56,
-        "reward_amount": 215.6,
-        "reward_target": 934.27,
+        "avg_vol_up": 23794300.0,
+        "avg_vol_down": 15249233.0,
+        "volume_score": 10,
+        "rs_slope": 0.021,
+        "rs_score": 5.35,
+        "stop_loss": 708.1215927124024,
+        "risk_reward_ratio": 7.73,
+        "risk_amount": 28.6,
+        "reward_amount": 221.02,
+        "reward_target": 957.74,
         "rr_score": 15,
-        "entry_score": 4.1,
+        "entry_score": 4.3,
         "vcp_bonus": 0,
         "minervini_template": {
           "passes_template": true,
@@ -928,9 +640,9 @@
             "sma_50_above_150": true,
             "price_above_50": true,
             "price_30pct_above_52w_low": true,
-            "distance_from_52w_low_pct": 38.4,
+            "distance_from_52w_low_pct": 41.8,
             "price_near_52w_high": true,
-            "distance_from_52w_high_pct": 7.8,
+            "distance_from_52w_high_pct": 5.5,
             "confirmed_stage_2": true
           }
         }
@@ -940,32 +652,32 @@
         "phase_name": "Uptrend/Breakout",
         "confidence": 85,
         "reasons": [
-          "Price (718.67) above 50 SMA (639.40)",
+          "Price (736.72) above 50 SMA (652.56)",
           "50 SMA above 200 SMA (Golden Cross)",
-          "50 SMA rising (slope: 0.307%)",
-          "200 SMA also rising (slope: 0.062%)"
+          "50 SMA rising (slope: 0.384%)",
+          "200 SMA also rising (slope: 0.064%)"
         ],
-        "sma_50": 639.4,
-        "sma_150": 620.63,
-        "sma_200": 629.18,
-        "slope_50": 0.3069,
-        "slope_200": 0.0621,
-        "distance_from_50sma": 12.4,
-        "distance_from_200sma": 14.22,
+        "sma_50": 652.56,
+        "sma_150": 623.25,
+        "sma_200": 630.84,
+        "slope_50": 0.3835,
+        "slope_200": 0.064,
+        "distance_from_50sma": 12.9,
+        "distance_from_200sma": 16.78,
         "week_52_high": 779.82,
         "week_52_low": 519.37,
         "volatility_contraction": {
           "is_contracting": false,
-          "contraction_quality": 0,
-          "current_volatility": 31.78,
-          "contraction_ratio": 1.46
+          "contraction_quality": 15.34,
+          "current_volatility": 22.01,
+          "contraction_ratio": 0.85
         }
       },
       "fundamental_snapshot": "\n============================================================\nFUNDAMENTAL SNAPSHOT - META\n============================================================\n\u2713 Revenue: ACCELERATING strongly (YoY: +28.0%, QoQ: +8.0%)\n  QoQ Trend (last 4Q): +7.8% \u2192 +16.9% \u2192 -6.0% \u2192 +8.0%\n\u2717 EPS: DECLINING (YoY: -13.4%, QoQ: -40.8%)\n  QoQ Trend (last 4Q): -85.3% \u2192 +745.7% \u2192 +17.6% \u2192 -40.8%\n\u2022 Margins: Flat (81.4%, -0.5pp QoQ)\n\nOverall Assessment:\n\u26a0 Some concerns: EPS declining\n\u2717 Fundamentals CONTRADICT technical breakout\n",
       "risk_assessment": {
         "status": "REJECT",
         "reasons": [
-          "\u5165\u573a\u5230ATR\u6b62\u635f\u8ddd\u79bb\u4e0d\u8db3\uff080.98x ATR < 1.5x ATR\uff09"
+          "\u5165\u573a\u5230ATR\u6b62\u635f\u8ddd\u79bb\u4e0d\u8db3\uff081.28x ATR < 1.5x ATR\uff09"
         ],
         "risk": {},
         "sizing": {}
@@ -973,49 +685,49 @@
       "risk_grade": "RX",
       "risk_status": "REJECT",
       "risk_reasons": [
-        "\u5165\u573a\u5230ATR\u6b62\u635f\u8ddd\u79bb\u4e0d\u8db3\uff080.98x ATR < 1.5x ATR\uff09"
+        "\u5165\u573a\u5230ATR\u6b62\u635f\u8ddd\u79bb\u4e0d\u8db3\uff081.28x ATR < 1.5x ATR\uff09"
       ],
       "sizing_guidance": {},
       "qualified": false,
-      "entry_price": 718.6699829101562
+      "entry_price": 736.719970703125
     },
     {
       "ticker": "AAPL",
       "is_buy": true,
-      "score": 76.1,
+      "score": 79.4,
       "phase": 2,
       "minervini_template_score": 100,
       "minervini_criteria_passed": 8,
       "breakout_price": null,
-      "stop_loss": 324.18,
-      "risk_reward_ratio": 8.11,
+      "stop_loss": 328.96,
+      "risk_reward_ratio": 7.87,
       "entry_quality": "Good",
       "reasons": [
-        "Good Stage 2: 4.4% above 50 SMA",
-        "SMAs rising strongly (50:0.064, 200:0.101)",
+        "Good Stage 2: 5.2% above 50 SMA",
+        "SMAs rising strongly (50:0.057, 200:0.106)",
         "\ud83d\udfe2 Revenue: 3Q avg 5.3% QoQ (40.3% \u2192 -22.7% \u2192 -1.6%)",
         "\ud83d\udfe2 EPS: +29% YoY",
         "\u26a0 Inventory building rapidly (64.4% QoQ - demand concern)",
-        "Volume pattern neutral (ratio 0.92)",
-        "\u26a0 Declining RS: -0.116 (underperforming SPY)",
-        "\ud83d\udfe2 Outstanding R/R: 8.1:1 ($100.99 upside, $12.46 risk)",
-        "\ud83d\udfe2 At 52W high: 2.5% from high (pivot zone)"
+        "Volume pattern neutral (ratio 0.99)",
+        "Neutral RS: -0.006",
+        "\ud83d\udfe2 Outstanding R/R: 7.9:1 ($102.60 upside, $13.04 risk)",
+        "\ud83d\udfe2 At 52W high: 1.8% from high (pivot zone)"
       ],
       "details": {
-        "trend_score": 21.933333333333334,
+        "trend_score": 22.77583333333333,
         "fundamental_score": 27.148803355276318,
-        "avg_vol_up": 33309767.0,
-        "avg_vol_down": 36127950.0,
-        "volume_score": 4.219943746231564,
-        "rs_slope": -0.116,
-        "rs_score": 3.06,
-        "stop_loss": 324.18094757080075,
-        "risk_reward_ratio": 8.11,
-        "risk_amount": 12.46,
-        "reward_amount": 100.99,
-        "reward_target": 437.63,
+        "avg_vol_up": 38315167.0,
+        "avg_vol_down": 38824250.0,
+        "volume_score": 4.8688749085086425,
+        "rs_slope": -0.006,
+        "rs_score": 4.9,
+        "stop_loss": 328.95693542480467,
+        "risk_reward_ratio": 7.87,
+        "risk_amount": 13.04,
+        "reward_amount": 102.6,
+        "reward_target": 444.6,
         "rr_score": 15,
-        "entry_score": 4.78,
+        "entry_score": 4.74,
         "vcp_bonus": 0,
         "minervini_template": {
           "passes_template": true,
@@ -1029,9 +741,9 @@
             "sma_50_above_150": true,
             "price_above_50": true,
             "price_30pct_above_52w_low": true,
-            "distance_from_52w_low_pct": 38.7,
+            "distance_from_52w_low_pct": 40.9,
             "price_near_52w_high": true,
-            "distance_from_52w_high_pct": 2.5,
+            "distance_from_52w_high_pct": 1.8,
             "confirmed_stage_2": true
           }
         }
@@ -1041,51 +753,51 @@
         "phase_name": "Uptrend/Breakout",
         "confidence": 85,
         "reasons": [
-          "Price (336.64) above 50 SMA (322.36)",
+          "Price (342.00) above 50 SMA (325.07)",
           "50 SMA above 200 SMA (Golden Cross)",
-          "50 SMA rising (slope: 0.064%)",
-          "200 SMA also rising (slope: 0.101%)"
+          "50 SMA rising (slope: 0.057%)",
+          "200 SMA also rising (slope: 0.106%)"
         ],
-        "sma_50": 322.36,
-        "sma_150": 299.31,
-        "sma_200": 290.4,
-        "slope_50": 0.064,
-        "slope_200": 0.101,
-        "distance_from_50sma": 4.43,
-        "distance_from_200sma": 15.92,
-        "week_52_high": 345.34,
+        "sma_50": 325.07,
+        "sma_150": 301.53,
+        "sma_200": 291.79,
+        "slope_50": 0.0572,
+        "slope_200": 0.1056,
+        "distance_from_50sma": 5.21,
+        "distance_from_200sma": 17.21,
+        "week_52_high": 348.15,
         "week_52_low": 242.76,
         "volatility_contraction": {
           "is_contracting": true,
-          "contraction_quality": 60.64,
-          "current_volatility": 3.39,
-          "contraction_ratio": 0.39
+          "contraction_quality": 48.5,
+          "current_volatility": 3.95,
+          "contraction_ratio": 0.51
         }
       },
       "fundamental_snapshot": "\n============================================================\nFUNDAMENTAL SNAPSHOT - AAPL\n============================================================\n\u2713 Revenue: Growing well (YoY: +16.4%, QoQ: -1.6%)\n  QoQ Trend (last 4Q): +9.0% \u2192 +40.3% \u2192 -22.7% \u2192 -1.6%\n\u2713 EPS: STRONG growth (YoY: +28.7%, QoQ: +0.5%)\n  QoQ Trend (last 4Q): +17.8% \u2192 +53.5% \u2192 -29.2% \u2192 +0.5%\n\u2022 Margins: Stable/slightly up (50.1%, +0.8pp QoQ)\n\u26a0 Inventory: BUILDING (+64.4% QoQ, ratio: 0.10)\n  \u2192 Potential demand weakness or production ramp\n  Note: Detailed breakdown (raw/WIP/finished) not available via API\n\nOverall Assessment:\n\u26a0 Some concerns: inventory building rapidly\n",
       "risk_assessment": {
         "status": "PASS",
         "reasons": [
-          "ATR\u6b62\u635f\u8ddd\u79bb\uff1a1.93x ATR",
-          "\u5165\u573a\u5230ATR\u6b62\u635f\u8ddd\u79bb\uff1a3.70%",
-          "\u76ee\u6807RR\uff1a4.36:1",
+          "ATR\u6b62\u635f\u8ddd\u79bb\uff1a2.00x ATR",
+          "\u5165\u573a\u5230ATR\u6b62\u635f\u8ddd\u79bb\uff1a3.81%",
+          "\u76ee\u6807RR\uff1a4.18:1",
           "\u98ce\u9669\u7b49\u7ea7\uff08\u4ee5S&P 500\u6307\u6570\u98ce\u9669\u4f5c\u4e3a\u6807\u51c6\uff09\uff1aR5"
         ],
         "risk": {
-          "entry_price": 336.64,
-          "latest_price": 336.64,
-          "stop_loss": 324.18,
-          "stop_distance": 12.46,
-          "stop_distance_pct": 0.037,
-          "stop_distance_atr_multiple": 1.9292,
-          "atr": 6.4586,
+          "entry_price": 342.0,
+          "latest_price": 342.0,
+          "stop_loss": 328.96,
+          "stop_distance": 13.04,
+          "stop_distance_pct": 0.0381,
+          "stop_distance_atr_multiple": 2.0007,
+          "atr": 6.5179,
           "max_stop_pct": 0.08,
-          "median_20d_dollar_volume": 11912236771.14,
-          "swing_target_1_4m": 390.9385,
-          "risk_reward_ratio": 4.3578,
-          "spy_risk_ratio": 2.385,
-          "stock_atr_risk_pct": 0.0384,
-          "spy_atr_risk_pct": 0.0161,
+          "median_20d_dollar_volume": 11928363241.21,
+          "swing_target_1_4m": 396.5585,
+          "risk_reward_ratio": 4.1839,
+          "spy_risk_ratio": 2.2523,
+          "stock_atr_risk_pct": 0.0381,
+          "spy_atr_risk_pct": 0.0169,
           "spy_risk_grade": "R5",
           "risk_budget_per_trade_pct": 0.1875,
           "default_capital": 10000.0,
@@ -1105,9 +817,9 @@
       "risk_grade": "R5",
       "risk_status": "PASS",
       "risk_reasons": [
-        "ATR\u6b62\u635f\u8ddd\u79bb\uff1a1.93x ATR",
-        "\u5165\u573a\u5230ATR\u6b62\u635f\u8ddd\u79bb\uff1a3.70%",
-        "\u76ee\u6807RR\uff1a4.36:1",
+        "ATR\u6b62\u635f\u8ddd\u79bb\uff1a2.00x ATR",
+        "\u5165\u573a\u5230ATR\u6b62\u635f\u8ddd\u79bb\uff1a3.81%",
+        "\u76ee\u6807RR\uff1a4.18:1",
         "\u98ce\u9669\u7b49\u7ea7\uff08\u4ee5S&P 500\u6307\u6570\u98ce\u9669\u4f5c\u4e3a\u6807\u51c6\uff09\uff1aR5"
       ],
       "sizing_guidance": {
@@ -1118,47 +830,248 @@
         "notional_cap_symbolic": "\u5355\u6807\u7684\u5efa\u4ed3\u540d\u4e49\u89c4\u6a21\u5efa\u8bae \u2264 min(10.00%, 10.00%)"
       },
       "qualified": true,
-      "entry_price": 336.6400146484375
+      "entry_price": 342.0
+    },
+    {
+      "ticker": "PFE",
+      "is_buy": true,
+      "score": 73.2,
+      "phase": 2,
+      "minervini_template_score": 100,
+      "minervini_criteria_passed": 8,
+      "breakout_price": null,
+      "stop_loss": 27.62,
+      "risk_reward_ratio": 4.86,
+      "entry_quality": "Good",
+      "reasons": [
+        "Good Stage 2: 5.5% above 50 SMA",
+        "SMAs rising strongly (50:0.259, 200:0.076)",
+        "\ud83d\udd34 Revenue: 3Q avg -2.7% QoQ (5.4% \u2192 -17.7% \u2192 4.0%)",
+        "\ud83d\udd34 EPS: -108% YoY",
+        "\u2713 Inventory drawing (-6.8% QoQ - strong demand)",
+        "Volume pattern neutral (ratio 1.06)",
+        "Positive RS: 0.053",
+        "\ud83d\udfe2 Excellent R/R: 4.9:1 ($8.83 upside, $1.82 risk)",
+        "\ud83d\udfe2 At 52W high: 1.5% from high (pivot zone)"
+      ],
+      "details": {
+        "trend_score": 21.97833333333333,
+        "fundamental_score": 20,
+        "avg_vol_up": 28505300.0,
+        "avg_vol_down": 26837200.0,
+        "volume_score": 5.621562607127419,
+        "rs_slope": 0.053,
+        "rs_score": 5.88,
+        "stop_loss": 27.621,
+        "risk_reward_ratio": 4.86,
+        "risk_amount": 1.82,
+        "reward_amount": 8.83,
+        "reward_target": 38.27,
+        "rr_score": 15,
+        "entry_score": 4.72,
+        "vcp_bonus": 0,
+        "minervini_template": {
+          "passes_template": true,
+          "criteria_passed": 8,
+          "criteria_total": 8,
+          "template_score": 100,
+          "criteria_details": {
+            "price_above_150_200": true,
+            "sma_150_above_200": true,
+            "sma_200_rising": true,
+            "sma_50_above_150": true,
+            "price_above_50": true,
+            "price_30pct_above_52w_low": true,
+            "distance_from_52w_low_pct": 30.4,
+            "price_near_52w_high": true,
+            "distance_from_52w_high_pct": 1.5,
+            "confirmed_stage_2": true
+          }
+        }
+      },
+      "phase_info": {
+        "phase": 2,
+        "phase_name": "Uptrend/Breakout",
+        "confidence": 85,
+        "reasons": [
+          "Price (29.44) above 50 SMA (27.90)",
+          "50 SMA above 200 SMA (Golden Cross)",
+          "50 SMA rising (slope: 0.259%)",
+          "200 SMA also rising (slope: 0.076%)"
+        ],
+        "sma_50": 27.9,
+        "sma_150": 26.2,
+        "sma_200": 26.0,
+        "slope_50": 0.2587,
+        "slope_200": 0.0764,
+        "distance_from_50sma": 5.51,
+        "distance_from_200sma": 13.22,
+        "week_52_high": 29.88,
+        "week_52_low": 22.57,
+        "volatility_contraction": {
+          "is_contracting": true,
+          "contraction_quality": 34.88,
+          "current_volatility": 0.54,
+          "contraction_ratio": 0.65
+        }
+      },
+      "fundamental_snapshot": "\n============================================================\nFUNDAMENTAL SNAPSHOT - PFE\n============================================================\n\u2022 Revenue: Modest growth (YoY: +2.6%, QoQ: +4.0%)\n  QoQ Trend (last 4Q): +13.7% \u2192 +5.4% \u2192 -17.7% \u2192 +4.0%\n\u2717 EPS: DECLINING (YoY: -107.8%, QoQ: -108.5%)\n  QoQ Trend (last 4Q): +21.6% \u2192 -146.8% \u2192 +262.1% \u2192 -108.5%\n\u2717 Margins: CONTRACTING (72.8%, -2.7pp QoQ)\n\u2713 Inventory: DRAWING (-6.8% QoQ, ratio: 0.66)\n  \u2192 Strong demand signal\n  Note: Detailed breakdown (raw/WIP/finished) not available via API\n\nOverall Assessment:\n\u26a0 Some concerns: EPS declining, margins contracting\n\u2717 Fundamentals CONTRADICT technical breakout\n",
+      "risk_assessment": {
+        "status": "REJECT",
+        "reasons": [
+          "\u5165\u573a\u5230ATR\u6b62\u635f\u8ddd\u79bb\u8fc7\u5bbd\uff083.10x ATR > 3.0x ATR\uff09"
+        ],
+        "risk": {},
+        "sizing": {}
+      },
+      "risk_grade": "RX",
+      "risk_status": "REJECT",
+      "risk_reasons": [
+        "\u5165\u573a\u5230ATR\u6b62\u635f\u8ddd\u79bb\u8fc7\u5bbd\uff083.10x ATR > 3.0x ATR\uff09"
+      ],
+      "sizing_guidance": {},
+      "qualified": false,
+      "entry_price": 29.440000534057617
+    },
+    {
+      "ticker": "GOOGL",
+      "is_buy": true,
+      "score": 73.1,
+      "phase": 2,
+      "minervini_template_score": 87,
+      "minervini_criteria_passed": 7,
+      "breakout_price": null,
+      "stop_loss": 338.74,
+      "risk_reward_ratio": 10.0,
+      "entry_quality": "Good",
+      "reasons": [
+        "Weak Stage 2: 1.3% above 50 SMA",
+        "SMAs rising weakly",
+        "\ud83d\udfe2 Revenue: 3Q avg 5.6% QoQ (11.2% \u2192 -3.5% \u2192 9.0%)",
+        "\ud83d\udfe2 EPS: +294% YoY (strong earnings)",
+        "\u26a0 Volume heavier on down days (ratio 0.72 - distribution)",
+        "Neutral RS: 0.009",
+        "\ud83d\udfe2 Outstanding R/R: 10.0:1 ($104.77 upside, $10.48 risk)",
+        "\ud83d\udfe2 Near 52W high: 14.4% from high"
+      ],
+      "details": {
+        "trend_score": 8.351666666666667,
+        "fundamental_score": 38.38655911986014,
+        "avg_vol_up": 20223450.0,
+        "avg_vol_down": 28018500.0,
+        "volume_score": 2.217891750093688,
+        "rs_slope": 0.009,
+        "rs_score": 5.14,
+        "stop_loss": 338.743401184082,
+        "risk_reward_ratio": 10.0,
+        "risk_amount": 10.48,
+        "reward_amount": 104.77,
+        "reward_target": 453.99,
+        "rr_score": 15,
+        "entry_score": 3.99,
+        "vcp_bonus": 0,
+        "minervini_template": {
+          "passes_template": true,
+          "criteria_passed": 7,
+          "criteria_total": 8,
+          "template_score": 87,
+          "criteria_details": {
+            "price_above_150_200": true,
+            "sma_150_above_200": true,
+            "sma_200_rising": true,
+            "sma_50_above_150": false,
+            "price_above_50": true,
+            "price_30pct_above_52w_low": true,
+            "distance_from_52w_low_pct": 43.4,
+            "price_near_52w_high": true,
+            "distance_from_52w_high_pct": 14.4,
+            "confirmed_stage_2": true
+          }
+        }
+      },
+      "phase_info": {
+        "phase": 2,
+        "phase_name": "Uptrend/Breakout",
+        "confidence": 85,
+        "reasons": [
+          "Price (349.22) above 50 SMA (344.83)",
+          "50 SMA above 200 SMA (Golden Cross)",
+          "50 SMA rising (slope: 0.013%)",
+          "200 SMA also rising (slope: 0.052%)"
+        ],
+        "sma_50": 344.83,
+        "sma_150": 347.7,
+        "sma_200": 340.42,
+        "slope_50": 0.0131,
+        "slope_200": 0.0522,
+        "distance_from_50sma": 1.27,
+        "distance_from_200sma": 2.59,
+        "week_52_high": 408.1,
+        "week_52_low": 243.52,
+        "volatility_contraction": {
+          "is_contracting": true,
+          "contraction_quality": 34.35,
+          "current_volatility": 5.0,
+          "contraction_ratio": 0.66
+        }
+      },
+      "fundamental_snapshot": "\n============================================================\nFUNDAMENTAL SNAPSHOT - GOOGL\n============================================================\n\u2713 Revenue: ACCELERATING strongly (YoY: +24.2%, QoQ: +9.0%)\n  QoQ Trend (last 4Q): +6.1% \u2192 +11.2% \u2192 -3.5% \u2192 +9.0%\n\u2713 EPS: STRONG growth (YoY: +294.4%, QoQ: +78.3%)\n  QoQ Trend (last 4Q): +24.2% \u2192 -1.7% \u2192 +81.2% \u2192 +78.3%\n\u2022 Margins: Flat (61.6%, -0.8pp QoQ)\n\nOverall Assessment:\n\u2713 Fundamentals SUPPORT technical breakout\n",
+      "risk_assessment": {
+        "status": "REJECT",
+        "reasons": [
+          "\u5165\u573a\u5230ATR\u6b62\u635f\u8ddd\u79bb\u4e0d\u8db3\uff081.24x ATR < 1.5x ATR\uff09"
+        ],
+        "risk": {},
+        "sizing": {}
+      },
+      "risk_grade": "RX",
+      "risk_status": "REJECT",
+      "risk_reasons": [
+        "\u5165\u573a\u5230ATR\u6b62\u635f\u8ddd\u79bb\u4e0d\u8db3\uff081.24x ATR < 1.5x ATR\uff09"
+      ],
+      "sizing_guidance": {},
+      "qualified": false,
+      "entry_price": 349.2200012207031
     }
   ],
   "qualified_buys": [
     {
-      "ticker": "XOM",
+      "ticker": "MSFT",
       "is_buy": true,
-      "score": 98.6,
+      "score": 89.8,
       "phase": 2,
       "minervini_template_score": 100,
       "minervini_criteria_passed": 8,
       "breakout_price": null,
-      "stop_loss": 159.74,
-      "risk_reward_ratio": 5.51,
+      "stop_loss": 511.09,
+      "risk_reward_ratio": 5.71,
       "entry_quality": "Good",
       "reasons": [
-        "Good Stage 2: 4.7% above 50 SMA",
-        "SMAs rising strongly (50:0.193, 200:0.163)",
-        "\ud83d\udfe2 Revenue: 3Q avg 12.6% QoQ (-4.0% \u2192 3.9% \u2192 37.7%)",
-        "\ud83d\udfe2 EPS: +112% YoY (strong earnings)",
-        "Inventory neutral (2.4% QoQ)",
-        "Volume pattern neutral (ratio 0.93)",
-        "Weak RS: -0.045",
-        "\ud83d\udfe2 Outstanding R/R: 5.5:1 ($50.68 upside, $9.20 risk)",
-        "\ud83d\udfe2 At 52W high: 3.0% from high (pivot zone)"
+        "Good Stage 2: 6.9% above 50 SMA",
+        "SMAs rising strongly (50:0.470, 200:0.046)",
+        "\ud83d\udfe2 Revenue: 3Q avg 5.1% QoQ (4.6% \u2192 2.0% \u2192 8.6%)",
+        "\ud83d\udfe2 EPS: +32% YoY",
+        "\u26a0 Inventory building (14.6% QoQ)",
+        "Volume pattern neutral (ratio 0.95)",
+        "\u2713 Strong RS: 0.423 (outperforming SPY)",
+        "\ud83d\udfe2 Outstanding R/R: 5.7:1 ($161.83 upside, $28.35 risk)",
+        "\ud83d\udfe2 At 52W high: 2.1% from high (pivot zone)"
       ],
       "details": {
-        "trend_score": 21.497500000000002,
-        "fundamental_score": 48.825,
-        "avg_vol_up": 10219033.0,
-        "avg_vol_down": 10995850.0,
-        "volume_score": 4.293536500892003,
-        "rs_slope": -0.045,
-        "rs_score": 4.25,
-        "stop_loss": 159.7365,
-        "risk_reward_ratio": 5.51,
-        "risk_amount": 9.2,
-        "reward_amount": 50.68,
-        "reward_target": 219.62,
+        "trend_score": 25.6675,
+        "fundamental_score": 30.014305278624317,
+        "avg_vol_up": 21204675.0,
+        "avg_vol_down": 22324300.0,
+        "volume_score": 4.498472516495477,
+        "rs_slope": 0.423,
+        "rs_score": 10,
+        "stop_loss": 511.09167327880857,
+        "risk_reward_ratio": 5.71,
+        "risk_amount": 28.35,
+        "reward_amount": 161.83,
+        "reward_target": 701.27,
         "rr_score": 15,
-        "entry_score": 4.76,
+        "entry_score": 4.66,
         "vcp_bonus": 0,
         "minervini_template": {
           "passes_template": true,
@@ -1172,9 +1085,9 @@
             "sma_50_above_150": true,
             "price_above_50": true,
             "price_30pct_above_52w_low": true,
-            "distance_from_52w_low_pct": 57.5,
+            "distance_from_52w_low_pct": 54.8,
             "price_near_52w_high": true,
-            "distance_from_52w_high_pct": 3.0,
+            "distance_from_52w_high_pct": 2.1,
             "confirmed_stage_2": true
           }
         }
@@ -1184,56 +1097,56 @@
         "phase_name": "Uptrend/Breakout",
         "confidence": 85,
         "reasons": [
-          "Price (168.94) above 50 SMA (161.35)",
+          "Price (539.44) above 50 SMA (504.76)",
           "50 SMA above 200 SMA (Golden Cross)",
-          "50 SMA rising (slope: 0.193%)",
-          "200 SMA also rising (slope: 0.163%)"
+          "50 SMA rising (slope: 0.470%)",
+          "200 SMA also rising (slope: 0.047%)"
         ],
-        "sma_50": 161.35,
-        "sma_150": 153.36,
-        "sma_200": 148.94,
-        "slope_50": 0.1932,
-        "slope_200": 0.1626,
-        "distance_from_50sma": 4.71,
-        "distance_from_200sma": 13.43,
-        "week_52_high": 174.09,
-        "week_52_low": 107.28,
+        "sma_50": 504.76,
+        "sma_150": 435.48,
+        "sma_200": 433.81,
+        "slope_50": 0.4702,
+        "slope_200": 0.0465,
+        "distance_from_50sma": 6.87,
+        "distance_from_200sma": 24.35,
+        "week_52_high": 551.15,
+        "week_52_low": 348.54,
         "volatility_contraction": {
           "is_contracting": false,
-          "contraction_quality": 26.38,
-          "current_volatility": 2.94,
-          "contraction_ratio": 0.74
+          "contraction_quality": 0,
+          "current_volatility": 15.71,
+          "contraction_ratio": 1.06
         }
       },
-      "fundamental_snapshot": "\n============================================================\nFUNDAMENTAL SNAPSHOT - XOM\n============================================================\n\u2713 Revenue: ACCELERATING strongly (YoY: +44.1%, QoQ: +37.7%)\n  QoQ Trend (last 4Q): +4.8% \u2192 -4.0% \u2192 +3.9% \u2192 +37.7%\n\u2713 EPS: STRONG growth (YoY: +112.2%, QoQ: +248.0%)\n  QoQ Trend (last 4Q): +7.3% \u2192 -13.1% \u2192 -34.6% \u2192 +248.0%\n\u2713 Margins: EXPANDING (22.5%, +5.8pp QoQ)\n\u2022 Inventory: Slight increase (+2.4% QoQ, ratio: 0.22)\n  Note: Detailed breakdown (raw/WIP/finished) not available via API\n\nOverall Assessment:\n\u2713 Fundamentals SUPPORT technical breakout\n",
+      "fundamental_snapshot": "\n============================================================\nFUNDAMENTAL SNAPSHOT - MSFT\n============================================================\n\u2713 Revenue: Growing well (YoY: +17.7%, QoQ: +8.6%)\n  QoQ Trend (last 4Q): +1.6% \u2192 +4.6% \u2192 +2.0% \u2192 +8.6%\n\u2713 EPS: STRONG growth (YoY: +31.8%, QoQ: +12.6%)\n  QoQ Trend (last 4Q): +1.9% \u2192 +38.7% \u2192 -17.2% \u2192 +12.6%\n\u2022 Margins: Flat (67.2%, -0.4pp QoQ)\n\u26a0 Inventory: BUILDING (+14.6% QoQ, ratio: 0.02)\n  \u2192 Potential demand weakness or production ramp\n  Note: Detailed breakdown (raw/WIP/finished) not available via API\n\nOverall Assessment:\n\u2713 Fundamentals SUPPORT technical breakout\n",
       "risk_assessment": {
         "status": "PASS",
         "reasons": [
-          "ATR\u6b62\u635f\u8ddd\u79bb\uff1a2.77x ATR",
-          "\u5165\u573a\u5230ATR\u6b62\u635f\u8ddd\u79bb\uff1a5.45%",
-          "\u76ee\u6807RR\uff1a2.90:1",
+          "ATR\u6b62\u635f\u8ddd\u79bb\uff1a2.50x ATR",
+          "\u5165\u573a\u5230ATR\u6b62\u635f\u8ddd\u79bb\uff1a5.26%",
+          "\u76ee\u6807RR\uff1a4.76:1",
           "\u98ce\u9669\u7b49\u7ea7\uff08\u4ee5S&P 500\u6307\u6570\u98ce\u9669\u4f5c\u4e3a\u6807\u51c6\uff09\uff1aR5"
         ],
         "risk": {
-          "entry_price": 168.94,
-          "latest_price": 168.94,
-          "stop_loss": 159.74,
-          "stop_distance": 9.2,
-          "stop_distance_pct": 0.0545,
-          "stop_distance_atr_multiple": 2.7687,
-          "atr": 3.3229,
+          "entry_price": 539.44,
+          "latest_price": 539.44,
+          "stop_loss": 511.09,
+          "stop_distance": 28.35,
+          "stop_distance_pct": 0.0526,
+          "stop_distance_atr_multiple": 2.4973,
+          "atr": 11.3521,
           "max_stop_pct": 0.08,
-          "median_20d_dollar_volume": 2036265092.65,
-          "swing_target_1_4m": 195.66,
-          "risk_reward_ratio": 2.9043,
-          "spy_risk_ratio": 2.4451,
-          "stock_atr_risk_pct": 0.0393,
-          "spy_atr_risk_pct": 0.0161,
+          "median_20d_dollar_volume": 10822608372.82,
+          "swing_target_1_4m": 674.3,
+          "risk_reward_ratio": 4.757,
+          "spy_risk_ratio": 2.487,
+          "stock_atr_risk_pct": 0.0421,
+          "spy_atr_risk_pct": 0.0169,
           "spy_risk_grade": "R5",
           "risk_budget_per_trade_pct": 0.1875,
           "default_capital": 10000.0,
           "risk_budget_dollars": 18.75,
-          "max_shares": 2,
+          "max_shares": 0,
           "benchmark_regime": "RISK-ON (Moderate)",
           "status": "PASS"
         },
@@ -1248,9 +1161,9 @@
       "risk_grade": "R5",
       "risk_status": "PASS",
       "risk_reasons": [
-        "ATR\u6b62\u635f\u8ddd\u79bb\uff1a2.77x ATR",
-        "\u5165\u573a\u5230ATR\u6b62\u635f\u8ddd\u79bb\uff1a5.45%",
-        "\u76ee\u6807RR\uff1a2.90:1",
+        "ATR\u6b62\u635f\u8ddd\u79bb\uff1a2.50x ATR",
+        "\u5165\u573a\u5230ATR\u6b62\u635f\u8ddd\u79bb\uff1a5.26%",
+        "\u76ee\u6807RR\uff1a4.76:1",
         "\u98ce\u9669\u7b49\u7ea7\uff08\u4ee5S&P 500\u6307\u6570\u98ce\u9669\u4f5c\u4e3a\u6807\u51c6\uff09\uff1aR5"
       ],
       "sizing_guidance": {
@@ -1261,45 +1174,45 @@
         "notional_cap_symbolic": "\u5355\u6807\u7684\u5efa\u4ed3\u540d\u4e49\u89c4\u6a21\u5efa\u8bae \u2264 min(10.00%, 10.00%)"
       },
       "qualified": true,
-      "entry_price": 168.94000244140625
+      "entry_price": 539.4400024414062
     },
     {
-      "ticker": "CVX",
+      "ticker": "AAPL",
       "is_buy": true,
-      "score": 98.0,
+      "score": 79.4,
       "phase": 2,
       "minervini_template_score": 100,
       "minervini_criteria_passed": 8,
       "breakout_price": null,
-      "stop_loss": 201.79,
-      "risk_reward_ratio": 6.24,
+      "stop_loss": 328.96,
+      "risk_reward_ratio": 7.87,
       "entry_quality": "Good",
       "reasons": [
-        "Good Stage 2: 4.0% above 50 SMA",
-        "SMAs rising strongly (50:0.223, 200:0.165)",
-        "\ud83d\udfe2 Revenue: 3Q avg 13.4% QoQ (-4.9% \u2192 3.9% \u2192 41.3%)",
-        "\ud83d\udfe2 EPS: +321% YoY (strong earnings)",
-        "Inventory neutral (-0.3% QoQ)",
-        "Volume pattern neutral (ratio 1.06)",
-        "\u26a0 Declining RS: -0.217 (underperforming SPY)",
-        "\ud83d\udfe2 Outstanding R/R: 6.2:1 ($63.59 upside, $10.19 risk)",
-        "\ud83d\udfe2 At 52W high: 2.7% from high (pivot zone)"
+        "Good Stage 2: 5.2% above 50 SMA",
+        "SMAs rising strongly (50:0.057, 200:0.106)",
+        "\ud83d\udfe2 Revenue: 3Q avg 5.3% QoQ (40.3% \u2192 -22.7% \u2192 -1.6%)",
+        "\ud83d\udfe2 EPS: +29% YoY",
+        "\u26a0 Inventory building rapidly (64.4% QoQ - demand concern)",
+        "Volume pattern neutral (ratio 0.99)",
+        "Neutral RS: -0.006",
+        "\ud83d\udfe2 Outstanding R/R: 7.9:1 ($102.60 upside, $13.04 risk)",
+        "\ud83d\udfe2 At 52W high: 1.8% from high (pivot zone)"
       ],
       "details": {
-        "trend_score": 21.199166666666667,
-        "fundamental_score": 50,
-        "avg_vol_up": 6462800.0,
-        "avg_vol_down": 6089050.0,
-        "volume_score": 5.6138067514636925,
-        "rs_slope": -0.217,
-        "rs_score": 1.38,
-        "stop_loss": 201.79170000000002,
-        "risk_reward_ratio": 6.24,
-        "risk_amount": 10.19,
-        "reward_amount": 63.59,
-        "reward_target": 275.57,
+        "trend_score": 22.77583333333333,
+        "fundamental_score": 27.148803355276318,
+        "avg_vol_up": 38315167.0,
+        "avg_vol_down": 38824250.0,
+        "volume_score": 4.8688749085086425,
+        "rs_slope": -0.006,
+        "rs_score": 4.9,
+        "stop_loss": 328.95693542480467,
+        "risk_reward_ratio": 7.87,
+        "risk_amount": 13.04,
+        "reward_amount": 102.6,
+        "reward_target": 444.6,
         "rr_score": 15,
-        "entry_score": 4.8,
+        "entry_score": 4.74,
         "vcp_bonus": 0,
         "minervini_template": {
           "passes_template": true,
@@ -1313,9 +1226,9 @@
             "sma_50_above_150": true,
             "price_above_50": true,
             "price_30pct_above_52w_low": true,
-            "distance_from_52w_low_pct": 48.7,
+            "distance_from_52w_low_pct": 40.9,
             "price_near_52w_high": true,
-            "distance_from_52w_high_pct": 2.7,
+            "distance_from_52w_high_pct": 1.8,
             "confirmed_stage_2": true
           }
         }
@@ -1325,51 +1238,51 @@
         "phase_name": "Uptrend/Breakout",
         "confidence": 85,
         "reasons": [
-          "Price (211.98) above 50 SMA (203.83)",
+          "Price (342.00) above 50 SMA (325.07)",
           "50 SMA above 200 SMA (Golden Cross)",
-          "50 SMA rising (slope: 0.223%)",
-          "200 SMA also rising (slope: 0.165%)"
+          "50 SMA rising (slope: 0.057%)",
+          "200 SMA also rising (slope: 0.106%)"
         ],
-        "sma_50": 203.83,
-        "sma_150": 191.59,
-        "sma_200": 185.74,
-        "slope_50": 0.2231,
-        "slope_200": 0.1654,
-        "distance_from_50sma": 4.0,
-        "distance_from_200sma": 14.13,
-        "week_52_high": 217.78,
-        "week_52_low": 142.51,
+        "sma_50": 325.07,
+        "sma_150": 301.53,
+        "sma_200": 291.79,
+        "slope_50": 0.0572,
+        "slope_200": 0.1056,
+        "distance_from_50sma": 5.21,
+        "distance_from_200sma": 17.21,
+        "week_52_high": 348.15,
+        "week_52_low": 242.76,
         "volatility_contraction": {
           "is_contracting": true,
-          "contraction_quality": 36.33,
-          "current_volatility": 3.88,
-          "contraction_ratio": 0.64
+          "contraction_quality": 48.5,
+          "current_volatility": 3.95,
+          "contraction_ratio": 0.51
         }
       },
-      "fundamental_snapshot": "\n============================================================\nFUNDAMENTAL SNAPSHOT - CVX\n============================================================\n\u2713 Revenue: ACCELERATING strongly (YoY: +51.4%, QoQ: +41.3%)\n  QoQ Trend (last 4Q): +8.5% \u2192 -4.9% \u2192 +3.9% \u2192 +41.3%\n\u2713 EPS: STRONG growth (YoY: +321.4%, QoQ: +450.5%)\n  QoQ Trend (last 4Q): +25.5% \u2192 -23.6% \u2192 -20.1% \u2192 +450.5%\n\u2713 Margins: EXPANDING (36.5%, +8.1pp QoQ)\n\u2022 Inventory: Slight draw (-0.3% QoQ, ratio: 0.16)\n  Note: Detailed breakdown (raw/WIP/finished) not available via API\n\nOverall Assessment:\n\u2713 Fundamentals SUPPORT technical breakout\n",
+      "fundamental_snapshot": "\n============================================================\nFUNDAMENTAL SNAPSHOT - AAPL\n============================================================\n\u2713 Revenue: Growing well (YoY: +16.4%, QoQ: -1.6%)\n  QoQ Trend (last 4Q): +9.0% \u2192 +40.3% \u2192 -22.7% \u2192 -1.6%\n\u2713 EPS: STRONG growth (YoY: +28.7%, QoQ: +0.5%)\n  QoQ Trend (last 4Q): +17.8% \u2192 +53.5% \u2192 -29.2% \u2192 +0.5%\n\u2022 Margins: Stable/slightly up (50.1%, +0.8pp QoQ)\n\u26a0 Inventory: BUILDING (+64.4% QoQ, ratio: 0.10)\n  \u2192 Potential demand weakness or production ramp\n  Note: Detailed breakdown (raw/WIP/finished) not available via API\n\nOverall Assessment:\n\u26a0 Some concerns: inventory building rapidly\n",
       "risk_assessment": {
         "status": "PASS",
         "reasons": [
-          "ATR\u6b62\u635f\u8ddd\u79bb\uff1a2.51x ATR",
-          "\u5165\u573a\u5230ATR\u6b62\u635f\u8ddd\u79bb\uff1a4.81%",
-          "\u76ee\u6807RR\uff1a4.24:1",
+          "ATR\u6b62\u635f\u8ddd\u79bb\uff1a2.00x ATR",
+          "\u5165\u573a\u5230ATR\u6b62\u635f\u8ddd\u79bb\uff1a3.81%",
+          "\u76ee\u6807RR\uff1a4.18:1",
           "\u98ce\u9669\u7b49\u7ea7\uff08\u4ee5S&P 500\u6307\u6570\u98ce\u9669\u4f5c\u4e3a\u6807\u51c6\uff09\uff1aR5"
         ],
         "risk": {
-          "entry_price": 211.98,
-          "latest_price": 211.98,
-          "stop_loss": 201.79,
-          "stop_distance": 10.19,
-          "stop_distance_pct": 0.0481,
-          "stop_distance_atr_multiple": 2.5129,
-          "atr": 4.055,
+          "entry_price": 342.0,
+          "latest_price": 342.0,
+          "stop_loss": 328.96,
+          "stop_distance": 13.04,
+          "stop_distance_pct": 0.0381,
+          "stop_distance_atr_multiple": 2.0007,
+          "atr": 6.5179,
           "max_stop_pct": 0.08,
-          "median_20d_dollar_volume": 1587555689.18,
-          "swing_target_1_4m": 255.1842,
-          "risk_reward_ratio": 4.2399,
-          "spy_risk_ratio": 2.378,
-          "stock_atr_risk_pct": 0.0383,
-          "spy_atr_risk_pct": 0.0161,
+          "median_20d_dollar_volume": 11928363241.21,
+          "swing_target_1_4m": 396.5585,
+          "risk_reward_ratio": 4.1839,
+          "spy_risk_ratio": 2.2523,
+          "stock_atr_risk_pct": 0.0381,
+          "spy_atr_risk_pct": 0.0169,
           "spy_risk_grade": "R5",
           "risk_budget_per_trade_pct": 0.1875,
           "default_capital": 10000.0,
@@ -1389,9 +1302,9 @@
       "risk_grade": "R5",
       "risk_status": "PASS",
       "risk_reasons": [
-        "ATR\u6b62\u635f\u8ddd\u79bb\uff1a2.51x ATR",
-        "\u5165\u573a\u5230ATR\u6b62\u635f\u8ddd\u79bb\uff1a4.81%",
-        "\u76ee\u6807RR\uff1a4.24:1",
+        "ATR\u6b62\u635f\u8ddd\u79bb\uff1a2.00x ATR",
+        "\u5165\u573a\u5230ATR\u6b62\u635f\u8ddd\u79bb\uff1a3.81%",
+        "\u76ee\u6807RR\uff1a4.18:1",
         "\u98ce\u9669\u7b49\u7ea7\uff08\u4ee5S&P 500\u6307\u6570\u98ce\u9669\u4f5c\u4e3a\u6807\u51c6\uff09\uff1aR5"
       ],
       "sizing_guidance": {
@@ -1402,175 +1315,88 @@
         "notional_cap_symbolic": "\u5355\u6807\u7684\u5efa\u4ed3\u540d\u4e49\u89c4\u6a21\u5efa\u8bae \u2264 min(10.00%, 10.00%)"
       },
       "qualified": true,
-      "entry_price": 211.97999572753906
+      "entry_price": 342.0
     }
   ],
   "rejected_candidates": [
     {
-      "ticker": "META",
-      "score": 87.3,
+      "ticker": "GOOGL",
+      "score": 73.1,
       "status": "REJECT",
       "reject_reasons": [
-        "\u5165\u573a\u5230ATR\u6b62\u635f\u8ddd\u79bb\u4e0d\u8db3\uff080.98x ATR < 1.5x ATR\uff09"
+        "\u5165\u573a\u5230ATR\u6b62\u635f\u8ddd\u79bb\u4e0d\u8db3\uff081.24x ATR < 1.5x ATR\uff09"
       ]
     },
     {
-      "ticker": "NVDA",
-      "score": 97.4,
+      "ticker": "META",
+      "score": 88.1,
       "status": "REJECT",
       "reject_reasons": [
-        "\u5165\u573a\u5230ATR\u6b62\u635f\u8ddd\u79bb\u4e0d\u8db3\uff081.32x ATR < 1.5x ATR\uff09"
+        "\u5165\u573a\u5230ATR\u6b62\u635f\u8ddd\u79bb\u4e0d\u8db3\uff081.28x ATR < 1.5x ATR\uff09"
       ]
     },
     {
       "ticker": "AMD",
-      "score": 112.0,
+      "score": 97.7,
       "status": "REJECT",
       "reject_reasons": [
-        "\u5165\u573a\u5230ATR\u6b62\u635f\u8ddd\u79bb\u4e0d\u8db3\uff080.82x ATR < 1.5x ATR\uff09"
+        "\u5165\u573a\u5230ATR\u6b62\u635f\u8ddd\u79bb\u4e0d\u8db3\uff081.19x ATR < 1.5x ATR\uff09"
       ]
     },
     {
       "ticker": "PFE",
-      "score": 64.5,
+      "score": 73.2,
       "status": "REJECT",
       "reject_reasons": [
-        "\u4e70\u5165\u8bc4\u5206\u672a\u8fbe\u9608\u503c\uff08\u9700\u8981 > 70.0\uff09"
+        "\u5165\u573a\u5230ATR\u6b62\u635f\u8ddd\u79bb\u8fc7\u5bbd\uff083.10x ATR > 3.0x ATR\uff09"
       ]
     },
     {
       "ticker": "ABBV",
-      "score": 93.3,
+      "score": 94.6,
       "status": "REJECT",
       "reject_reasons": [
-        "\u98ce\u9669\u56de\u62a5\u4e0d\u8db3\uff08R/R=1.62\uff0c\u4f4e\u4e8e2.5\uff09"
+        "\u98ce\u9669\u56de\u62a5\u4e0d\u8db3\uff08R/R=1.70\uff0c\u4f4e\u4e8e2.5\uff09"
       ]
     },
     {
-      "ticker": "AMZN",
-      "score": 103.1,
+      "ticker": "XOM",
+      "score": 106.4,
       "status": "REJECT",
       "reject_reasons": [
-        "\u5165\u573a\u5230ATR\u6b62\u635f\u8ddd\u79bb\u4e0d\u8db3\uff081.40x ATR < 1.5x ATR\uff09"
+        "\u98ce\u9669\u56de\u62a5\u4e0d\u8db3\uff08R/R=2.42\uff0c\u4f4e\u4e8e2.5\uff09"
+      ]
+    },
+    {
+      "ticker": "CVX",
+      "score": 109.2,
+      "status": "REJECT",
+      "reject_reasons": [
+        "\u5165\u573a\u5230ATR\u6b62\u635f\u8ddd\u79bb\u8fc7\u5bbd\uff083.51x ATR > 3.0x ATR\uff09"
       ]
     }
   ],
   "sells": [
     {
-      "ticker": "NFLX",
-      "is_sell": true,
-      "score": 75,
-      "severity": "high",
-      "phase": 4,
-      "breakdown_level": 75.33,
-      "reasons": [
-        "In Phase 4 (Downtrend)",
-        "Broke below 50 SMA by 6.7%",
-        "50 SMA declining (slope: -0.0289)",
-        "Low volume breakdown: 0.8x",
-        "Weak RS rollover: -0.39",
-        "Failed breakout - closed back inside base"
-      ],
-      "details": {
-        "breakdown_level": 75.33,
-        "breakdown_score": 55,
-        "volume_ratio": 0.78,
-        "volume_score": 5,
-        "rs_slope": -0.391,
-        "rs_score": 5
-      }
-    },
-    {
       "ticker": "BA",
       "is_sell": true,
-      "score": 75,
-      "severity": "high",
+      "score": 65,
+      "severity": "medium",
       "phase": 4,
-      "breakdown_level": 209.76,
+      "breakdown_level": 206.21,
       "reasons": [
         "In Phase 4 (Downtrend)",
-        "Broke below 50 SMA by 9.2%",
-        "50 SMA declining (slope: -0.1999)",
-        "Low volume breakdown: 0.6x",
-        "Weak RS rollover: -0.47",
-        "Failed breakout - closed back inside base"
-      ],
-      "details": {
-        "breakdown_level": 209.76,
-        "breakdown_score": 55,
-        "volume_ratio": 0.56,
-        "volume_score": 5,
-        "rs_slope": -0.466,
-        "rs_score": 5
-      }
-    },
-    {
-      "ticker": "UPS",
-      "is_sell": true,
-      "score": 75,
-      "severity": "high",
-      "phase": 4,
-      "breakdown_level": 100.06,
-      "reasons": [
-        "In Phase 4 (Downtrend)",
-        "Broke below 50 SMA by 5.5%",
-        "50 SMA declining (slope: -0.3290)",
+        "Broke below 50 SMA by 8.5%",
+        "50 SMA declining (slope: -0.2283)",
         "Low volume breakdown: 0.7x",
-        "Weak RS rollover: -0.18",
-        "Failed breakout - closed back inside base"
+        "Weak RS rollover: -0.24"
       ],
       "details": {
-        "breakdown_level": 100.06,
+        "breakdown_level": 206.21,
         "breakdown_score": 55,
-        "volume_ratio": 0.69,
+        "volume_ratio": 0.66,
         "volume_score": 5,
-        "rs_slope": -0.184,
-        "rs_score": 5
-      }
-    },
-    {
-      "ticker": "HD",
-      "is_sell": true,
-      "score": 65,
-      "severity": "medium",
-      "phase": 4,
-      "breakdown_level": 316.49,
-      "reasons": [
-        "In Phase 4 (Downtrend)",
-        "Broke below 50 SMA by 8.1%",
-        "50 SMA declining (slope: -0.2664)",
-        "Low volume breakdown: 1.0x",
-        "Weak RS rollover: -0.36"
-      ],
-      "details": {
-        "breakdown_level": 316.49,
-        "breakdown_score": 55,
-        "volume_ratio": 0.96,
-        "volume_score": 5,
-        "rs_slope": -0.361,
-        "rs_score": 5
-      }
-    },
-    {
-      "ticker": "NKE",
-      "is_sell": true,
-      "score": 65,
-      "severity": "medium",
-      "phase": 4,
-      "breakdown_level": 37.96,
-      "reasons": [
-        "In Phase 4 (Downtrend)",
-        "Broke below 50 SMA by 8.6%",
-        "50 SMA declining (slope: -0.3602)",
-        "Low volume breakdown: 0.6x",
-        "Weak RS rollover: -0.50"
-      ],
-      "details": {
-        "breakdown_level": 37.96,
-        "breakdown_score": 55,
-        "volume_ratio": 0.57,
-        "volume_score": 5,
-        "rs_slope": -0.504,
+        "rs_slope": -0.245,
         "rs_score": 5
       }
     }
@@ -1714,9 +1540,9 @@
     "schema_version": "1.0",
     "policy_version": "2026-09-shadow-v1",
     "mode": "shadow",
-    "generated_at_utc": "2026-10-10T17:17:15.682654Z",
-    "as_of_session": "2026-10-09",
-    "valid_until_utc": "2026-10-12T05:17:15.682654Z",
+    "generated_at_utc": "2026-10-17T00:04:32.052917Z",
+    "as_of_session": "2026-10-16",
+    "valid_until_utc": "2026-10-18T12:04:32.052917Z",
     "policy": {
       "enabled": true,
       "mode": "shadow",
@@ -1745,10 +1571,10 @@
         "source_url": "https://www.federalreserve.gov/json/calendar.json",
         "source_format": "JSON",
         "primary_error_code": null,
-        "fetched_at_utc": "2026-10-10T17:17:15.682654Z",
+        "fetched_at_utc": "2026-10-17T00:04:32.052917Z",
         "source_updated_at": null,
         "etag": null,
-        "content_sha256": "d5114f623c7786dd3cdfc243fbc229edf000a0e24344abc26b38d4a34eb6f4d9",
+        "content_sha256": "de23ee88a2faa571b1f4daaf2514eb147e05c864c73380b8687ac0d53d906d7b",
         "coverage_start": "2017-02-01",
         "coverage_end": "2026-12-09",
         "coverage_verified": true,
@@ -1760,10 +1586,10 @@
         "source_url": "https://fred.stlouisfed.org/releases/calendar",
         "source_format": "FRED_PAGER_HTML",
         "primary_error_code": "HTTP_ERROR",
-        "fetched_at_utc": "2026-10-10T17:17:15.682654Z",
+        "fetched_at_utc": "2026-10-17T00:04:32.052917Z",
         "source_updated_at": null,
         "etag": null,
-        "content_sha256": "8598c33a4a23ad3a73d2293d604f561730bbff9a555596eb64957d97c07d62d0",
+        "content_sha256": "65f8cc8e4137fb5d2a2113daf6a74ab5c6fa5be45f92f60ab13517a88c9a62cf",
         "coverage_start": "2026-01-09",
         "coverage_end": "2026-12-10",
         "coverage_verified": true,
@@ -1783,7 +1609,7 @@
         "source_url": "https://www.bea.gov/news/schedule/ics/online-calendar-subscription.ics",
         "source_format": "ICS",
         "primary_error_code": null,
-        "fetched_at_utc": "2026-10-10T17:17:15.682654Z",
+        "fetched_at_utc": "2026-10-17T00:04:32.052917Z",
         "source_updated_at": null,
         "etag": null,
         "content_sha256": "c6320686f93a1200c1226ed92eed1c7d2531491006b6da7099fadaab57c433e9",
@@ -1795,25 +1621,6 @@
       }
     ],
     "events": [
-      {
-        "event_id": "fred:10:2026-10-14",
-        "family": "CPI",
-        "name": "Consumer Price Index",
-        "symbol": null,
-        "event_at_utc": "2026-10-14T12:30:00Z",
-        "event_date_local": "2026-10-14",
-        "source_timezone": "America/Chicago",
-        "time_precision": "EXACT",
-        "timing": "EXACT",
-        "confirmation_status": "SCHEDULED",
-        "source_id": "fred",
-        "source_tier": "SECONDARY_INSTITUTIONAL",
-        "source_publisher": "Federal Reserve Bank of St. Louis",
-        "source_url": "https://fred.stlouisfed.org/releases/calendar?po=1&ptic=0&vs=2026-01-01&ve=2027-12-31&rid=10",
-        "source_release_id": 10,
-        "sessions_until": 3,
-        "effective_session": "2026-10-14"
-      },
       {
         "event_id": "fed:fomc:2026-10-28",
         "family": "FOMC_DECISION",
@@ -1827,7 +1634,7 @@
         "confirmation_status": "SCHEDULED",
         "source_id": "fed",
         "source_url": "https://www.federalreserve.gov/json/calendar.json",
-        "sessions_until": 13,
+        "sessions_until": 8,
         "effective_session": "2026-10-28"
       },
       {
@@ -1843,7 +1650,7 @@
         "confirmation_status": "SCHEDULED",
         "source_id": "bea",
         "source_url": "https://www.bea.gov/news/schedule/ics/online-calendar-subscription.ics",
-        "sessions_until": 14,
+        "sessions_until": 9,
         "effective_session": "2026-10-29"
       },
       {
@@ -1862,7 +1669,7 @@
         "source_publisher": "Federal Reserve Bank of St. Louis",
         "source_url": "https://fred.stlouisfed.org/releases/calendar?po=1&ptic=0&vs=2026-01-01&ve=2027-12-31&rid=50",
         "source_release_id": 50,
-        "sessions_until": 20,
+        "sessions_until": 15,
         "effective_session": "2026-11-06"
       },
       {
@@ -1881,7 +1688,7 @@
         "source_publisher": "Federal Reserve Bank of St. Louis",
         "source_url": "https://fred.stlouisfed.org/releases/calendar?po=1&ptic=0&vs=2026-01-01&ve=2027-12-31&rid=10",
         "source_release_id": 10,
-        "sessions_until": 22,
+        "sessions_until": 17,
         "effective_session": "2026-11-10"
       },
       {
@@ -1897,7 +1704,7 @@
         "confirmation_status": "SCHEDULED",
         "source_id": "bea",
         "source_url": "https://www.bea.gov/news/schedule/ics/online-calendar-subscription.ics",
-        "sessions_until": 33,
+        "sessions_until": 28,
         "effective_session": "2026-11-25"
       },
       {
@@ -1916,7 +1723,7 @@
         "source_publisher": "Federal Reserve Bank of St. Louis",
         "source_url": "https://fred.stlouisfed.org/releases/calendar?po=1&ptic=0&vs=2026-01-01&ve=2027-12-31&rid=50",
         "source_release_id": 50,
-        "sessions_until": 39,
+        "sessions_until": 34,
         "effective_session": "2026-12-04"
       },
       {
@@ -1932,7 +1739,7 @@
         "confirmation_status": "SCHEDULED",
         "source_id": "fed",
         "source_url": "https://www.federalreserve.gov/json/calendar.json",
-        "sessions_until": 42,
+        "sessions_until": 37,
         "effective_session": "2026-12-09"
       },
       {
@@ -1951,7 +1758,7 @@
         "source_publisher": "Federal Reserve Bank of St. Louis",
         "source_url": "https://fred.stlouisfed.org/releases/calendar?po=1&ptic=0&vs=2026-01-01&ve=2027-12-31&rid=10",
         "source_release_id": 10,
-        "sessions_until": 43,
+        "sessions_until": 38,
         "effective_session": "2026-12-10"
       },
       {
@@ -1967,7 +1774,7 @@
         "confirmation_status": "SCHEDULED",
         "source_id": "bea",
         "source_url": "https://www.bea.gov/news/schedule/ics/online-calendar-subscription.ics",
-        "sessions_until": 52,
+        "sessions_until": 47,
         "effective_session": "2026-12-23"
       },
       {
@@ -1983,7 +1790,7 @@
         "confirmation_status": "SCHEDULED",
         "source_id": "bea",
         "source_url": "https://www.bea.gov/news/schedule/ics/online-calendar-subscription.ics",
-        "sessions_until": 75,
+        "sessions_until": 70,
         "effective_session": "2027-01-28"
       },
       {
@@ -1999,7 +1806,7 @@
         "confirmation_status": "SCHEDULED",
         "source_id": "bea",
         "source_url": "https://www.bea.gov/news/schedule/ics/online-calendar-subscription.ics",
-        "sessions_until": 94,
+        "sessions_until": 89,
         "effective_session": "2027-02-25"
       },
       {
@@ -2015,7 +1822,7 @@
         "confirmation_status": "SCHEDULED",
         "source_id": "bea",
         "source_url": "https://www.bea.gov/news/schedule/ics/online-calendar-subscription.ics",
-        "sessions_until": 117,
+        "sessions_until": 112,
         "effective_session": "2027-03-31"
       },
       {
@@ -2031,7 +1838,7 @@
         "confirmation_status": "SCHEDULED",
         "source_id": "bea",
         "source_url": "https://www.bea.gov/news/schedule/ics/online-calendar-subscription.ics",
-        "sessions_until": 138,
+        "sessions_until": 133,
         "effective_session": "2027-04-29"
       },
       {
@@ -2047,7 +1854,7 @@
         "confirmation_status": "SCHEDULED",
         "source_id": "bea",
         "source_url": "https://www.bea.gov/news/schedule/ics/online-calendar-subscription.ics",
-        "sessions_until": 158,
+        "sessions_until": 153,
         "effective_session": "2027-05-27"
       },
       {
@@ -2063,7 +1870,7 @@
         "confirmation_status": "SCHEDULED",
         "source_id": "bea",
         "source_url": "https://www.bea.gov/news/schedule/ics/online-calendar-subscription.ics",
-        "sessions_until": 177,
+        "sessions_until": 172,
         "effective_session": "2027-06-25"
       },
       {
@@ -2079,7 +1886,7 @@
         "confirmation_status": "SCHEDULED",
         "source_id": "bea",
         "source_url": "https://www.bea.gov/news/schedule/ics/online-calendar-subscription.ics",
-        "sessions_until": 200,
+        "sessions_until": 195,
         "effective_session": "2027-07-29"
       },
       {
@@ -2095,7 +1902,7 @@
         "confirmation_status": "SCHEDULED",
         "source_id": "bea",
         "source_url": "https://www.bea.gov/news/schedule/ics/online-calendar-subscription.ics",
-        "sessions_until": 219,
+        "sessions_until": 214,
         "effective_session": "2027-08-25"
       },
       {
@@ -2111,7 +1918,7 @@
         "confirmation_status": "SCHEDULED",
         "source_id": "bea",
         "source_url": "https://www.bea.gov/news/schedule/ics/online-calendar-subscription.ics",
-        "sessions_until": 244,
+        "sessions_until": 239,
         "effective_session": "2027-09-30"
       }
     ],
@@ -2125,7 +1932,7 @@
       "enforced": false
     },
     "ticker_decisions": {
-      "CVX": {
+      "AAPL": {
         "status": "CLEAR",
         "reason_codes": [
           "NO_HIGH_IMPACT_MACRO_WITHIN_WINDOW"
@@ -2134,7 +1941,7 @@
         "earnings_status": "NOT_CONFIGURED",
         "enforced": false
       },
-      "XOM": {
+      "MSFT": {
         "status": "CLEAR",
         "reason_codes": [
           "NO_HIGH_IMPACT_MACRO_WITHIN_WINDOW"

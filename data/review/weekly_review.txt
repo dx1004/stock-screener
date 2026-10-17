@@ -1,28 +1,24 @@
-市场广度：{'total_stocks': 27, 'phase_1_count': 12, 'phase_2_count': 10, 'phase_3_count': 0, 'phase_4_count': 5, 'phase_1_pct': 44.4, 'phase_2_pct': 37.0, 'phase_3_pct': 0.0, 'phase_4_pct': 18.5, 'breadth_quality': 'Good'}
+市场广度：{'total_stocks': 27, 'phase_1_count': 13, 'phase_2_count': 9, 'phase_3_count': 0, 'phase_4_count': 5, 'phase_1_pct': 48.1, 'phase_2_pct': 33.3, 'phase_3_pct': 0.0, 'phase_4_pct': 18.5, 'breadth_quality': 'Good'}
 事件风险：CLEAR（SHADOW，周五产物；周六不重新计算）
 事件风险当前仅观察，不改变技术买入、持仓或卖出动作。
 
 合规买入结论（最多2只）：
-  • XOM（得分 98.6）：PASS
-    - 入场价：168.94
-    - 入场到ATR止损距离：2.77x ATR
-    - 预估止损距离：5.45%（占比）
-    - 1-4月风险回报：2.90:1
+  • MSFT（得分 89.8）：PASS
+    - 入场价：539.44
+    - 入场到ATR止损距离：2.50x ATR
+    - 预估止损距离：5.26%（占比）
+    - 1-4月风险回报：4.76:1
     - 风险等级（以S&P 500指数风险作为标准）：R5
     - 仓位（符号化）：每笔最大可承担风险额 = C × (0.19%)
-  • CVX（得分 98.0）：PASS
-    - 入场价：211.98
-    - 入场到ATR止损距离：2.51x ATR
-    - 预估止损距离：4.81%（占比）
-    - 1-4月风险回报：4.24:1
+  • AAPL（得分 79.4）：PASS
+    - 入场价：342.0
+    - 入场到ATR止损距离：2.00x ATR
+    - 预估止损距离：3.81%（占比）
+    - 1-4月风险回报：4.18:1
     - 风险等级（以S&P 500指数风险作为标准）：R5
     - 仓位（符号化）：每笔最大可承担风险额 = C × (0.19%)
 
 卖出警示（>=60分）：
-  - NFLX（分数75.0）: high
-  - BA（分数75.0）: high
-  - UPS（分数75.0）: high
-  - HD（分数65.0）: medium
-  - NKE（分数65.0）: medium
+  - BA（分数65.0）: medium
 
 说明：卖出警示仅对已列入 holdings 的股票形成持仓 SELL 复核；未列入 holdings 的股票只是观察信号，不代表要求卖出。

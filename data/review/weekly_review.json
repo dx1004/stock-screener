@@ -1,16 +1,16 @@
 {
-  "generated_at": "2026-10-10T17:17:18.466001",
+  "generated_at": "2026-10-17T00:04:34.237496",
   "source": "local-report:data/results/latest_report.json",
-  "source_timestamp": "2026-10-10T17:17:15.681651",
+  "source_timestamp": "2026-10-17T00:04:32.052090",
   "status": "ok",
   "market_breadth": {
     "total_stocks": 27,
-    "phase_1_count": 12,
-    "phase_2_count": 10,
+    "phase_1_count": 13,
+    "phase_2_count": 9,
     "phase_3_count": 0,
     "phase_4_count": 5,
-    "phase_1_pct": 44.4,
-    "phase_2_pct": 37.0,
+    "phase_1_pct": 48.1,
+    "phase_2_pct": 33.3,
     "phase_3_pct": 0.0,
     "phase_4_pct": 18.5,
     "breadth_quality": "Good"
@@ -20,9 +20,9 @@
     "should_generate_sells": true,
     "regime": "RISK-ON (Moderate)",
     "reasons": [
-      "Market breadth adequate (37.0% in Phase 2)"
+      "Market breadth adequate (33.3% in Phase 2)"
     ],
-    "phase_2_pct": 37.0,
+    "phase_2_pct": 33.3,
     "spy_phase": 2
   },
   "risk_policy": {
@@ -45,9 +45,9 @@
     "schema_version": "1.0",
     "policy_version": "2026-09-shadow-v1",
     "mode": "shadow",
-    "generated_at_utc": "2026-10-10T17:17:15.682654Z",
-    "as_of_session": "2026-10-09",
-    "valid_until_utc": "2026-10-12T05:17:15.682654Z",
+    "generated_at_utc": "2026-10-17T00:04:32.052917Z",
+    "as_of_session": "2026-10-16",
+    "valid_until_utc": "2026-10-18T12:04:32.052917Z",
     "policy": {
       "enabled": true,
       "mode": "shadow",
@@ -76,10 +76,10 @@
         "source_url": "https://www.federalreserve.gov/json/calendar.json",
         "source_format": "JSON",
         "primary_error_code": null,
-        "fetched_at_utc": "2026-10-10T17:17:15.682654Z",
+        "fetched_at_utc": "2026-10-17T00:04:32.052917Z",
         "source_updated_at": null,
         "etag": null,
-        "content_sha256": "d5114f623c7786dd3cdfc243fbc229edf000a0e24344abc26b38d4a34eb6f4d9",
+        "content_sha256": "de23ee88a2faa571b1f4daaf2514eb147e05c864c73380b8687ac0d53d906d7b",
         "coverage_start": "2017-02-01",
         "coverage_end": "2026-12-09",
         "coverage_verified": true,
@@ -91,10 +91,10 @@
         "source_url": "https://fred.stlouisfed.org/releases/calendar",
         "source_format": "FRED_PAGER_HTML",
         "primary_error_code": "HTTP_ERROR",
-        "fetched_at_utc": "2026-10-10T17:17:15.682654Z",
+        "fetched_at_utc": "2026-10-17T00:04:32.052917Z",
         "source_updated_at": null,
         "etag": null,
-        "content_sha256": "8598c33a4a23ad3a73d2293d604f561730bbff9a555596eb64957d97c07d62d0",
+        "content_sha256": "65f8cc8e4137fb5d2a2113daf6a74ab5c6fa5be45f92f60ab13517a88c9a62cf",
         "coverage_start": "2026-01-09",
         "coverage_end": "2026-12-10",
         "coverage_verified": true,
@@ -114,7 +114,7 @@
         "source_url": "https://www.bea.gov/news/schedule/ics/online-calendar-subscription.ics",
         "source_format": "ICS",
         "primary_error_code": null,
-        "fetched_at_utc": "2026-10-10T17:17:15.682654Z",
+        "fetched_at_utc": "2026-10-17T00:04:32.052917Z",
         "source_updated_at": null,
         "etag": null,
         "content_sha256": "c6320686f93a1200c1226ed92eed1c7d2531491006b6da7099fadaab57c433e9",
@@ -126,25 +126,6 @@
       }
     ],
     "events": [
-      {
-        "event_id": "fred:10:2026-10-14",
-        "family": "CPI",
-        "name": "Consumer Price Index",
-        "symbol": null,
-        "event_at_utc": "2026-10-14T12:30:00Z",
-        "event_date_local": "2026-10-14",
-        "source_timezone": "America/Chicago",
-        "time_precision": "EXACT",
-        "timing": "EXACT",
-        "confirmation_status": "SCHEDULED",
-        "source_id": "fred",
-        "source_tier": "SECONDARY_INSTITUTIONAL",
-        "source_publisher": "Federal Reserve Bank of St. Louis",
-        "source_url": "https://fred.stlouisfed.org/releases/calendar?po=1&ptic=0&vs=2026-01-01&ve=2027-12-31&rid=10",
-        "source_release_id": 10,
-        "sessions_until": 3,
-        "effective_session": "2026-10-14"
-      },
       {
         "event_id": "fed:fomc:2026-10-28",
         "family": "FOMC_DECISION",
@@ -158,7 +139,7 @@
         "confirmation_status": "SCHEDULED",
         "source_id": "fed",
         "source_url": "https://www.federalreserve.gov/json/calendar.json",
-        "sessions_until": 13,
+        "sessions_until": 8,
         "effective_session": "2026-10-28"
       },
       {
@@ -174,7 +155,7 @@
         "confirmation_status": "SCHEDULED",
         "source_id": "bea",
         "source_url": "https://www.bea.gov/news/schedule/ics/online-calendar-subscription.ics",
-        "sessions_until": 14,
+        "sessions_until": 9,
         "effective_session": "2026-10-29"
       },
       {
@@ -193,7 +174,7 @@
         "source_publisher": "Federal Reserve Bank of St. Louis",
         "source_url": "https://fred.stlouisfed.org/releases/calendar?po=1&ptic=0&vs=2026-01-01&ve=2027-12-31&rid=50",
         "source_release_id": 50,
-        "sessions_until": 20,
+        "sessions_until": 15,
         "effective_session": "2026-11-06"
       },
       {
@@ -212,7 +193,7 @@
         "source_publisher": "Federal Reserve Bank of St. Louis",
         "source_url": "https://fred.stlouisfed.org/releases/calendar?po=1&ptic=0&vs=2026-01-01&ve=2027-12-31&rid=10",
         "source_release_id": 10,
-        "sessions_until": 22,
+        "sessions_until": 17,
         "effective_session": "2026-11-10"
       },
       {
@@ -228,7 +209,7 @@
         "confirmation_status": "SCHEDULED",
         "source_id": "bea",
         "source_url": "https://www.bea.gov/news/schedule/ics/online-calendar-subscription.ics",
-        "sessions_until": 33,
+        "sessions_until": 28,
         "effective_session": "2026-11-25"
       },
       {
@@ -247,7 +228,7 @@
         "source_publisher": "Federal Reserve Bank of St. Louis",
         "source_url": "https://fred.stlouisfed.org/releases/calendar?po=1&ptic=0&vs=2026-01-01&ve=2027-12-31&rid=50",
         "source_release_id": 50,
-        "sessions_until": 39,
+        "sessions_until": 34,
         "effective_session": "2026-12-04"
       },
       {
@@ -263,7 +244,7 @@
         "confirmation_status": "SCHEDULED",
         "source_id": "fed",
         "source_url": "https://www.federalreserve.gov/json/calendar.json",
-        "sessions_until": 42,
+        "sessions_until": 37,
         "effective_session": "2026-12-09"
       },
       {
@@ -282,7 +263,7 @@
         "source_publisher": "Federal Reserve Bank of St. Louis",
         "source_url": "https://fred.stlouisfed.org/releases/calendar?po=1&ptic=0&vs=2026-01-01&ve=2027-12-31&rid=10",
         "source_release_id": 10,
-        "sessions_until": 43,
+        "sessions_until": 38,
         "effective_session": "2026-12-10"
       },
       {
@@ -298,7 +279,7 @@
         "confirmation_status": "SCHEDULED",
         "source_id": "bea",
         "source_url": "https://www.bea.gov/news/schedule/ics/online-calendar-subscription.ics",
-        "sessions_until": 52,
+        "sessions_until": 47,
         "effective_session": "2026-12-23"
       },
       {
@@ -314,7 +295,7 @@
         "confirmation_status": "SCHEDULED",
         "source_id": "bea",
         "source_url": "https://www.bea.gov/news/schedule/ics/online-calendar-subscription.ics",
-        "sessions_until": 75,
+        "sessions_until": 70,
         "effective_session": "2027-01-28"
       },
       {
@@ -330,7 +311,7 @@
         "confirmation_status": "SCHEDULED",
         "source_id": "bea",
         "source_url": "https://www.bea.gov/news/schedule/ics/online-calendar-subscription.ics",
-        "sessions_until": 94,
+        "sessions_until": 89,
         "effective_session": "2027-02-25"
       },
       {
@@ -346,7 +327,7 @@
         "confirmation_status": "SCHEDULED",
         "source_id": "bea",
         "source_url": "https://www.bea.gov/news/schedule/ics/online-calendar-subscription.ics",
-        "sessions_until": 117,
+        "sessions_until": 112,
         "effective_session": "2027-03-31"
       },
       {
@@ -362,7 +343,7 @@
         "confirmation_status": "SCHEDULED",
         "source_id": "bea",
         "source_url": "https://www.bea.gov/news/schedule/ics/online-calendar-subscription.ics",
-        "sessions_until": 138,
+        "sessions_until": 133,
         "effective_session": "2027-04-29"
       },
       {
@@ -378,7 +359,7 @@
         "confirmation_status": "SCHEDULED",
         "source_id": "bea",
         "source_url": "https://www.bea.gov/news/schedule/ics/online-calendar-subscription.ics",
-        "sessions_until": 158,
+        "sessions_until": 153,
         "effective_session": "2027-05-27"
       },
       {
@@ -394,7 +375,7 @@
         "confirmation_status": "SCHEDULED",
         "source_id": "bea",
         "source_url": "https://www.bea.gov/news/schedule/ics/online-calendar-subscription.ics",
-        "sessions_until": 177,
+        "sessions_until": 172,
         "effective_session": "2027-06-25"
       },
       {
@@ -410,7 +391,7 @@
         "confirmation_status": "SCHEDULED",
         "source_id": "bea",
         "source_url": "https://www.bea.gov/news/schedule/ics/online-calendar-subscription.ics",
-        "sessions_until": 200,
+        "sessions_until": 195,
         "effective_session": "2027-07-29"
       },
       {
@@ -426,7 +407,7 @@
         "confirmation_status": "SCHEDULED",
         "source_id": "bea",
         "source_url": "https://www.bea.gov/news/schedule/ics/online-calendar-subscription.ics",
-        "sessions_until": 219,
+        "sessions_until": 214,
         "effective_session": "2027-08-25"
       },
       {
@@ -442,7 +423,7 @@
         "confirmation_status": "SCHEDULED",
         "source_id": "bea",
         "source_url": "https://www.bea.gov/news/schedule/ics/online-calendar-subscription.ics",
-        "sessions_until": 244,
+        "sessions_until": 239,
         "effective_session": "2027-09-30"
       }
     ],
@@ -456,7 +437,7 @@
       "enforced": false
     },
     "ticker_decisions": {
-      "CVX": {
+      "AAPL": {
         "status": "CLEAR",
         "reason_codes": [
           "NO_HIGH_IMPACT_MACRO_WITHIN_WINDOW"
@@ -465,7 +446,7 @@
         "earnings_status": "NOT_CONFIGURED",
         "enforced": false
       },
-      "XOM": {
+      "MSFT": {
         "status": "CLEAR",
         "reason_codes": [
           "NO_HIGH_IMPACT_MACRO_WITHIN_WINDOW"
@@ -481,18 +462,18 @@
   "rejected_candidates": [],
   "buy_candidates": [
     {
-      "ticker": "XOM",
-      "score": 98.6,
-      "entry_price": 168.94,
-      "stop_distance_atr_multiple": 2.7687,
-      "stop_distance_pct": 0.0545,
-      "risk_reward_ratio": 2.9043,
+      "ticker": "MSFT",
+      "score": 89.8,
+      "entry_price": 539.44,
+      "stop_distance_atr_multiple": 2.4973,
+      "stop_distance_pct": 0.0526,
+      "risk_reward_ratio": 4.757,
       "risk_grade_spy": "R5",
       "risk_status": "PASS",
       "risk_reasons": [
-        "ATR止损距离：2.77x ATR",
-        "入场到ATR止损距离：5.45%",
-        "目标RR：2.90:1",
+        "ATR止损距离：2.50x ATR",
+        "入场到ATR止损距离：5.26%",
+        "目标RR：4.76:1",
         "风险等级（以S&P 500指数风险作为标准）：R5"
       ],
       "sizing": {
@@ -506,18 +487,18 @@
       "recommended": true
     },
     {
-      "ticker": "CVX",
-      "score": 98.0,
-      "entry_price": 211.98,
-      "stop_distance_atr_multiple": 2.5129,
-      "stop_distance_pct": 0.0481,
-      "risk_reward_ratio": 4.2399,
+      "ticker": "AAPL",
+      "score": 79.4,
+      "entry_price": 342.0,
+      "stop_distance_atr_multiple": 2.0007,
+      "stop_distance_pct": 0.0381,
+      "risk_reward_ratio": 4.1839,
       "risk_grade_spy": "R5",
       "risk_status": "PASS",
       "risk_reasons": [
-        "ATR止损距离：2.51x ATR",
-        "入场到ATR止损距离：4.81%",
-        "目标RR：4.24:1",
+        "ATR止损距离：2.00x ATR",
+        "入场到ATR止损距离：3.81%",
+        "目标RR：4.18:1",
         "风险等级（以S&P 500指数风险作为标准）：R5"
       ],
       "sizing": {
@@ -534,125 +515,30 @@
   "holdings_actions": [],
   "sell_warnings": [
     {
-      "ticker": "NFLX",
-      "is_sell": true,
-      "score": 75,
-      "severity": "high",
-      "phase": 4,
-      "breakdown_level": 75.33,
-      "reasons": [
-        "In Phase 4 (Downtrend)",
-        "Broke below 50 SMA by 6.7%",
-        "50 SMA declining (slope: -0.0289)",
-        "Low volume breakdown: 0.8x",
-        "Weak RS rollover: -0.39",
-        "Failed breakout - closed back inside base"
-      ],
-      "details": {
-        "breakdown_level": 75.33,
-        "breakdown_score": 55,
-        "volume_ratio": 0.78,
-        "volume_score": 5,
-        "rs_slope": -0.391,
-        "rs_score": 5
-      }
-    },
-    {
       "ticker": "BA",
       "is_sell": true,
-      "score": 75,
-      "severity": "high",
+      "score": 65,
+      "severity": "medium",
       "phase": 4,
-      "breakdown_level": 209.76,
+      "breakdown_level": 206.21,
       "reasons": [
         "In Phase 4 (Downtrend)",
-        "Broke below 50 SMA by 9.2%",
-        "50 SMA declining (slope: -0.1999)",
-        "Low volume breakdown: 0.6x",
-        "Weak RS rollover: -0.47",
-        "Failed breakout - closed back inside base"
-      ],
-      "details": {
-        "breakdown_level": 209.76,
-        "breakdown_score": 55,
-        "volume_ratio": 0.56,
-        "volume_score": 5,
-        "rs_slope": -0.466,
-        "rs_score": 5
-      }
-    },
-    {
-      "ticker": "UPS",
-      "is_sell": true,
-      "score": 75,
-      "severity": "high",
-      "phase": 4,
-      "breakdown_level": 100.06,
-      "reasons": [
-        "In Phase 4 (Downtrend)",
-        "Broke below 50 SMA by 5.5%",
-        "50 SMA declining (slope: -0.3290)",
+        "Broke below 50 SMA by 8.5%",
+        "50 SMA declining (slope: -0.2283)",
         "Low volume breakdown: 0.7x",
-        "Weak RS rollover: -0.18",
-        "Failed breakout - closed back inside base"
+        "Weak RS rollover: -0.24"
       ],
       "details": {
-        "breakdown_level": 100.06,
+        "breakdown_level": 206.21,
         "breakdown_score": 55,
-        "volume_ratio": 0.69,
+        "volume_ratio": 0.66,
         "volume_score": 5,
-        "rs_slope": -0.184,
-        "rs_score": 5
-      }
-    },
-    {
-      "ticker": "HD",
-      "is_sell": true,
-      "score": 65,
-      "severity": "medium",
-      "phase": 4,
-      "breakdown_level": 316.49,
-      "reasons": [
-        "In Phase 4 (Downtrend)",
-        "Broke below 50 SMA by 8.1%",
-        "50 SMA declining (slope: -0.2664)",
-        "Low volume breakdown: 1.0x",
-        "Weak RS rollover: -0.36"
-      ],
-      "details": {
-        "breakdown_level": 316.49,
-        "breakdown_score": 55,
-        "volume_ratio": 0.96,
-        "volume_score": 5,
-        "rs_slope": -0.361,
-        "rs_score": 5
-      }
-    },
-    {
-      "ticker": "NKE",
-      "is_sell": true,
-      "score": 65,
-      "severity": "medium",
-      "phase": 4,
-      "breakdown_level": 37.96,
-      "reasons": [
-        "In Phase 4 (Downtrend)",
-        "Broke below 50 SMA by 8.6%",
-        "50 SMA declining (slope: -0.3602)",
-        "Low volume breakdown: 0.6x",
-        "Weak RS rollover: -0.50"
-      ],
-      "details": {
-        "breakdown_level": 37.96,
-        "breakdown_score": 55,
-        "volume_ratio": 0.57,
-        "volume_score": 5,
-        "rs_slope": -0.504,
+        "rs_slope": -0.245,
         "rs_score": 5
       }
     }
   ],
-  "summary_text": "市场广度：{'total_stocks': 27, 'phase_1_count': 12, 'phase_2_count': 10, 'phase_3_count': 0, 'phase_4_count': 5, 'phase_1_pct': 44.4, 'phase_2_pct': 37.0, 'phase_3_pct': 0.0, 'phase_4_pct': 18.5, 'breadth_quality': 'Good'}\n事件风险：CLEAR（SHADOW，周五产物；周六不重新计算）\n事件风险当前仅观察，不改变技术买入、持仓或卖出动作。\n\n合规买入结论（最多2只）：\n  • XOM（得分 98.6）：PASS\n    - 入场价：168.94\n    - 入场到ATR止损距离：2.77x ATR\n    - 预估止损距离：5.45%（占比）\n    - 1-4月风险回报：2.90:1\n    - 风险等级（以S&P 500指数风险作为标准）：R5\n    - 仓位（符号化）：每笔最大可承担风险额 = C × (0.19%)\n  • CVX（得分 98.0）：PASS\n    - 入场价：211.98\n    - 入场到ATR止损距离：2.51x ATR\n    - 预估止损距离：4.81%（占比）\n    - 1-4月风险回报：4.24:1\n    - 风险等级（以S&P 500指数风险作为标准）：R5\n    - 仓位（符号化）：每笔最大可承担风险额 = C × (0.19%)\n\n卖出警示（>=60分）：\n  - NFLX（分数75.0）: high\n  - BA（分数75.0）: high\n  - UPS（分数75.0）: high\n  - HD（分数65.0）: medium\n  - NKE（分数65.0）: medium\n\n说明：卖出警示仅对已列入 holdings 的股票形成持仓 SELL 复核；未列入 holdings 的股票只是观察信号，不代表要求卖出。",
+  "summary_text": "市场广度：{'total_stocks': 27, 'phase_1_count': 13, 'phase_2_count': 9, 'phase_3_count': 0, 'phase_4_count': 5, 'phase_1_pct': 48.1, 'phase_2_pct': 33.3, 'phase_3_pct': 0.0, 'phase_4_pct': 18.5, 'breadth_quality': 'Good'}\n事件风险：CLEAR（SHADOW，周五产物；周六不重新计算）\n事件风险当前仅观察，不改变技术买入、持仓或卖出动作。\n\n合规买入结论（最多2只）：\n  • MSFT（得分 89.8）：PASS\n    - 入场价：539.44\n    - 入场到ATR止损距离：2.50x ATR\n    - 预估止损距离：5.26%（占比）\n    - 1-4月风险回报：4.76:1\n    - 风险等级（以S&P 500指数风险作为标准）：R5\n    - 仓位（符号化）：每笔最大可承担风险额 = C × (0.19%)\n  • AAPL（得分 79.4）：PASS\n    - 入场价：342.0\n    - 入场到ATR止损距离：2.00x ATR\n    - 预估止损距离：3.81%（占比）\n    - 1-4月风险回报：4.18:1\n    - 风险等级（以S&P 500指数风险作为标准）：R5\n    - 仓位（符号化）：每笔最大可承担风险额 = C × (0.19%)\n\n卖出警示（>=60分）：\n  - BA（分数65.0）: medium\n\n说明：卖出警示仅对已列入 holdings 的股票形成持仓 SELL 复核；未列入 holdings 的股票只是观察信号，不代表要求卖出。",
   "notes": [
     "loaded JSON report from data/results/latest_report.json"
   ]
