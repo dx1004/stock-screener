@@ -396,6 +396,10 @@ def _candidate_risk_metrics(candidate: Dict[str, Any]) -> Dict[str, Any]:
         or _extract_float(candidate.get("entry_price"))
         or _extract_float(candidate.get("breakout_price"))
     )
+    merged["stop_price"] = (
+        _extract_float(risk_block.get("stop_price"))
+        or _extract_float(risk_block.get("stop_loss"))
+    )
     merged["stop_distance_pct"] = _extract_float(risk_block.get("stop_distance_pct"))
     merged.setdefault("stop_distance_atr_multiple", _extract_float(risk_block.get("stop_distance_atr_multiple")))
     merged.setdefault("risk_reward_ratio", _extract_float(risk_block.get("risk_reward_ratio")))
@@ -404,7 +408,16 @@ def _candidate_risk_metrics(candidate: Dict[str, Any]) -> Dict[str, Any]:
     merged["spy_risk_grade"] = risk_block.get("spy_risk_grade") or candidate.get("risk_grade") or risk_assessment.get("risk_grade")
     merged["status"] = risk_assessment.get("status") or candidate.get("risk_status") or candidate.get("status")
     merged["reasons"] = risk_assessment.get("reasons") or candidate.get("risk_reasons") or []
-    merged["sizing"] = candidate.get("sizing_guidance", risk_assessment.get("sizing", {}))
+    sizing = candidate.get("sizing_guidance", risk_assessment.get("sizing", {}))
+    merged["sizing"] = dict(sizing) if isinstance(sizing, dict) else {}
+    for field in (
+        "risk_budget_per_trade_pct",
+        "default_capital",
+        "risk_budget_dollars",
+        "max_shares",
+    ):
+        if risk_block.get(field) is not None:
+            merged["sizing"].setdefault(field, risk_block[field])
     return merged
 
 
@@ -569,12 +582,15 @@ def _format_decision(payload: Dict[str, Any], min_buy_score: float = 70.0) -> st
             continue
 
         entry_price = _extract_float(risk_metrics.get("entry_price"))
+        stop_price = _extract_float(risk_metrics.get("stop_price"))
         stop_distance_atr_multiple = _extract_float(risk_metrics.get("stop_distance_atr_multiple"))
         stop_distance_pct = _extract_float(risk_metrics.get("stop_distance_pct"))
         rr = _extract_float(risk_metrics.get("risk_reward_ratio"))
 
         if entry_price is None:
             reasons.append("缺失入场价")
+        if stop_price is None:
+            reasons.append("缺失止损价")
         if stop_distance_atr_multiple is None:
             reasons.append("缺失入场到ATR止损倍数")
         if stop_distance_pct is None:
@@ -609,6 +625,7 @@ def _format_decision(payload: Dict[str, Any], min_buy_score: float = 70.0) -> st
             spy_grade = risk.get("spy_risk_grade")
             lines.append(f"  • {item.get('ticker')}（得分 {item.get('score', 0):.1f}）：PASS")
             lines.append(f"    - 入场价：{risk.get('entry_price', '-')}")
+            lines.append(f"    - 止损价：{risk.get('stop_price', '-')}")
             if atr_ratio is not None:
                 lines.append(f"    - 入场到ATR止损距离：{_fmt_float(atr_ratio)}x ATR")
             if stop_pct is not None:
@@ -625,6 +642,8 @@ def _format_decision(payload: Dict[str, Any], min_buy_score: float = 70.0) -> st
                     f"    - 示例本金：${_fmt_float(sizing.get('default_capital'), ',.2f')}；"
                     f"示例单笔风险额：${_fmt_float(sizing.get('risk_budget_dollars'), ',.2f')}"
                 )
+            if sizing.get("max_shares") is not None:
+                lines.append(f"    - 示例最大股数上限：{int(sizing.get('max_shares'))}")
                 lines.append(
                     "    - 调整公式：你的单笔风险额 = 个人本金 C × 风险预算比例；"
                     "最大股数 = floor(单笔风险额 ÷ (入场价 − 止损价))"
@@ -742,9 +761,12 @@ def build_structured_review(
         atr_multiple = metrics.get("stop_distance_atr_multiple")
         stop_pct = metrics.get("stop_distance_pct")
         entry_price = metrics.get("entry_price")
+        stop_price = metrics.get("stop_price")
 
         if _extract_float(entry_price) is None:
             reasons.append("缺失入场价")
+        if _extract_float(stop_price) is None:
+            reasons.append("缺失止损价")
         if _extract_float(atr_multiple) is None:
             reasons.append("缺失入场到ATR止损倍数")
         if _extract_float(stop_pct) is None:
@@ -761,6 +783,7 @@ def build_structured_review(
                 "ticker": ticker,
                 "score": score,
                 "entry_price": metrics.get("entry_price"),
+                "stop_price": metrics.get("stop_price"),
                 "stop_distance_atr_multiple": metrics.get("stop_distance_atr_multiple"),
                 "stop_distance_pct": metrics.get("stop_distance_pct"),
                 "risk_reward_ratio": metrics.get("risk_reward_ratio"),

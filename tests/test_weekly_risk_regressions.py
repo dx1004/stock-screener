@@ -138,3 +138,91 @@ def test_weekly_review_preserves_upstream_rejection_reason():
     ]
     assert reason in review["summary_text"]
     assert "风险状态=REJECT（非PASS）" not in review["summary_text"]
+
+
+def test_weekly_review_exposes_explicit_stop_price_for_pass_candidate():
+    timestamp = datetime.now().isoformat()
+    payload = {
+        "timestamp": timestamp,
+        "status": "ok",
+        "breadth": {},
+        "buys": [
+            {
+                "ticker": "XOM",
+                "score": 81.5,
+                "risk_assessment": {
+                    "status": "PASS",
+                    "reasons": [],
+                    "risk": {
+                        "entry_price": 100.0,
+                        "stop_loss": 92.0,
+                        "stop_distance_atr_multiple": 2.0,
+                        "stop_distance_pct": 0.08,
+                        "risk_reward_ratio": 3.0,
+                        "spy_risk_grade": "R3",
+                        "risk_budget_per_trade_pct": 0.5,
+                        "default_capital": 10_000.0,
+                        "risk_budget_dollars": 50.0,
+                        "max_shares": 6,
+                    },
+                    "sizing": {},
+                },
+            }
+        ],
+        "holdings_actions": [],
+        "sells": [],
+    }
+
+    review = build_structured_review(
+        payload,
+        ReportSource(source="test", payload=payload, timestamp=timestamp),
+    )
+
+    assert review["buy_candidates"][0]["stop_price"] == 92.0
+    assert review["buy_candidates"][0]["sizing"]["risk_budget_per_trade_pct"] == 0.5
+    assert review["buy_candidates"][0]["sizing"]["max_shares"] == 6
+    assert "止损价：92.0" in review["summary_text"]
+    assert "示例最大股数上限：6" in review["summary_text"]
+
+
+def test_weekly_review_rejects_pass_candidate_without_explicit_stop_price():
+    timestamp = datetime.now().isoformat()
+    payload = {
+        "timestamp": timestamp,
+        "status": "ok",
+        "breadth": {},
+        "buys": [
+            {
+                "ticker": "XOM",
+                "score": 81.5,
+                "risk_assessment": {
+                    "status": "PASS",
+                    "reasons": [],
+                    "risk": {
+                        "entry_price": 100.0,
+                        "stop_distance_atr_multiple": 2.0,
+                        "stop_distance_pct": 0.08,
+                        "risk_reward_ratio": 3.0,
+                        "spy_risk_grade": "R3",
+                    },
+                    "sizing": {},
+                },
+            }
+        ],
+        "holdings_actions": [],
+        "sells": [],
+    }
+
+    review = build_structured_review(
+        payload,
+        ReportSource(source="test", payload=payload, timestamp=timestamp),
+    )
+
+    assert review["buy_candidates"] == []
+    assert review["rejected_candidates"] == [
+        {
+            "ticker": "XOM",
+            "status": "DATA_INCOMPLETE",
+            "reasons": ["缺失止损价", "数据不完整"],
+        }
+    ]
